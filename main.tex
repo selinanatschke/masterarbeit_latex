@@ -92,6 +92,9 @@
 \usepackage[backend=biber,style=authoryear]{biblatex}
 \addbibresource{refs.bib}
 
+% macht, dass statt "Contents" "Inhaltsverzeichnis da steht"
+\renewcommand{\contentsname}{Inhaltsverzeichnis}
+
 \begin{document}
 
 \input{deckblatt}
@@ -103,17 +106,22 @@
 \pagenumbering{roman} % bis hier römische Seitenzahl
 \clearpage
 \section{Einleitung}
-- (PRÜFEN OB DRIN UND WOHIN?)
-- Die Anfänge der Mid-Air-Interaktion können bis in die späten 70er zum "Put that there demo" zurückgeführt werden \parencite{bolt1980putthatthere}
+{\color{red} TODO: Einleitung schreiben ggf aus Abstract}
 
-Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlichen Sinneswahrnehmung. Insbesondere taktile, olfaktorische und thermische Reize bleiben ungenutzt, obwohl sie entscheidend für die Wahrnehmung von Atmosphäre und Präsenz in realen Umgebungen sind. Dieser Mangel an multisensorischer Gestaltung stellt eine zentrale Herausforderung für immersive Systeme dar. Um dem entgegenzuwirken, wurde der mehrsinnliche Interaktionsraum (MIR) \parencite{orawetz2024mir} entwickelt, welcher mit seiner 270°-Projektion, räumlichem Audio, Beduftung und taktilem Feedback eine technische Infrastruktur bietet, um atmosphärische Erfahrungen multisensorisch zu gestalten. Allerdings bleibt die Interaktion bislang passiv: Die Atmosphäre wird präsentiert, aber nicht aktiv durch die Nutzer:innen beeinflusst. Um dieses Potenzial zu entfalten, ist eine Weiterentwicklung hin zu einem dynamischen, körperbasierten Interaktionsraum notwendig. Im Mittelpunkt steht die Integration natürlicher, körperbasierter Interaktionsformen wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierter Steuerung, welche die Atmosphäre des Raumes nicht mehr nur präsentieren, sondern auch interaktiv gestalten soll. Daher ist es sinnvoll, den aktuellen Forschungs- und Entwicklungsstand zu den Themen //TODO zu analysieren.
+- MIR erklären
+- Struktur:
+ 1 Problem
+ 2 Motivation
+ 3 Ziel der Arbeit
+ 4 Vorgehen
+ 5 Aufbau der Arbeit
 
-% Struktur: 
-% 1 Problem
-% 2 Motivation
-% 3 Ziel der Arbeit
-% 4 Vorgehen
-% 5 Aufbau der Arbeit
+
+%- (PRÜFEN OB DRIN UND WOHIN?)
+%- Die Anfänge der Mid-Air-Interaktion können bis in die späten 70er zum "Put that there demo" zurückgeführt werden \parencite{bolt1980putthatthere}
+
+%Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlichen Sinneswahrnehmung. Insbesondere taktile, olfaktorische und thermische Reize bleiben ungenutzt, obwohl sie entscheidend für die Wahrnehmung von Atmosphäre und Präsenz in realen Umgebungen sind. Dieser Mangel an multisensorischer Gestaltung stellt eine zentrale Herausforderung für immersive Systeme dar. Um dem entgegenzuwirken, wurde der mehrsinnliche Interaktionsraum (MIR) \parencite{orawetz2024mir} entwickelt, welcher mit seiner 270°-Projektion, räumlichem Audio, Beduftung und taktilem Feedback eine technische Infrastruktur bietet, um atmosphärische Erfahrungen multisensorisch zu gestalten. Allerdings bleibt die Interaktion bislang passiv: Die Atmosphäre wird präsentiert, aber nicht aktiv durch die Nutzer:innen beeinflusst. Um dieses Potenzial zu entfalten, ist eine Weiterentwicklung hin zu einem dynamischen, körperbasierten Interaktionsraum notwendig. Im Mittelpunkt steht die Integration natürlicher, körperbasierter Interaktionsformen wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierter Steuerung, welche die Atmosphäre des Raumes nicht mehr nur präsentieren, sondern auch interaktiv gestalten soll. Daher ist es sinnvoll, den aktuellen Forschungs- und Entwicklungsstand zu den Themen //TODO zu analysieren.
+
 
 
 \pagenumbering{arabic} % bis hier römische Seitenzahl
@@ -134,6 +142,15 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 % Ziel ist es, bestehende Ansätze hinsichtlich ihrer Eignung für eine controllerfreie, raumzentrierte Atmosphärensteuerung zu analysieren und daraus eine Forschungslücke abzuleiten, die durch den MIR adressiert wird.
 
 \subsection{Körperbasierte Interaktion (Embodied Interaction)}
+- reality based interaction \parencite{jacob2008realitybasedinteraction}=> natürliche Interaktion vorteilhaft
+
+- körperbasierte Interkation reduziert übersetzen von Intention zu systemreaktion (natürliche Bewegung als Eingabe) \parencite{norman1986CognitiveEngineering}
+
+- kopplung körperbewegng und systemfeedback kann zusätzlich Gefühl von Präsenz und Engagement in immersiven Umgebungen verstärken \parencite{slatersanchesvivies2016enhancingourliveswithimmersivevirtualreality}
+
+- aber auch tradeoffs \parencite{jacob2008realitybasedinteraction})
+
+- hier dann aktuelle Studien mit Beleg (?)
 
 % - Entwicklung von post-WIMP (Windows, Icons, Menus, Pointers) führt dazu natürliche Fähigkeiten stärker in digitale Systeme zu integrieren
 % - Interaktionsmodell: Reality Based Interaction \parencite{jacob2008realitybasedinteraction}: überträgt Alltagskompetenzen in digitale Interaktionen 
@@ -159,6 +176,18 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 
 \subsection{Immersive räumliche Interaktionsumgebungen und Projektionsräume}
 
+- immersive Interaktionsumgebungen durch Kopplung von Wahrnehmung und körperlicher Beweung \parencite{slater1997frameworkForImmersiveVirtualEnvironments} => aber VR
+
+- Proxemic: distanz, orintierung und bewegung als eingabesignale \parencite{ballendatmarquardtgreenberg2010proxemicinteraction}
+
+- large displays erfordern physische Navigation, Multi-User-Koordination und geräteübergreifende Interaktion => physische Bewgung zentraler punkt laut studie \parencite{belkacem2024LHRDsurvey}
+
+- öffentliche designspaces anforderungen \parencite{mueller2010requirementsAndDesignSpaceForInteractivePublicDisplays}
+
+- architektur kann interaktionsfläche werden \parencite{jones2014roomalive}
+
+- multimodal besser als nur ein sinn > quellen aus notizen ergänzen (siehe abstract)
+
 % - Immersive Interaktionsumgebungen werden durch die Kopplung von Wahrnehmung und körperlicher Bewegung charakterisiert, wobei digitale Inhalte als räumlich erfahrbare Orte statt als reine Bildschirmrepräsentationen erscheinen \parencite{slater1997frameworkForImmersiveVirtualEnvironments}.
 % - Obwohl Slater und Wilbur ihre Überlegungen im Kontext virtueller Umgebungen entwickeln, lassen sich die beschriebenen Prinzipien körperlich gebundener Wahrnehmung und räumlicher Interaktion auch auf andere immersive oder spatialisierte digitale Settings übertragen.
 % - Neben Head-Mounted-Display-basierten XR-Systemen zählen hierzu insbesondere projektionsbasierte Installationen, Medienräume oder interaktive Umgebungen, in denen Architektur selbst zur Schnittstelle wird. Charakteristisch ist die Abkehr von klassischen Desktop-Metaphern hin zu Interaktionsformen, die Körper, Raum und Kontext als integrale Bestandteile der Eingabe und des Feedbacks nutzen.
@@ -176,22 +205,21 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 % Zusammenfassend verdeutlicht die Forschung zu räumlichen und projektionsbasierten Interaktionsumgebungen, dass Körperbewegung, soziale Dynamiken und räumliche Orientierung zentrale Ressourcen für Interaktion darstellen. Gleichzeitig entstehen Herausforderungen hinsichtlich Zugänglichkeit, Präzision und Verständlichkeit von Eingabemechanismen, insbesondere in controllerfreien Settings. Diese Aspekte bilden die Grundlage für die Betrachtung freihändiger Mid-Air-Interaktion und geeigneter Auswahltechniken im folgenden Abschnitt.
 
 \subsection{Controllerfreie Mid-Air und Whole-Body Interaction}
-% - Mid-Air Interaction Design (natürliche Interkation, RBI Bezug)
-% - Probleme: 
-%   - Fatigue (Gorilla Arm)
-%   - Precision Problems
-%   - Feedback
-%   (- dafür Literatur: fatigue studies, throughput trade-offs)
-% - Selection Techniques: Selection + Control
-%   - Dwell vs. Grab
-%   - Raycast
-%   - marking gestures
-% - Discoverability
-%   - wichtig für public spaces 
-% - Trade Offs
-%   - Geschwindigkeit/Fehlerquote
-%   - effort vs immersion
-
+ - Mid-Air Interaction Design (natürliche Interkation, RBI Bezug)
+ - Probleme:
+   - Fatigue (Gorilla Arm)
+   - Precision Problems
+   - Feedback
+ - Selection Techniques: Selection + Control
+   - Dwell vs. Grab
+   - marking gestures
+   - continuos wie quelle bei slider
+ - Discoverability
+   - wichtig für public spaces
+   - ggf wie wir das mit bildern von geste oder einweisung umgehen (?)
+ - Trade Offs
+   - Geschwindigkeit/Fehlerquote
+   - effort vs immersion
   
 % Aktuelle Forschung betrachten beispielsweise umfassende, systematische Analysen aktueller Interaktionsmethoden in immersiven XR-Umgebungen. \textcite{spittle2023reviewinteractiontechniquesforimmersiveenvironments} untersuchen dafür insbesondere die Eignung verschiedener Eingabeformen für explizite Aufgaben in 3D-Räumen und identifizierten 4 Input-Kategorien: freihändige Gesteninteraktion, hardwarebasierte Eingaben, sprachbasierte Steuerung und kopforientierte Interaktion. Besonders hervorgehoben wird der Mehrwert multimodaler Ansätze, die verschiedene Eingabemethoden kombinieren, um Robustheit, Natürlichkeit und Fehlertoleranz zu erhöhen. 
 % \textcite{gavgiotaki2023gesturebasedinteractionforarsystemsreview} hingegen befassten sich stattdessen mit der Manipulation virtueller Objekte sowie der Navigation innerhalb von AR-Benutzeroberflächen. Dabei rückten auch Mid-Air-Gesten ihre natürliche Steuerung besonders in erfahrungsorientierten Szenarien positiv hervor,solange sie klar definiert und leicht erlern- und erinnerbar sind. 
@@ -211,20 +239,14 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 
 
 \subsection{Spatial Menüs und Auswahltechniken}
-% - Marking Menus 
-%   - muscle memory
-%   - novice vs. expert mode
-% - Spatial UI
-%   - warum radiale Menüs funktionieren
-% - submenus problem
-% - slider interaction (weil atmosphärische Parameter kontinuierlich sind)
-% - discoverability (invisible gestures sind schlecht)
-
-% - Gesture Menus
-% - schnelle auswahl
-% -submenus 
-% - slider interaction 
-% - welche Gesten sind intuitiv und stabil?
+ - Marking Menus
+   - muscle memory
+   - novice vs. expert mode
+ - Spatial UI
+   - warum radiale Menüs funktionieren
+ - submenus problem welche empfehlungen für menütiefe usw
+ - slider interaction (weil atmosphärische Parameter kontinuierlich sind)
+ - discoverability (invisible gestures sind schlecht)  - mal gucken wo das besser hin passt
 
 % Eine zentrale Herausforderung bleibt die Selektion ohne physische Bestätigung. Ohne physische Tasten oder Klickmechanismen fehlt haptisches Feedback, wodurch Probleme wie Overshoot, unbeabsichtigte Aktivierungen oder Unsicherheit über erfolgreiche Eingaben entstehen können. Studien zeigen unterschiedliche Trade-offs zwischen Selektionsmethoden: Dwell-basierte Verfahren bieten hohe Präzision bei geringerer Belastung, sind aber im Schnitt langsamer als Alternativen, während schnelle Bewegungs- oder Greifgesten stärker von Trackingqualität abhängig sind \parencite{dube2022pushtabdwellpinchevaluationofselectionmethods}. (HIER NOCHMAL GUCKEN OB WIR BESSERE QUELLE HABEN; WEIL DAS NUTZT ULTRASONIC FEEDBACK WAS WIR NICHT HABEN)
 
@@ -252,6 +274,7 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 
 
 \subsection{Multisensorische und atmosphärische Interaktion}
+- Bezug zu MIR, noch keine Ideen was hier rein kommt
 
 % - Der Begriff multisensorische Interaktion bezeichnet die Kombination mehrerer Sinneskanäle: visuell, auditiv, haptisch, thermisch, olfaktorisch, zur Schaffung von Presence, Immersion und emotionaler Wirkung (QUELLE?). Ziel ist nicht die Effizienz einer Aufgabe, sondern die Kontrolle über die Atmosphäre – also die Gestaltung von Raum, Stimmung und Emotion.
 
@@ -269,6 +292,7 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 
 
 \subsection{NEU: Gestendesign}
+- vielleicht auch mit zu controllerfreie interaktion, sonst gedoppelt
 - social acceptance, 
 - discoverability + ggf. einführen über symbole, 
 - metaphern, 
@@ -283,8 +307,6 @@ Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlich
 
 \clearpage
 \include{synthese}
-\include{synthese2}
-
 
 \clearpage
 \include{chapter-praxis}
