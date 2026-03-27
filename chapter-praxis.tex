@@ -1,0 +1,564 @@
+\section{Praktische Umsetzung}
+% Einleitung ins Kapitel
+Dieses Kapitel beschreibt die praktische Umsetzung des entwickelten gestenbasierten Interaktionssystems. Im Vordergrund steht dabei nicht eine spezifische Zielanwendung, sondern ein generisches System, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Die Implementierung wurde daher so aufgebaut, dass Benutzeroberfläche und Anwendungsanbindung voneinander getrennt sind. Dadurch kann das System unabhängig entwickelt, getestet und prinzipiell in verschiedene Anwendungskontexte integriert werden.
+
+
+\subsection{Systemarchitektur}
+Die Systemarchitektur basiert auf einer Verarbeitungspipeline, die in eine modulare Frontend-Struktur eingebettet ist. Aus den Kameradaten werden zunächst Handmerkmale extrahiert. Auf Basis dieser Tracking-Daten wird eine Cursorposition im zweidimensionalen Interaktionsraum berechnet. Diese steuert die Benutzeroberfläche des Systems, die das Marking Menu sowie weitere Interaktionselemente darstellt. 
+Benutzeraktionen, die aus der Menüinteraktion entstehen, werden anschließend über eine WebSocket-Schnittstelle an eine angebundene Zielanwendung übertragen.
+
+Abbildung~\ref{fig:handtracking_pipeline_diagram} zeigt die grundlegende Verarbeitungspipeline des Systems von der Kameradatenerfassung bis zur Übertragung der Interaktionsereignisse an die Zielanwendung.
+
+% @startuml
+% left to right direction
+% component "Kamera" as Camera
+% component "Handtracking\n(MediaPipe)" as Tracking
+% component "Gestenerkennung\n& Cursorberechnung" as Cursor
+% component "UI-Overlay\n(Marking Menu, Slider)" as UI
+% component "WebSocket\nKommunikation" as WS
+% component "Zielanwendung/Server" as App
+% Camera --> Tracking
+% Tracking --> Cursor
+% Cursor --> UI
+% UI --> WS
+% WS --> App
+% @enduml
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\linewidth]{content/diagrams/handtracking_pipeline_diagram.png}
+    \caption{Verarbeitungspipeline des Interaktionssystems}
+    \label{fig:handtracking_pipeline_diagram}
+\end{figure}
+
+Die Kommunikation zwischen Interaktionssystem und Zielanwendung erfolgt über WebSocket. 
+WebSocket ist ein Netzwerkprotokoll, das eine persistente, bidirektionale Kommunikationsverbindung zwischen Client und Server über eine einzelne TCP-Verbindung ermöglicht. Dadurch können Ereignisse in Echtzeit übertragen werden, ohne dass wiederholt neue HTTP-Anfragen aufgebaut werden müssen \parencite{fetteMelnikov2011TheWebsocketProtocol}.
+
+Neben dieser linearen Verarbeitungskette ist das System in mehrere funktionale Komponenten unterteilt, die innerhalb des Frontends zusammenwirken.
+
+Damit besteht das System aus mehreren funktionalen Komponenten, die innerhalb des Frontends zusammenwirken:
+\begin{itemize}
+    \item eine Handtracking-Komponente zur Extraktion von Handlandmarken aus Kameradaten,
+    \item eine Gestenerkennung und Cursorberechnung zur Ableitung von Interaktionszuständen,
+    \item ein Datenmodell zur Verwaltung von Menüstruktur und Zustandsinformationen,
+    \item eine UI-Steuerung mit Rendering-Komponente zur Darstellung des Marking Menus und der Interaktionselemente,
+    \item sowie eine WebSocket-Kommunikation zur Anbindung externer Systeme.
+\end{itemize}
+
+Abbildung~\ref{fig:component_diagram} zeigt diese Komponenten sowie deren Interaktionen innerhalb des Systems.
+
+% @startuml
+% skinparam componentStyle rectangle
+% package "Frontend (JavaScript / Electron)" {
+%   component "UI-Steuerung und Canvas Rendering \n(Marking Menu und Slider)" as UI
+%   component "Handerkennung mittels Google MediaPipe" as Hand
+%   component "Gestenerkennung und \nCursorberechnung" as Cursor
+%   component "Datenmodell mit Menüstruktur" as Data
+% }
+% package "Externe Systeme" {
+%   component "Zielserver /\nMockserver/\nOffline Daten" as Server
+% }
+% package "Hardware" {
+%   component "Kamera" as Camera
+% }
+% Camera --> Hand
+% Hand --> Cursor
+% Cursor --> UI
+% Data --> UI
+% UI --> Server : Websocket
+% Server --> UI : Websocket
+% Server --> Data : Websocket
+% @enduml
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{content/diagrams/component_diagram.png}
+    \caption{Vereinfachte Architektur des Interaktionssystems}
+    \label{fig:component_diagram}
+\end{figure}
+
+Die über WebSocket übermittelten Interaktionsereignisse werden von einer angebundenen Zielanwendung empfangen und verarbeitet. 
+Diese Anwendung ist nicht Bestandteil des eigentlichen Interaktionssystems, sondern stellt die Umgebung dar, in der die Interaktionen Wirkung entfalten.
+
+Im Kontext des multisensorischen Interaktionsraums wird hierfür typischerweise die Unreal Engine verwendet, die für die Darstellung der projizierten Inhalte zuständig ist. 
+Da die Kommunikation jedoch über eine standardisierte Schnittstelle erfolgt, kann das Interaktionssystem prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. 
+Dieses Vorgehen unterstützt den Anspruch, das System universell einsetzbar und nicht auf ein einzelnes Anwendungsszenario beschränkt zu gestalten (R1). \\
+
+{\color{red} TODO: Das hier weg, weil das in Entwicklungswerkzeuge Abschnitt sowieso erklärt wird?}
+Für die Entwicklungsphase wurde zusätzlich ein Mock-Server implementiert. 
+Dieser simuliert das Verhalten einer angebundenen Zielanwendung und erlaubt es, Benutzeroberfläche, Zustandslogik und Nachrichtenprotokoll unabhängig von der Zielanwendung zu entwickeln und zu testen. 
+Dadurch konnten Implementierung und Debugging entkoppelt erfolgen.
+
+% Skizze Programmablauf || TODO: sollte Cursorposition mit in Electron Overlay?
+\begin{figure}[H]
+    \centering
+    \resizebox{0.9\linewidth}{!}{
+    \begin{tikzpicture}[
+        node distance=1.4cm and 1.2cm,
+        block/.style={
+            rectangle,
+            rounded corners,
+            draw=black,
+            thick,
+            align=center,
+            minimum width=3.0cm,
+            minimum height=1.1cm,
+            fill=gray!10
+        },
+        devblock/.style={
+            rectangle,
+            rounded corners,
+            draw=black,
+            dashed,
+            thick,
+            align=center,
+            minimum width=3.0cm,
+            minimum height=1.1cm,
+            fill=blue!5
+        },
+        arrow/.style={->, thick}
+    ]
+
+    \node[block] (camera) {Kamera /\\ Hand der Nutzer:innen};
+    \node[block, right=of camera] (tracking) {Handtracking\\ und Landmarken};
+    \node[block, right=of tracking] (cursor) {Gestenerkennung\\ und Cursorposition};
+
+    \node[block, below=of camera] (overlay) {Electron-Overlay\\ Marking Menu + Slider};
+    \node[block, right=of overlay] (ws) {WebSocket-\\ Kommunikation};
+    \node[block, right=of ws] (target) {Zielanwendung\\ z.\,B. Unreal Engine};
+
+    \node[devblock, below=of ws] (mock) {Mock-Server\\ für Entwicklung und Test};
+
+    \draw[arrow] (camera) -- (tracking);
+    \draw[arrow] (tracking) -- (cursor);
+    \draw[arrow] (cursor) -- (overlay);
+    \draw[<->, thick] (overlay) -- (ws);
+    \draw[<->, thick] (ws) -- (target);
+    \draw[<->, thick, dashed] (mock) -- (ws);
+
+    \end{tikzpicture}
+    }
+    \caption{{\color{red} TODO: Löschen / Aber lasse es erstmal noch drin, falls ich mit den anderen Diagrammen unzufrieden bin}
+Systemarchitektur des entwickelten Interaktionssystems. Der Mock-Server ersetzt in der Entwicklungsphase die Zielanwendung, um Benutzeroberfläche und Kommunikationsschnittstelle unabhängig testen zu können.}
+    \label{fig:systemarchitektur}
+\end{figure}
+
+
+\subsection{Handtracking-Pipeline}
+\label{sec:handtracking-pipeline}
+Die Handtracking-Pipeline bildet die Grundlage des gesamten Interaktionssystems. Ziel ist es, aus dem Kamerabild robuste Informationen über die Position und Form der Hand zu gewinnen und daraus Interaktionszustände abzuleiten. Die Implementierung basiert auf einer browsernahen Verarbeitung, sodass die erkannten Handdaten direkt für die visuelle und funktionale Steuerung des Overlays genutzt werden können.
+
+Zunächst erfasst das System fortlaufend Videoframes der Kamera und übergibt diese an die Handtracking-Komponente Google MediaPipe. MediaPipe ist ein Open-Source-Framework zur Echtzeitverarbeitung visueller Sensordaten und stellt vortrainierte Modelle zur Erkennung von Körper-, Gesichts- und Handlandmarken bereit. Für jede erkannte Hand liefert das verwendete MediaPipe Hands Modell 21 dreidimensionale Landmarken, welche die räumliche Lage relevanter Handpunkte beschreiben \parencite{lugaresi2019GoogleMediaPipe}.
+MediaPipe wurde gewählt, da das Framework eine robuste Echtzeiterkennung von Handlandmarken ermöglicht und direkt in browserbasierten Anwendungen eingesetzt werden kann, wodurch sich die Trackingdaten ohne zusätzliche Verarbeitungsschritte in das Interaktionssystem integrieren lassen.
+Auf Basis dieser Landmarken bestimmt das System, ob eine Hand erkannt wurde und welche grundlegende Handhaltung vorliegt. \\
+
+Ein zentraler Schritt besteht anschließend in der Überführung der Trackingdaten in eine zweidimensionale Cursorposition. Hierfür wird die Handposition auf den Bildschirmraum abgebildet. Der resultierende Cursor dient als primäres Eingabeelement für die Menüinteraktion. Dadurch entsteht eine direkte Kopplung zwischen Handbewegung im Kamerabild und Navigation innerhalb des Overlays. \\
+
+Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten. Verwendet werden eine offene Hand (Abb. \ref{fig:openpalm_gesture_image}) zur Aktivierung der Menüinteraktion, eine Grab-Geste (Abb. \ref{fig:grab_gestute_image}) zur schnellen Bestätigung, sowie eine Pinch-Geste (Abb. \ref{fig:pinch_gesture_image}) zur kontinuierlichen Steuerung von Slidern. Die Gestenerkennung basiert auf Distanzmaßen zwischen ausgewählten Landmarken, beispielsweise zwischen Fingerspitzen und Handbasis oder zwischen Daumen und Zeigefinger. Diese Heuristiken ermöglichen eine einfache, nachvollziehbare und in Echtzeit ausführbare Klassifikation.
+Bei der Geste zur Aktivierung wurde zusätzlich darauf geachtet, dass die Geste nur bei frontaler Erkennung ausgelöst wird, um sicherzustellen, dass nur die Kamera an der aktuell frontalen Projektionsfläche das Menü aktivieren kann. {\color{red} TODO: Satz nochmal schön machen}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[height=4cm, angle=-90, trim=12cm 2cm 1cm 2cm, clip]
+    {content/images/pinch_gesture_image.jpeg}
+    \caption{Pinch Geste nutzt den Abstand zwischen der Zeigefingerspitze und Daumenspitze}
+    \label{fig:pinch_gesture_image}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[height=4cm, angle=-90, trim=12cm 2cm 1cm 2cm, clip]
+    {content/images/grab_gesture_image.jpeg}
+    \caption{Grab Geste nutzt den Abstand zwischen allen Fingerspitzen (außer Daumen) und der Handballenunterseite}
+    \label{fig:grab_gestute_image}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[height=4cm, angle=-90, trim=12cm 2cm 1cm 2cm, clip]
+    {content/images/openpalm_gesture_image.jpeg}
+    \caption{Open Palm Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite. Zusätzlich Berechnet sie die Distanz zwischen Daumenspitze und der Spitze des kleinen Fingers.}
+    \label{fig:openpalm_gesture_image}
+\end{subfigure}
+\caption{{\color{red} TODO: Überlegen ob verschieben zur ersten Erwähnung der Gesten und hier dann vlt nur zeigen, welche Landmarken genutzt werden? Oder ist das überhaupt interessant?}
+Gesten mit Markierung der getrackten Landmarken für Abstandsbestimmungen}
+\label{fig:gesture_images_photos}
+\end{figure}
+
+
+Die erkannten Gesten dienen anschließend als Eingaben für eine zustandsbasierte Interaktionslogik, welche das Verhalten des Menüs steuert.
+
+Die Handtracking-Pipeline ist eng mit einer Zustandslogik gekoppelt. Ist kein Menü sichtbar, kann das System durch eine Open-Palm-Aktivierungsgeste aktiviert werden. Erkennt das System diese Aktivierungsgeste über eine Dauer von drei Sekunden, startet ein Dwell-Mechanismus zur Einblendung des Menüs. Auf diese Weise wird verhindert, dass zufällige oder kurzzeitige Erkennungen unmittelbar zu einer Interaktion führen. 
+Der Fortschritt dieses Aktivierungsmechanismus wird anschließend durch visuelles Feedback im Overlay vermittelt.
+Der Ablauf der Zustände wurde in Abbildung \ref{fig:state_flow_diagram} visualisiert.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.7\linewidth]{content/diagrams/state_diagram.png}
+%     \caption{Zustandsdiagramm}
+%     \label{fig:state_diagram}
+% \end{figure}
+
+
+% UML Zustandsdiagramm
+% Plantuml Code: 
+% @startuml
+% title Vereinfachte Interaktionslogik des Systems
+% [*] --> Datenladen
+% Datenladen --> ACTIVATION : Server, Dummyserver oder \nOffline-Daten geladen
+% ACTIVATION : Menü nicht sichtbar
+% ACTIVATION --> ACTIVATION : keine Aktivierung
+% ACTIVATION --> MENU : Open Palm gehalten
+% MENU : Menü anzeigen\nCursor bewegen
+% MENU --> IDLE : keine Hand erkannt
+% state MENU {
+% Menu : Menü ist im Fokus
+% Slider : Slider ist im Fokus, \nMenü ist blass
+% Menu --> Slider : Menüeintrag gewählt, \nder Slider Aktion öffnet
+% }
+% IDLE : kurzzeitig inaktiv \n(Menü verblasst)
+% IDLE --> MENU : Hand wieder erfasst
+% IDLE --> DWELL : keine Hand erfasst für >3s
+% DWELL : Deaktivierungs-Timeout, startet Dwell Animation
+% DWELL --> MENU : Hand erfasst
+% DWELL --> ACTIVATION : Hand für >3s nicht erfasst
+% @enduml
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{content/diagrams/state_flow_diagram.png}
+    \caption{Zustandsdiagramm {\color{red} TODO: Verschachtelung behalten oder weg?}}
+    \label{fig:state_flow_diagram}
+\end{figure}
+
+{\color{red} TODO: Fotos von der Anwendung in allen Zuständen einfügen - überlegen ob hier oder wo anders}
+
+\subsection{Electron-Overlay}
+Das visuelle Interaktionssystem wurde als Overlay mit Electron umgesetzt. 
+Electron ist eine Open-Source-Plattform zur Entwicklung plattformübergreifender Desktopanwendungen auf Basis von Webtechnologien. Anwendungen werden dabei in einer Chromium-Umgebung ausgeführt und können gleichzeitig auf systemnahe Funktionen zugreifen \parencite{electronDocumentation}. 
+Die Wahl von Electron ermöglicht eine flexible und plattformunabhängige Implementierung der Benutzeroberfläche, wodurch das Overlay unabhängig von der jeweiligen Zielanwendung ausgeführt werden kann.
+Electron fungiert dabei als eigenständiger UI-Layer, der unabhängig von der jeweils gesteuerten Anwendung arbeitet. Diese Trennung ist wesentlich, da das Menü nicht als Bestandteil einer konkreten Zielanwendung implementiert werden sollte, sondern als universell einsetzbare Interaktionsschicht.
+Durch diese Architektur kann das Interaktionssystem als zusätzliche Steuerungsschicht über bestehende Anwendungen gelegt werden, ohne dass diese selbst angepasst werden müssen. \\
+
+\subsubsection{Visualisierung}
+Das Overlay wird als transparentes Fenster über der eigentlichen Anwendung dargestellt. Dabei ist das Fenster standardmäßig nicht fokussierbar, sodass Tastatureingaben weiterhin an die darunterliegende Anwendung weitergeleitet werden können. Dies ist insbesondere wichtig, da die Zielanwendung in vielen Szenarien weiterhin über klassische Eingabegeräte steuerbar bleiben soll.
+Für Entwicklungs- und Konfigurationszwecke kann das Overlay temporär in einen Konfigurationsmodus versetzt werden. In diesem Modus können Tastatur- und Mauseingaben abgefangen und für Kalibrierungsfunktionen verwendet werden. 
+{\color{red} TODO: Kamerafenster und Window Steuerung muss hier noch hin wenn fertig} \\
+
+Innerhalb dieses Overlays werden das Marking Menu mit visuellen Zustandsanzeigen der Menüelemente, der Cursor, sowie kontextabhängige Steuerelemente wie Slider dargestellt. Die Visualisierung erfolgt dynamisch und reagiert fortlaufend auf die aus dem Handtracking abgeleiteten Interaktionszustände. Das Menü wird dabei an der Position eingeblendet, an der sich die Hand zum Zeitpunkt der Aktivierung befindet {\color{red} (TODO: Visualisierung von Position des Menüs (?))}.
+
+Zur Unterstützung der Interaktion stellt das Overlay mehrere visuelle Rückmeldungen bereit. Während des Dwell-Vorgangs wird eine kreisförmige Fortschrittsanzeige dargestellt, die den Aktivierungsfortschritt visualisiert (Abb. \ref{fig:hand_with_dwell}). Diese animierte Visualisierung zeigt an, wie weit die Aktivierung bereits fortgeschritten ist und verhindert dadurch Unsicherheit über den aktuellen Systemzustand.
+Zusätzlich zeigt ein Handicon an, ob eine Hand erkannt wurde und welche Geste aktuell interpretiert wird (Abb. \ref{fig:hand_with_grab}). Dadurch erhalten Nutzer:innen unmittelbar Rückmeldung darüber, ob ihre Hand korrekt erkannt wird und welche Interaktion gerade aktiv ist. Auch im deaktivierten Zustand bleibt das Icon sichtbar, jedoch in abgeschwächter Darstellung (Abb. \ref{fig:no_hand_detected}). Dies dient als visuelle Anleitung zur Aktivierung des Menüs und unterstützt die Discoverability der Interaktion.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{content/images/no_hand_detected.png}
+    \caption{Dwell-Kreis, wenn keine Hand erkannt wird}
+    \label{fig:no_hand_detected}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{content/images/hand_with_dwell.png}
+    \caption{Dwell-Kreis, während Aktivierungsgeste erkannt wird}
+    \label{fig:hand_with_dwell}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{content/images/hand_with_grab.png}
+    \caption{Dwell-Kreis, während Grab-Geste erkannt wird}
+    \label{fig:hand_with_grab}
+\end{subfigure}
+\caption{Verschiedene Zustände der Fortschrittsanzeige (Dwell-Kreis) {\color{red} TODO: Höhere Auflösung}}
+\label{fig:gesture_icons}
+\end{figure}
+
+Das Marking Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nicht fest in der Oberfläche kodiert, sondern aus einer externen Konfiguration geladen, welche von der Zielanwendung bereitgestellt wird. Dadurch kann die Anzahl der Einträge, ihre Hierarchie sowie die Zuordnung zu Aktionen flexibel angepasst werden. Ein Menüeintrag kann entweder ein Untermenü öffnen (Abb. \ref{fig:menu_with_submenu}) oder direkt eine Aktion auslösen, beispielsweise einen Slider zur kontinuierlichen Parametersteuerung, sichtbar an der Slider-Preview, die sich beim Hovern des Elements öffnet (Abb. \ref{fig:menu_with_slider_presentation}), oder eine Button-Aktion (Abb. \ref{fig:menu_with_button}).
+{\color{red} TODO: Überlegen ob hier die drei Bilder oder nur eins für "ah da öffnet sich submenü" und eins für "ah hier öffnet sich kein submenü, also muss es slider oder button sein (aber schwer screenshot zu machen, weil das wäre nur im Hover Zustand komplett blau (sonst mit dwell))}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{content/images/menu_with_submenu.png}
+    \caption{Cursor befindet sich auf Menüelement, das ein Submenü öffnet.}
+    \label{fig:menu_with_submenu}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{content/images/menu_with_slider_presentation.png}
+    \caption{Cursor befindet sich auf Menüelement, das Slider öffnet.}
+    \label{fig:menu_with_slider_presentation}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{content/images/menu_with_button.png}
+    \caption{Cursor befindet sich auf Menüelement, das als Button fungiert}
+    \label{fig:menu_with_button}
+\end{subfigure}
+\caption{Verschiedene Möglichkeit der Menüelemente {\color{red} TODO: Fix, dass mittleres Foto so losgelöst aussieht oder als extra Bild referenzieren oder nur Menü nehmen und dann Referenz auf ein Bild, wo man die Slider Preview sieht}}
+\label{fig:gesture_images}
+\end{figure}
+
+Ein wichtiger Bestandteil des Overlays ist zudem die Zustandslogik für Auswahl und Bestätigung. Menüsegmente werden zunächst durch Cursorbewegung fokussiert (Abb. \ref{fig:zustandsvisualisierungen} c)). Die Auswahl kann anschließend entweder über Verweildauer bestätigt (Abb. \ref{fig:zustandsvisualisierungen} d)) oder alternativ durch eine erkannte Grab-Geste ausgelöst werden. Die erfolgreiche Selektion wird visuell hervorgehoben (Abb. \ref{fig:zustandsvisualisierungen} b)). Dieses Zusammenspiel aus räumlicher Navigation und expliziter Bestätigung reduziert Fehlauslösungen und unterstützt eine kontrollierte Interaktion. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{content/diagrams/zustandsvisualisierungen.png}
+    \caption{Verschiedene Visualisierungen des Zustands}
+    \label{fig:zustandsvisualisierungen}
+\end{figure}
+
+Für kontinuierliche Parameteränderungen wurden Slider integriert. Diese werden nach der Auswahl eines entsprechenden Menüeintrags eingeblendet und in Bezug auf die Position des auslösenden Menüsegments angeordnet. Während ein Slider aktiv ist, wird das Menü visuell abgeschwächt dargestellt (Abb. \ref{fig:slider_active_screenshot}), und die Eingabe erfolgt über eine Pinch-Geste in Kombination mit Handbewegung. Dadurch wird zwischen diskreter Auswahl im Menü und kontinuierlicher Feinsteuerung klar unterschieden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{content/images/slider_active.png}
+    \caption{Slider im aktiven Zustand, während Menü verblasst dargestellt wird.}
+    \label{fig:slider_active_screenshot}
+\end{figure}
+
+
+\subsubsection{Zustandslogik der Menüinteraktion}
+Die Interaktionslogik des Menüs basiert auf einer zustandsbasierten Struktur, die die aktuelle Interaktion der Nutzer:innen mit den Menüelementen abbildet. 
+Für jede aktive Menüebene wird ein separater Interaktionszustand verwaltet.
+
+Ein solcher Zustand umfasst Informationen über das aktuell vom Cursor fokussierte Element, das ausgewählte Element sowie den Fortschritt eines Dwell-Timers zur automatischen Auswahl. 
+Zusätzlich werden Zustandsinformationen wie das zuvor fokussierte Element oder der Status einer aktiven Greifgeste gespeichert.
+
+Die Verwaltung von Interaktionszuständen pro Menüebene ermöglicht eine konsistente Verarbeitung mehrstufiger Menühierarchien. 
+Für jede Ebene können dadurch unabhängige Hover-, Auswahl- und Dwell-Zustände geführt werden. 
+Gleichzeitig unterstützt diese Struktur eine iterative Verarbeitung während des Renderings, da alle aktiven Ebenen sequenziell ausgewertet werden können.
+
+Zur Erkennung von Zustandsänderungen zwischen einzelnen Frames werden zusätzlich vorherige Interaktionszustände gespeichert. 
+Dadurch können Änderungen wie ein Wechsel des fokussierten Menüelements oder das erstmalige Auftreten einer Greifgeste zuverlässig erkannt werden. 
+Diese framebasierte Zustandsverfolgung trägt wesentlich zu einer stabilen und konsistenten Interaktionsauswertung bei.
+
+Listing~\ref{lst:levelstates} zeigt beispielhaft eine Funktion zur Erzeugung eines Interaktionszustands für eine einzelne Menüebene. 
+Die Funktion gibt ein Zustandsobjekt mit den relevanten Interaktionsparametern zurück und kann entsprechend der Anzahl aktiver Menüebenen mehrfach instanziiert werden.
+
+\begin{lstlisting}[language=JavaScript,caption={Beispielhafte Struktur eines Interaktionszustands pro Menüebene},label={lst:levelstates}]
+function createLevelState() {
+    return {
+        hover: null,            // Menuelement, das gerade gehovert wird
+        selected: null,         // Menuelement, das gerade ausgewaehlt ist
+        dwellStart: null,       // Zeitpunkt, zu dem Dwell gestartet ist
+        dwellProgress: 0,       // Fortschritt des Dwells in Prozent
+        dwellTriggered: false,  // Gibt an, ob dwell bereits getriggert wurde
+        previousHover: null,    // Menuelement, das im letzten Frame gehovert wurde
+        wasGrabbing: false      // Gibt an, ob Grab-Geste im letzten Frame ausgeloest war
+    };
+}
+\end{lstlisting}
+
+Die Trennung zwischen globalem Systemzustand (vgl. Abschnitt~\ref{sec:handtracking-pipeline}), UI-Zustand und Interaktionszustand verbessert die Erweiterbarkeit des Systems und reduziert Kopplungen zwischen Tracking, Darstellung und Interaktionslogik.
+
+Diese Zustandsstruktur bildet die Grundlage für die Auswertung der Nutzerinteraktionen sowie für die Darstellung der visuellen Rückmeldungen im Menü.
+
+
+\subsection{Datengetriebene Menüstruktur}
+Das im Overlay dargestellte radiale Menü ist nicht statisch implementiert, sondern vollständig datengetrieben aufgebaut. Die Struktur des Menüs wird durch eine JSON-basierte Konfiguration beschrieben, die von der Zielanwendung an das Overlay übermittelt wird. Dadurch kann die Menüstruktur dynamisch angepasst werden, ohne Änderungen an der Benutzeroberfläche selbst vornehmen zu müssen. Das Overlay ist damit ausschließlich für Darstellung und Interaktionslogik verantwortlich.
+
+Die Konfiguration des Menüs definiert sowohl globale Eigenschaften des Menüs, wie beispielsweise den Radius der Hauptmenüebene {\color{red} (TODO: eigentlich Quatsch, dass Radius mit dem Menü mitgeschickt wird. Wenn noch Zeit ist, das in der Implementierung und im Text hier ändern)} oder die Größe von Untermenüs, als auch die einzelnen Menüeinträge. 
+Ein Menüeintrag kann dabei entweder als Navigationsknoten fungieren, der ein weiteres Untermenü öffnet, oder direkt eine Interaktion auslösen, etwa die Aktivierung eines Buttons oder die Steuerung eines kontinuierlichen Parameters über einen Slider. Dadurch entsteht eine klare Trennung zwischen Navigationsknoten und Aktionsknoten.
+
+Die hierarchische Organisation ermöglicht es, mehrere Interaktionsfunktionen innerhalb einer begrenzten Anzahl sichtbarer Menüsegmente bereitzustellen. 
+Während die oberste Ebene zentrale Funktionskategorien enthält, werden detailliertere Steuerungsoptionen innerhalb der entsprechenden Untermenüs zugänglich gemacht.
+
+Jeder Menüeintrag besitzt eine eindeutige Identifikationsnummer sowie Metadaten wie Bezeichnung, Icon und Typ des UI-Elements. Abhängig vom Typ des Eintrags können zusätzliche Parameter definiert werden, beispielsweise ein Zielparameter der Zielanwendung, der durch Slider- oder Buttonaktionen verändert wird. Diese Zielparameter werden bei der Interaktion als Teil der WebSocket-Nachrichten an die Zielanwendung übermittelt.
+
+Durch diese generische Beschreibung der Menüstruktur bleibt das Interaktionssystem unabhängig von konkreten Anwendungsszenarien. Neue Funktionen oder zusätzliche Menüebenen können ergänzt werden, ohne die Implementierung des Overlays selbst zu verändern. Auf diese Weise kann für jedes Anwendungsszenario eine spezifische Menüstruktur definiert werden.
+
+\begin{lstlisting}[language=json,caption={Beispiel einer Menükonfiguration}]
+{
+  "radius": 200,
+  "subRadius": 100,
+  "items": [
+    {
+      "id": 1,
+      "label": "Umgebungseinstellungen",
+      "type": "menu",
+      "icon": "settings",
+      "children": [
+        {
+          "id": 11,
+          "label": "Volume",
+          "type": "slider",
+          "icon": "volume",
+          "target": "volume"
+        },
+        {
+          "id": 12,
+          "label": "Brightness",
+          "type": "slider",
+          "icon": "brightness",
+          "target": "brightness"
+        },
+        {
+          "id": 13,
+          "label": "Vibration",
+          "type": "slider",
+          "icon": "vibration",
+          "target": "vibration"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Presentation",
+      "type": "menu",
+      "icon": "presentation",
+      "children": [
+        {
+          "id": 21,
+          "label": "Timeline",
+          "type": "slider",
+          "icon": "timeline",
+          "target": "presentation"
+        },
+        {
+          "id": 22,
+          "label": "Play/Pause",
+          "type": "button",
+          "icon": "play",
+          "target": "presentation"
+        }
+      ]
+    }
+  ]
+}
+\end{lstlisting}
+
+
+\subsection{Eventkommunikation}
+Die Interaktion mit dem Menü erzeugt Interaktionsereignisse, die an die angebundene Zielanwendung weitergeleitet werden. 
+Hierfür wird eine WebSocket-basierte Kommunikation eingesetzt. WebSockets ermöglichen eine persistente, 
+bidirektionale Verbindung zwischen Overlay und Anwendung, sodass Interaktionsereignisse in Echtzeit 
+übertragen werden können, ohne wiederholt neue HTTP-Verbindungen aufbauen zu müssen 
+\parencite{fetteMelnikov2011TheWebsocketProtocol}.
+Die Verwendung einer persistenten WebSocket-Verbindung vermeidet wiederholte Verbindungsaufbauten und reduziert damit Latenzzeiten bei der Übertragung von Interaktionsereignissen.
+
+Über diese Verbindung werden sowohl Benutzeraktionen vom Overlay an die Zielanwendung gesendet als auch Initialwerte oder Bestätigungsnachrichten von der Anwendung an das Overlay zurückgegeben. 
+Damit entsteht eine kontinuierliche Kommunikationsschnittstelle zwischen Interaktionssystem und Anwendung.
+
+\subsubsection{Nachrichtenstruktur}
+
+{\color{red} TODO: Hier nochmal genauer beschreiben UND sagen, dass das nicht optimal ist wegen iterativem Prozess => sollte nochmal überholt werden }
+
+Die übertragenen Nachrichten folgen einer einheitlichen JSON-Struktur (Tab. \ref{tab:websocket_message}). 
+Dieses Schema ermöglicht die Beschreibung unterschiedlicher Interaktionsereignisse (z.B. diskrete Buttonaktionen 
+oder kontinuierliche Slideränderungen) innerhalb eines einheitlichen Kommunikationsprotokolls. Eine beispielhafte Nachricht ist in Listing \ref{lst:slider_update} dargestellt.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+Feld & Beschreibung & Mögliche Werte \\
+\midrule
+action & Art der Interaktion & update, pressed, initial \\
+type & Typ des UI-Elements & slider, button, menu \\
+target & Zielparameter & volume, brightness, vibration, presentation \\
+value & übertragener Wert & 0.0–1.0, play, pause \\
+id & ID des Menüeintrags & 1, ... \\
+\bottomrule
+\end{tabular}
+\caption{Überischt über Felder, die in Nachricht gesendet werden.}
+\label{tab:websocket_message}
+\end{table}
+
+\begin{lstlisting}[
+language=json,
+caption={Beispiel einer Slider-Update-Nachricht. Falls sie vom UI gesendet wird, bedeutet das, dass die oder die Nutzer:in den Sliderwert des Lautstärkesliders auf 35\% gestellt hat.},
+label={lst:slider_update}]
+{
+  "action": "update",
+  "type": "slider",
+  "target": "volume",
+  "value": 0.35,
+  "id": "1"
+}
+\end{lstlisting}
+
+% Motivation für Wahl 
+Durch die Verwendung eines generischen Nachrichtenformats bleibt die Kopplung zwischen Interaktionssystem und Zielanwendung gering. Das Overlay übermittelt keine anwendungsspezifischen Methodenaufrufe, sondern abstrahierte Interaktionsereignisse. Dadurch kann das System prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. Zusätzlich können neue Interaktionstypen oder Zielparameter ergänzt werden, ohne die grundlegende Kommunikationslogik verändern zu müssen.
+{\color{red} Sollte hier die Struktur ausführlicher beschriebenw erden oder reicht die Tabelle?}
+
+\subsubsection{Kommunikationsfluss}
+Nach dem Aufbau der WebSocket-Verbindung sendet die Zielanwendung zunächst Initialisierungsnachrichten mit Konfigurations- und Zustandsdaten, welche den aktuellen Zustand der Anwendung beschreiben. Diese enthalten sowohl die Menüstruktur des Zielsystems als auch weitere Zustandsinformationen, beispielsweise die Länge eines Videos oder aktuelle Parameterwerte. Das Overlay verwendet diese Informationen, um seine UI-Elemente zu initialisieren und mit dem Zustand der Zielanwendung zu synchronisieren. Während der Interaktion übermittelt das Overlay anschließend Ereignisse, etwa Slideränderungen oder Buttonaktionen, an die Zielanwendung. Diese verarbeitet die eingehenden Nachrichten und sendet gegebenenfalls aktualisierte Parameterwerte zur Bestätigung des neuen Zustands.
+
+Während der Interaktion mit kontinuierlichen Steuerelementen wie Slidern werden Parameteränderungen zunächst lokal im Overlay verarbeitet. Erst nach Abschluss der Interaktion, beispielsweise beim Loslassen der Pinch-Geste, wird der finale Parameterwert an die Zielanwendung übertragen.
+Dieses Vorgehen reduziert die Anzahl der übertragenen Nachrichten und verhindert eine hohe Kommunikationsfrequenz während kontinuierlicher Interaktionen.
+
+Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in Abbildung~\ref{fig:communication_flow} dargestellt. Die Abbildung verdeutlicht, dass die Kommunikation nicht nur zur Übertragung von Benutzeraktionen dient, sondern auch zur Initialisierung sowie zur Synchronisierung von Zustandsinformationen zwischen beiden Komponenten.
+
+% TODO in Grafik. statt "sendet slider:update Nachricht zurück als Bestätigung" lieber "sendet aktualisierten Parameterwert zurück"
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{content/diagrams/communication_flow.png}
+\caption{Ablauf der WebSocket-basierten Eventkommunikation zwischen Overlay und Zielanwendung. Nach der Initialisierung werden Zustandsinformationen wie Menüstruktur oder Parameterwerte an das Overlay übertragen.  Während der Interaktion sendet das Overlay abstrahierte Ereignisse an die Zielanwendung, welche diese verarbeitet und bei Bedarf synchronisierte Werte zur Bestätigung zurückgibt. {\color{red} TODO: Verschönern}}
+\label{fig:communication_flow}
+\end{figure}
+
+
+\subsubsection{Sonderfall: Präsentationssteuerung}
+Für den Anwendungsfall der Präsentationssteuerung ergeben sich besondere Anforderungen an die Interaktionslogik, da sowohl diskrete als auch kontinuierliche Eingaben unterstützt werden müssen. 
+Im Gegensatz zu reinen Menüinteraktionen kommen hierbei sowohl Button- als auch Slider-Elemente innerhalb eines Kontexts zum Einsatz.
+
+Diese Interaktionsform wurde im Kontext der in Kapitel~\ref{sec:analyse} untersuchten atmosphärischen Szenarien mit vorgerendertem, narrativem Inhalt entwickelt, beispielsweise für die Steuerung eines Video-Mitschnitts im Fußballstadion. 
+Ziel ist es, Nutzer:innen eine intuitive Kontrolle über die Wiedergabe zu ermöglichen, einschließlich Anhalten, Fortsetzen sowie Vor- und Zurückspulen des Materials.
+
+Hierfür wurde ein spezieller Slider für den Zieltyp \texttt{presentation} implementiert, der, anders als die Defaultslider statt einer Prozentanzeige sowohl die Gesamtdauer des Videos als auch die aktuelle Wiedergabeposition abbildet. 
+Während der Wiedergabe empfängt das UI kontinuierlich Zeitstempel von der angebundenen Zielanwendung. 
+Diese werden genutzt, um den Fortschritt des Sliders dynamisch zu aktualisieren.
+
+Ergänzend zum Slider enthält das entsprechende Menüelement eine Button-Interaktion zur Steuerung der Wiedergabe. 
+Der Button fungiert als Umschalter zwischen den Zuständen \texttt{Play} und \texttt{Pause} und sendet entsprechend den aktuellen Status als Interaktionsereignis an die Zielanwendung.
+
+Wird das Ende des Videos erreicht, sendet das System automatisch ein \texttt{Pause}-Signal. 
+Bei einer erneuten Aktivierung durch die Nutzer:innen beginnt die Wiedergabe wieder am Anfang des Videos.
+
+
+\subsection{Drei Leinnwände}
+{\color{red} TODO: Titel überarbeiten und beschreiben, wie drei Leinwände/drei Electron Fenster funktionieren + wie Open Palm Geste sicher stellt, dass nur frontale Wand Menü öffnet, auch falls Hand von linker Leinwand erkannt wird. ALSO (1) standardmäßig werden auf allen erkannten Screens electron fenster geöffnet und dann wird standard kamera auf alle gemappt (2) man kann im kalibrierungsmodus in electron die kamera pro bildschirm auswählen ODER im browser im Inkognito Tab pro fenster das auswählen (3) man kann mit modifikation von npm start command direkt bestimmte Bildschirme und bestimmte kamera mappings festlegen (4) es wird sichergestellt, dass bei der interaktion die aktivierungsgeste nur von der frontalen seite erkannt wird, indem abstand von kleinem finger und daumen gemessen wird (dafür wird schon vorher genutzter open Palm threshold mit offset verwendet, damit nicht noch ein parameter kalibriert werden muss - ist das überhaupt interessant?) (5) in browserversion werden kalibrierungskeys wahrscheinlich nicht auf alle übertragen - aber bei electron werden alle keys immer für alle bildschirme angewadnt - das ist tradeoff aber ist ja sowieso nur "gemütlichere Testvariante", also ist browser version nicht so wichtig -- alles mal vernünftig aufschreiben}
+
+
+\subsection{Entwicklungs- und Testumgebung}
+Zur Unterstützung der Implementierung wurden mehrere Werkzeuge eingesetzt, die insbesondere die Entwicklung, das Testen und das Debugging des Interaktionssystems erleichtern sollten.
+
+Eine zentrale Rolle spielte dabei ein Mock-Server, der das Verhalten einer Zielanwendung simuliert. Dieser Server stellt initiale Menü- und Statusdaten bereit, verarbeitet eingehende Interaktionsnachrichten des Overlays und sendet entsprechende Zustandswerte zurück. Dadurch konnte die Kommunikationsschnittstelle unabhängig von einer laufenden Unreal-Engine-Anwendung entwickelt und getestet werden.
+
+Ergänzend wurden Debug-Funktionen implementiert, mit denen zentrale Systemparameter wie Schwellwerte der Gestenerkennung oder Dwell-Zeiten überprüft und angepasst werden können. Diese Werkzeuge erleichterten insbesondere die Abstimmung der Interaktionslogik während der Entwicklungsphase.
+
+Zusätzlich wurde ein Offline-Modus vorgesehen, in dem das System mit lokalen Testdaten arbeitet. Dadurch kann die Benutzeroberfläche auch ohne aktive WebSocket-Verbindung betrieben werden, was isolierte Tests einzelner Komponenten ermöglicht. Dafür wurde das System zusätzlich als browserbasierte Variante bereitgestellt, wodurch eine einfache Demonstration und ein schneller Zugriff auf das Interaktionssystem ohne lokale Installation möglich wurde.
+
+Ein Großteil der Entwicklung erfolgte auf einem Laptop-System, während Tests des vollständigen Interaktionssystems im Multisensorischen Interaktionsraum durchgeführt wurden. Da die Größe und Position des radialen Menüs auf den großflächigen Projektionen deutlich anders wahrgenommen werden als auf einem Laptopdisplay, wurden zusätzliche Kalibrierungsfunktionen implementiert.
+Über Tastaturkürzel konnten während der Entwicklungsphase Parameter wie die Position, Skalierung und Darstellung des Menüs angepasst werden. Ebenso konnten Schwellwerte der Gestenerkennung sowie Dwell-Zeiten zur Interaktionsauslösung dynamisch verändert werden. Diese Funktionen erleichterten die Feinabstimmung des Interaktionssystems in unterschiedlichen Testumgebungen.
+
+Diese Werkzeuge unterstützten insbesondere die iterative Entwicklung und ermöglichten eine schrittweise Überprüfung der einzelnen Systemkomponenten.
+
+{\color{red} TODO: Kamera + Leinwand Konfig, falls nicht oben  + UI für kameraselektion}
+
+
+\subsection{Integration der Systemkomponenten}
+Die beschriebenen Komponenten bilden gemeinsam das entwickelte Interaktionssystem für den Multisensorischen Interaktionsraum. 
+Das Handtracking liefert kontinuierlich Positions- und Gesteninformationen der Nutzer:innen, aus denen Cursorbewegungen und Interaktionszustände abgeleitet werden. 
+Diese Informationen steuern das im Electron-Overlay dargestellte radiale Menü sowie dessen Interaktionslogik.
+
+Über die WebSocket-Schnittstelle werden Interaktionsereignisse an die angebundene Zielanwendung übertragen und mit deren Zustand synchronisiert. 
+Die datengetriebene Menüstruktur ermöglicht es dabei, die Interaktionsoberfläche flexibel an unterschiedliche Anwendungsszenarien anzupassen.
+
+Durch die modulare Architektur bleiben Tracking, Benutzeroberfläche und Zielanwendung voneinander getrennt. 
+Dadurch kann das Interaktionssystem unabhängig entwickelt und potenziell in verschiedene Anwendungskontexte integriert werden.
+
+Das entwickelte System stellt damit eine prototypische Umsetzung körperbasierter Interaktion im MIR dar, die als Grundlage für zukünftige Erweiterungen und Anwendungsszenarien dienen kann.
+
+\subsection{Diskussion}
+% Slider löst ausversehen aus, wenn man Hand runter nimmt, wahrscheinlich wegen Implementierung von pinch Geste und Kamerawinkel 
+{\color{red} TODO: Schreiben; Bugs; Slider löst ausversehene aus, wenn man Hand runter nimmt (Wahrscheinlich wegen Implementierung von Pinch Geste + Kamerawinkel; Usability von Lautstärke und Helligkeit wäre besser, wenn es kontinuierlich gesendet werden würde + conrad hat beim testen gesagt, dass grab halten intuitiv ist für super schnelle auswahl - sehr doof, dass das noch verbuggt ist - ggf. als future Work aufnehmen}
+
+\section{Zusammenfassung und Ausblick}
+{\color{red} TODO: Zusammenfassung schreiben + zB. sagen, dass multimodale Steuerung förderlich wäre, weil alle Quellen sagen, dass multimodal super ist (ggf. Zukunft)}
