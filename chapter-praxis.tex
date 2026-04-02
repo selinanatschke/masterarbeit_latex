@@ -80,7 +80,7 @@ Diese Anwendung ist nicht Bestandteil des eigentlichen Interaktionssystems, sond
 
 Im Kontext des multisensorischen Interaktionsraums wird hierfür typischerweise die Unreal Engine verwendet, die für die Darstellung der projizierten Inhalte zuständig ist. 
 Da die Kommunikation jedoch über eine standardisierte Schnittstelle erfolgt, kann das Interaktionssystem prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. 
-Dieses Vorgehen unterstützt den Anspruch, das System universell einsetzbar und nicht auf ein einzelnes Anwendungsszenario beschränkt zu gestalten (R1). \\
+Dieses Vorgehen unterstützt den Anspruch, das System universell einsetzbar und nicht auf ein einzelnes Anwendungsszenario beschränkt zu gestalten (R2). \\
 
 {\color{red} TODO: Das hier weg, weil das in Entwicklungswerkzeuge Abschnitt sowieso erklärt wird?}
 Für die Entwicklungsphase wurde zusätzlich ein Mock-Server implementiert. 
@@ -490,10 +490,58 @@ Durch die Verwendung eines generischen Nachrichtenformats bleibt die Kopplung zw
 \subsubsection{Kommunikationsfluss}
 Nach dem Aufbau der WebSocket-Verbindung sendet die Zielanwendung zunächst Initialisierungsnachrichten mit Konfigurations- und Zustandsdaten, welche den aktuellen Zustand der Anwendung beschreiben. Diese enthalten sowohl die Menüstruktur des Zielsystems als auch weitere Zustandsinformationen, beispielsweise die Länge eines Videos oder aktuelle Parameterwerte. Das Overlay verwendet diese Informationen, um seine UI-Elemente zu initialisieren und mit dem Zustand der Zielanwendung zu synchronisieren. Während der Interaktion übermittelt das Overlay anschließend Ereignisse, etwa Slideränderungen oder Buttonaktionen, an die Zielanwendung. Diese verarbeitet die eingehenden Nachrichten und sendet gegebenenfalls aktualisierte Parameterwerte zur Bestätigung des neuen Zustands.
 
-Während der Interaktion mit kontinuierlichen Steuerelementen wie Slidern werden Parameteränderungen zunächst lokal im Overlay verarbeitet. Erst nach Abschluss der Interaktion, beispielsweise beim Loslassen der Pinch-Geste, wird der finale Parameterwert an die Zielanwendung übertragen.
-Dieses Vorgehen reduziert die Anzahl der übertragenen Nachrichten und verhindert eine hohe Kommunikationsfrequenz während kontinuierlicher Interaktionen.
-
 Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in Abbildung~\ref{fig:communication_flow} dargestellt. Die Abbildung verdeutlicht, dass die Kommunikation nicht nur zur Übertragung von Benutzeraktionen dient, sondern auch zur Initialisierung sowie zur Synchronisierung von Zustandsinformationen zwischen beiden Komponenten.
+
+% TODO machen, dass Werte nur im UI Ankommen, wenn man Pinch loslässt
+
+% WIP Diagramm:
+% @startuml
+% actor User
+% participant UI
+% participant WebSocket
+% participant Server
+% == Verbindungsaufbau ==
+% UI -> Server : WebSocket-Verbindung über Port des Servers
+% Server --> UI : Verbindung bestätigt
+% == Initiale Synchronisation ==
+% Server -> UI: initiale Nachrichten senden
+% note over UI,Server
+% Beispielhafte initiale Informationen:
+% - Aktuelle Werte für Sliderkonfigurationen
+% (vibration, volume, brightness: 0..1)
+% - Länge des Videos
+% end note
+% UI -> UI : Werte lokal speichern
+% UI -> UI : Slider mit Serverzustand synchronisieren
+% == Erfolgreiche Nutzerinteraktion ==
+% User-> UI : Sliderwert mit Geste ändern
+% UI -> UI: Update der visuellen Benutzungsoberfläche
+% UI -> Server : sendet Nachricht vom Typ "update"
+% note right of Server
+% Empfängt Nachricht und aktualisiert
+% interne Werte des target-Typs
+% (z. B. Lautstärke)
+% end note
+% Server -> UI : sendet Nachricht mit aktuellen Werten\nals Bestätigung / Synchronisation
+% UI -> UI : Werte speichern
+% UI -> UI : Sliderwerte und UI aktualisieren
+% == Interaktionslogik ==
+% note over UI
+% Während des aktiven Verschiebens eines Sliders
+% werden lokale Interaktionswerte verwendet.
+% Erst nach dem Loslassen wird der Serverwert
+% zur Synchronisation übernommen.
+% end note
+% note over UI,Server
+% Vorteil:
+% - deutlich weniger Nachrichtenverkehr
+% - durch Verwendung von lokaln Werten und
+% On-Demand Synchronisation spüren
+% Nutzer:innen keine Latenz
+% end note
+% note over UI,Server
+% end note
+% @enduml
 
 % TODO in Grafik. statt "sendet slider:update Nachricht zurück als Bestätigung" lieber "sendet aktualisierten Parameterwert zurück"
 \begin{figure}[H]
@@ -558,7 +606,7 @@ Das entwickelte System stellt damit eine prototypische Umsetzung körperbasierte
 
 \subsection{Diskussion}
 % Slider löst ausversehen aus, wenn man Hand runter nimmt, wahrscheinlich wegen Implementierung von pinch Geste und Kamerawinkel 
-{\color{red} TODO: Schreiben; Bugs; Slider löst ausversehene aus, wenn man Hand runter nimmt (Wahrscheinlich wegen Implementierung von Pinch Geste + Kamerawinkel; Usability von Lautstärke und Helligkeit wäre besser, wenn es kontinuierlich gesendet werden würde + conrad hat beim testen gesagt, dass grab halten intuitiv ist für super schnelle auswahl - sehr doof, dass das noch verbuggt ist - ggf. als future Work aufnehmen}
+{\color{red} TODO: Schreiben; Bugs; Slider löst ausversehene aus, wenn man Hand runter nimmt (Wahrscheinlich wegen Implementierung von Pinch Geste + Kamerawinkel; conrad hat beim testen gesagt, dass grab halten intuitiv ist für super schnelle auswahl - sehr doof, dass das noch verbuggt ist - ggf. als future Work aufnehmen}
 
 \section{Zusammenfassung und Ausblick}
 {\color{red} TODO: Zusammenfassung schreiben + zB. sagen, dass multimodale Steuerung förderlich wäre, weil alle Quellen sagen, dass multimodal super ist (ggf. Zukunft)}

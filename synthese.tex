@@ -9,15 +9,13 @@ Die Analyse der bestehenden MIR-Szenarien (vgl. Kapitel~\ref{sec:analyse}) zeigt
 
 Auf Grundlage dieser Beobachtungen lassen sich zentrale Anforderungen an körperbasierte Interaktionsformen im MIR ableiten.
 
-Eine grundlegende Anforderung besteht darin, dass Interaktionen ohne am Körper getragene Geräte oder zusätzliche Eingabemedien möglich sind (R2). Nutzer:innen sollen ohne Controller, Maus, Tastatur oder Marker mit dem System interagieren können. Der Einsatz solcher Geräte würde einen Bruch zwischen körperlicher Präsenz im Raum und der Steuerung digitaler Inhalte erzeugen und steht damit im Widerspruch zu Prinzipien intuitiver und körpernaher Interaktion \parencite{jacob2008realitybasedinteraction}. 
+Eine grundlegende Anforderung besteht darin, dass Interaktionen ohne am Körper getragene Geräte oder zusätzliche Eingabemedien möglich sind (R1). Nutzer:innen sollen ohne Controller, Maus, Tastatur oder Marker mit dem System interagieren können. Der Einsatz solcher Geräte würde einen Bruch zwischen körperlicher Präsenz im Raum und der Steuerung digitaler Inhalte erzeugen und steht damit im Widerspruch zu Prinzipien intuitiver und körpernaher Interaktion \parencite{jacob2008realitybasedinteraction}.
 
-Darüber hinaus ergibt sich aus der Vielfalt der bestehenden Szenarien die Anforderung, dass Interaktionskonzepte möglichst anwendungsübergreifend einsetzbar sein sollten (R1). Interaktionsmechanismen sollten unabhängig von spezifischen Inhalten oder Szenariostrukturen funktionieren, um eine flexible Nutzung im gesamten System zu ermöglichen.
-% TODO: ggf. Quelle zu Generalisierbarkeit / Reusability von Interaktionskonzepten 
+Darüber hinaus ergibt sich aus der Vielfalt der bestehenden Szenarien die Anforderung, dass Interaktionskonzepte möglichst anwendungsübergreifend einsetzbar sein sollten (R2). Interaktionsmechanismen sollten unabhängig von spezifischen Inhalten oder Szenariostrukturen funktionieren, um eine flexible Nutzung im gesamten System zu ermöglichen.
 {\color{red} TODO: Quelle Generalisierbarkeit/Reusability von Interaktionskonzepten?}
 
 
 Weiterhin soll die Interaktion die freie Bewegung der Nutzer:innen im Raum nicht einschränken (R3). Die räumliche Bewegungsfreiheit stellt eine zentrale Eigenschaft des MIR dar und trägt wesentlich zum Immersionserleben bei. Interaktionsformen sollten diese Eigenschaft unterstützen, anstatt sie durch feste Interaktionspunkte oder Gerätebindungen zu limitieren.
-% TODO: ggf. Quelle zu Embodiment / Spatial Interaction
 {\color{red} TODO: Quelle Embodiement? oder dass Limitierungen Immersion begrenzen? => Recherche}
 
 
@@ -34,8 +32,8 @@ Die daraus abgeleiteten Anforderungen sind in Tabelle~\ref{tab:requirements} zus
 \toprule
 ID & Requirement \\
 \midrule
-R1 & Anwendungsübergreifende Einsetzbarkeit \\
-R2 & Nicht-invasive Interaktion (keine Wearables, Controller oder Marker) \\
+R1 & Nicht-invasive Interaktion (keine Wearables, Controller oder Marker) \\
+R2 & Anwendungsübergreifende Einsetzbarkeit \\
 R3 & Freie Bewegung im Raum \\
 R4 & Minimaler Setupaufwand \\
 R5 & Schnelle Zugriffsmöglichkeiten \\
@@ -59,7 +57,33 @@ UI-basierte Interaktionsflächen innerhalb der Projektion bieten zwar eine klare
 
 Vor diesem Hintergrund wurden insbesondere gestenbasierte sowie positionsbasierte Interaktionsformen als vielversprechende Ansätze identifiziert, da sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte sowie die Integration der räumlichen Bewegung in die Interaktion unterstützen.
 
-{\color{red} TODO: Zusätzliche auswahlmöglichkeiten aus tabelle kurz erklären + tabelle aufbereiten }
+// TODO: Übergang erwähnen dass vollständige Übersicht im Anhang
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Verdichtete Übersicht über identifizierte Interaktionsmöglichkeiten // TODO ggf. Anzahl der anwendbaren Szenarien mit rein (?)}
+    \begin{tabular}{p{4cm} p{3cm} p{8cm}}
+        \toprule
+        \textbf{Interaktions\-möglichkeit} & \textbf{Art} & \textbf{Beschreibung} \\
+        \midrule
+        Zusatzinformationen anzeigen & Explizit, Selektion & Durch Auslösen eines Events (beispielsweise Zeigen auf Objekt oder näheres Herantreten) werden zusätzliche Informationen zu Objekten oder Umgebungen angezeigt. \\
+        Administrative Steuerung der Lautstärke, Helligkeit, Virbationsintensität & Explizit, Selektion & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen) \\
+        Präsentationssteuerung & Explizit, Selektion & Nutzer:innen können Videomaterial abspielen, pausieren und die Wiedergabe vor-/zurückspulen \\
+        Virtuelle Objekte Manipulieren & Explizit, Manipulation & Drehen, vergrößern, verkleinern von virtuellen Objekten \\
+        TEXT & TEXT & TEXT \\
+        TEXT & TEXT & TEXT \\
+        TEXT & TEXT & TEXT \\
+        TEXT & TEXT & TEXT \\
+        TEXT & TEXT & TEXT \\
+        TEXT & TEXT & TEXT \\
+        TEXT & TEXT & TEXT \\
+
+
+        \bottomrule
+    \end{tabular}
+    \label{tab:interaktionsmoeglichkeiten}
+\end{table}
 
 % Übergang
 Aus dem beschriebenen Designraum wurden drei Interaktionsansätze für eine vertiefte konzeptionelle Ausarbeitung ausgewählt: administrative Steuerung, objektbasierte Interaktion sowie positionsbasierte Navigation. 
@@ -77,8 +101,8 @@ Das Konzept dient als Beispiel für eine explizite, gestenbasierte Interaktion z
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{content/images/storyboard_menu.png}
-    \caption{Storyboard Administrative Steuerung}
+    \includegraphics[width=0.98\linewidth]{content/images/storyboard_menu.png}
+    \caption{Storyboard Administrative Steuerung{\color{red} (TODO: Stattdessen einheitliche Bilder, ordentlich zeichnen + Nummerierung (a), (b), (c) und dann unten drunter die Beschreibung - sonst sehr unüberischtlich)}}
     \label{fig:storyboard_menu}
 \end{figure}
 
@@ -178,7 +202,7 @@ Zur weiteren Vereinfachung der Interaktion wird bewusst nur ein einzelnes Menü 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{content//images/Interaktionsraum.png}
+    \includegraphics[width=0.98\linewidth]{content//images/Interaktionsraum.png}
     \caption{Schematische Darstellung des Interaktionsraums: Der Cursor (Handposition) wird beim Öffnen im Zentrum des Menüs initialisiert, wodurch ein lokaler, körperzentrierter Interaktionsraum entsteht.}    \label{fig:Interaktionsraum}
 \end{figure}
 
@@ -237,7 +261,6 @@ Durch die Kombination beider Mechanismen kann das System sowohl für Einsteiger 
 
 {\color{red} TODO:erwähnen: styling ist iterativer Prozess, aber kein Fokus}
 
-ÜBERGANG/EINTLEITUNG
 Es wurden mehrere visuelle Zustände implementiert, um den aktuellen Interaktionsstatus nachvollziehbar darzustellen. Befindet sich der Cursor über einem Menüsegment, wird dieses visuell hervorgehoben (Hover-Zustand, vgl. Abb. \ref{fig:menu_state_hover}). Diese Hervorhebung dient als unmittelbare Rückmeldung darüber, welches Menüelement aktuell fokussiert ist.
 
 Wird ein Menüeintrag aktiv ausgewählt, durch eine Greifgeste oder durch das Auslösen eines Dwell-Timers, wechselt das entsprechende Segment in einen ausgewählten Zustand (Abb. \ref{fig:menu_state_selected}), der durch eine deutlichere Farbänderung dargestellt wird.

@@ -18,6 +18,9 @@
  bottom=3cm
 }
 
+% Table X, Figure X auf deutsch
+\usepackage[ngerman]{babel}
+
 % für Systemdiagramm
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,calc, fit}
@@ -89,6 +92,9 @@
 \author{Selina Natschke}
 \date{30.04.2026}
 
+\usepackage{longtable}   % für mehrseitige Tabellen
+\usepackage{array}       % bessere Spaltenformatierung
+
 \usepackage[backend=biber,style=authoryear]{biblatex}
 \addbibresource{refs.bib}
 
@@ -108,21 +114,31 @@
 \section{Einleitung}
 {\color{red} TODO: Einleitung schreiben ggf aus Abstract}
 
-- MIR erklären
-- Struktur:
- 1 Problem
- 2 Motivation
- 3 Ziel der Arbeit
- 4 Vorgehen
- 5 Aufbau der Arbeit
+%- MIR erklären
+%- Struktur:
+% 1 Problem
+% 2 Motivation
+% 3 Ziel der Arbeit
+% 4 Vorgehen
+% 5 Aufbau der Arbeit
+
+
+% Motivation
+Digitale Kommunikations- und Interaktionsszenarien, wie etwa Videochats, virtuelle Meetings oder immersive Welten, sprechen bislang nur einen Bruchteil der menschlichen Sinneskanäle an. Wesentliche sensorische Dimensionen wie Berührung, Temperatur oder Geruch bleiben ungenutzt, obwohl sie in realen Umgebungen zur Wahrnehmung einer Situation und Schaffung von Atmosphären beitragen. Während Gestalter:innen virtueller Umgebungen häufig den Realitätsgrad ihrer Darstellungen und das Konzept der Immersion in den Vordergrund stellen, wird die gezielte Erzeugung und Steuerung von Atmosphäre als funktionales Gestaltungselement bislang kaum berücksichtigt.
+
+% Motivation & Problem
+Um dies vorzubeugen, bietet der mehrsinnliche Interaktionsraum (MIR) \parencite{orawetz2024mir} bereits die technische Grundlage, da er Atmosphären multisensorisch erzeugen soll. Das System umfasst eine 270°-Projektion über drei Leinwände, ein 16-Kanal-Audiosystem für räumlichen Klang, eine Beduftungseinheit sowie taktile Displays, die gemeinsam ein immersives, realitätsnahes Erlebnis schaffen. Aufbauend auf diesem Fundament soll der MIR durch neue Interaktionstechnologien zu einem aktiven, dynamischen Erfahrungsraum weiterentwickelt werden.
+
+% Ziel
+Ziel dieser Arbeit ist es daher, den MIR um natürliche, körperbasierte Interaktionsformen zu erweitern und ein Konzept für deren prototypische Umsetzung zu entwickeln. Im Zentrum steht die Frage, wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierte Steuerung so gestaltet und technisch integriert werden können, dass Nutzer:innen die Atmosphäre des Raumes intuitiv und unmittelbar beeinflussen können. Damit soll der MIR von einem überwiegend passiven Präsentationsraum zu einem aktiven, dynamischen Erfahrungsraum weiterentwickelt werden.
+
+Zur Erreichung dieses Ziels werden zunächst bestehende Szenarien des MIR sowie deren aktuelle Interaktionsformen im Kontext immersiver und multisensorischer Umgebungen analysiert. Darauf aufbauend werden mögliche körperbasierte Interaktionsformen diskutiert und schließlich ein Interaktionsmodell konzipiert, das körperbasierte Eingaben mit den multisensorischen Ausgabemedien des Raumes verknüpft. Anschließend erfolgt die prototypische Implementierung der ausgewählten Interaktionstechnologie für das bestehende MIR-Setup. {\color{red} Die entwickelte Lösung wird abschließend im Rahmen einer Evaluation, beispielsweise in Form eines Proof of Concept, beurteilt. (TODO oder raus)}
+
+Die Arbeit ist wie folgt aufgebaut: Zunächst werden zentrale Begriffe und Definitionen eingeführt sowie verwandte Arbeiten zu {\color{red} körperbasierter, controllerfreier und multisensorischer Interaktion (erweitern)} dargestellt. Anschließend folgt die Analyse bestehender MIR-Szenarien und ihrer Interaktionsformen. Darauf aufbauend werden verschiedene Anforderungen an Interaktionen abgeleitet. Auf Basis dieser abgeleiteten Anforderungen werden Interaktionskonzepte entwickelt und bewertet. Nach der Auswahl eines geeigneten Konzepts werden die daraus gewonnenen Erkenntnisse als Grundlage für die Konzeption des Systems genutzt. Anschließend wird die praktische Umsetzung der entwickelten Lösung im MIR beschrieben. Abschließend werden die Ergebnisse zusammengefasst und im Hinblick auf weitere Entwicklungsmöglichkeiten diskutiert.
 
 
 %- (PRÜFEN OB DRIN UND WOHIN?)
 %- Die Anfänge der Mid-Air-Interaktion können bis in die späten 70er zum "Put that there demo" zurückgeführt werden \parencite{bolt1980putthatthere}
-
-%Digitale Interaktionsszenarien nutzen bislang nur einen Bruchteil der menschlichen Sinneswahrnehmung. Insbesondere taktile, olfaktorische und thermische Reize bleiben ungenutzt, obwohl sie entscheidend für die Wahrnehmung von Atmosphäre und Präsenz in realen Umgebungen sind. Dieser Mangel an multisensorischer Gestaltung stellt eine zentrale Herausforderung für immersive Systeme dar. Um dem entgegenzuwirken, wurde der mehrsinnliche Interaktionsraum (MIR) \parencite{orawetz2024mir} entwickelt, welcher mit seiner 270°-Projektion, räumlichem Audio, Beduftung und taktilem Feedback eine technische Infrastruktur bietet, um atmosphärische Erfahrungen multisensorisch zu gestalten. Allerdings bleibt die Interaktion bislang passiv: Die Atmosphäre wird präsentiert, aber nicht aktiv durch die Nutzer:innen beeinflusst. Um dieses Potenzial zu entfalten, ist eine Weiterentwicklung hin zu einem dynamischen, körperbasierten Interaktionsraum notwendig. Im Mittelpunkt steht die Integration natürlicher, körperbasierter Interaktionsformen wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierter Steuerung, welche die Atmosphäre des Raumes nicht mehr nur präsentieren, sondern auch interaktiv gestalten soll. Daher ist es sinnvoll, den aktuellen Forschungs- und Entwicklungsstand zu den Themen //TODO zu analysieren.
-
-
 
 \pagenumbering{arabic} % bis hier römische Seitenzahl
 \clearpage
@@ -333,6 +349,8 @@
     \label{fig:interaktionsmoeglichkeiten}
 \end{figure}
 \end{landscape}
+
+\include{interaktionsmoeglichkeiten-tabelle}]
 
 \appendix
 \section{Glossar}
