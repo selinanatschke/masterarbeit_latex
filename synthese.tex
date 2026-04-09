@@ -63,7 +63,7 @@ Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im 
     \centering
     \small
     \caption{Verdichtete Übersicht über identifizierte Interaktionsmöglichkeiten // TODO ggf. Anzahl der anwendbaren Szenarien mit rein (?)}
-    \begin{tabular}{p{0.03cm} {p{3.97cm} p{3cm} p{8cm}}
+    \begin{tabular}{p{0.03cm} p{3.97cm} p{3cm} p{8cm}}
         \toprule
         \textbf {Nr.} & \textbf{Interaktions\-möglichkeit} & \textbf{Art} & \textbf{Beschreibung} \\
         \midrule
@@ -77,7 +77,7 @@ Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im 
 
         11 & Navigation durch Gehen auf der Stelle & Explizit, Navigation & Das Gehen auf der Stelle in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
 
-        15 & Aktivierung von Interaktion & Explizit, Selektion & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (z.\,B. Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden.
+        15 & Aktivierung von Interaktion & Explizit, Selektion & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (z.\,B. Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden. \\
 
         \bottomrule
     \end{tabular}
@@ -134,7 +134,7 @@ Das dritte Storyboard (Abb. \ref{fig:storyboard_navigation}) skizziert zwei Konz
 
 Der erste Ansatz basiert auf einer schubbasierten Navigation (Abb. \ref{fig:storyboard_navigation}, a-c), die als steering-based Methode klassifiziert werden kann \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Hierbei bewegen sich Nutzer:innen in die gewünschte Richtung und initiieren die Fortbewegung durch eine aktive Schubbewegung mit den Händen. Diese explizite Kopplung von Position, Geste und virtueller Bewegung ermöglicht eine hohe Kontrolle und wird, wie die Forschung zur Ganzkörperinteraktion zeigt, als besonders immersiv und intuitiv wahrgenommen \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}.
 
-Der zweite Ansatz nutzt Walking-in-Place, eine etablierte walking-based Lokomotionstechnik \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Die Ausgangssituation ist auch hier wieder, dass die Person sich in die Richtung begiebt, in die die Umgebung navigiert werden soll (Abb. \ref{storyboard_navigation}, d-e). Die Bewegung wird durch eine Laufgeste auf der Stelle eingeleitet und aktiviert nach einer kurzen Verweildauer die Navigation im Raum (Abb. \ref{storyboard_navigation}, f), welche durch die Bewegung der Szene in die entsprechende Richtung eine kontinuierliche Fortbewegung simuliert (Abb. \ref{storyboard_navigation}, g).  Die Bewegung endet, sobald die Nutzer:innen ihre Position verändern oder Walking-in-Place stoppen. Studien belegen, dass geh-basierte Ansätze im Vergleich zu abstrakten Steuerungen wie Joysticks oder Teleportation ein signifikant stärkeres Gefühl physischer Präsenz und eine natürlichere Raumwahrnehmung fördern \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}. Diese Methode ist besonders für physisch begrenzte Räume wie den MIR geeignet, da sie die kognitiven Vorteile natürlicher Fortbewegung simuliert, ohne ein großes Platzangebot vorauszusetzen.
+Der zweite Ansatz nutzt Walking-in-Place, eine etablierte walking-based Lokomotionstechnik \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Die Ausgangssituation ist auch hier wieder, dass die Person sich in die Richtung begiebt, in die die Umgebung navigiert werden soll (Abb. \ref{fig:storyboard_navigation}, d-e). Die Bewegung wird durch eine Laufgeste auf der Stelle eingeleitet und aktiviert nach einer kurzen Verweildauer die Navigation im Raum (Abb. \ref{storyboard_navigation}, f), welche durch die Bewegung der Szene in die entsprechende Richtung eine kontinuierliche Fortbewegung simuliert (Abb. \ref{storyboard_navigation}, g).  Die Bewegung endet, sobald die Nutzer:innen ihre Position verändern oder Walking-in-Place stoppen. Studien belegen, dass geh-basierte Ansätze im Vergleich zu abstrakten Steuerungen wie Joysticks oder Teleportation ein signifikant stärkeres Gefühl physischer Präsenz und eine natürlichere Raumwahrnehmung fördern \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}. Diese Methode ist besonders für physisch begrenzte Räume wie den MIR geeignet, da sie die kognitiven Vorteile natürlicher Fortbewegung simuliert, ohne ein großes Platzangebot vorauszusetzen.
 
 Beide Ansätze verfolgen das Ziel, Navigation ohne zusätzliche Eingabegeräte zu ermöglichen und die körperliche Bewegung im Raum als primären Interaktionsparameter zu nutzen. Während die schubbasierte Variante eine aktive und bewusst gesteuerte Interaktion darstellt, setzt die Dwell-basierte Variante auf eine reduzierte Interaktionslast und eine stärker implizite Steuerung.
 
@@ -247,7 +247,7 @@ radialen Menüs berücksichtigt werden.
 \subsubsection{Auswahlmechanismen}
 Für die Auswahl von Menüeinträgen wurden zwei unterschiedliche Interaktionsmechanismen vorgesehen: eine aktive Greifgeste sowie eine zeitbasierte Auswahl (Dwell Selection).
 
-Bei der Dwell-basierten Auswahl wird ein Menüeintrag automatisch aktiviert, wenn der Cursor für eine definierte Zeitspanne über dem Element verweilt. Dieser Mechanismus reduziert die motorischen Anforderungen an präzise Gesten und ermöglicht eine niedrigschwellige Interaktion insbesondere für unerfahrene Nutzer:innen. Studien zeigen auch, dass Dwell-Auswahlmethoden keine Einführung brauchen sondern vom Nutzer selbst erkannt werden können \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays}.
+Bei der Dwell-basierten Auswahl wird ein Menüeintrag automatisch aktiviert, wenn der Cursor für eine definierte Zeitspanne über dem Element verweilt. Dieser Mechanismus reduziert die motorischen Anforderungen an präzise Gesten und ermöglicht eine niedrigschwellige Interaktion insbesondere für unerfahrene Nutzer:innen. Studien zeigen auch, dass Dwell-Auswahlmethoden keine Einführung brauchen sondern von Nutzer:innen selbst erkannt werden können \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays}.
 
 Zusätzlich wurde eine Greifgeste als explizite Auswahlmethode vorgesehen. Solche pantomimischen Gesten, die physische Handlungen wie das Greifen nachahmen, gelten als besonders intuitiv und leicht erlernbar \parencite{kostic2024exploringmidairhandinteractionindatavisualization}. Um die Erlernbarkeit zu unterstützen, wird die Geste durch einen visuellen Hinweis (Abb. \ref{fig:grab_hint}) eingeführt, was die Guessability (Erratbarkeit) der Interaktion erhöht \parencite{wobbrock2005discoverability}.
 
