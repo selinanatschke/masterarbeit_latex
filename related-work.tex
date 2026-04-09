@@ -6,6 +6,7 @@ Dieses Kapitel stellt die wissenschaftlichen Grundlagen und den aktuellen Forsch
 
 
 \subsection{Körperbasierte Interaktion (Embodied Interaction)}
+\label{sec:rw_embodied}
 
 Körperbasierte Interaktion (Embodied Interaction) nutzt den menschlichen Körper, seine Bewegungsfähigkeiten und sein Verständnis der physischen Welt als zentrale Grundlage der Interaktion mit digitalen Systemen \parencite{jacob2008realitybasedinteraction}. Dieses Paradigma baut auf \textcite{jacob2008realitybasedinteraction}s Prinzip der "Reality-Based Interaction" (RBI) auf, das die natürliche Interaktion des Menschen mit der realen Welt als Vorbild für die Gestaltung von Benutzerschnittstellen nutzt.
 
@@ -20,10 +21,14 @@ Aktuelle empirische Arbeiten bestätigen dieses Spannungsfeld. So zeigen \textci
 
 
 \subsection{Immersive räumliche Interaktionsumgebungen und Projektionsräume}
+\label{sec:rw_spatial}
+
 Immersive Umgebungen zielen darauf ab, die Grenzen zwischen physischer und digitaler Welt aufzulösen, indem Nutzer:innen digitale Inhalte nicht nur betrachten, sondern den Raum selbst als Ort der Interaktion erleben ("Stepping through the glass") \parencite{slater1997frameworkForImmersiveVirtualEnvironments}. Laut \textcite{slater1997frameworkForImmersiveVirtualEnvironments} ist ein zentraler Faktor dafür die enge Verknüpfung von Wahrnehmung und körperlicher Bewegung. Interaktion wird dabei nicht mehr als isolierte Eingabehandlung verstanden, sondern als Teil eines kontinuierlichen Zusammenspiels von Körper, Raum und Systemreaktion.
 
 Obwohl \textcite{slater1997frameworkForImmersiveVirtualEnvironments} ihre Überlegungen im Kontext virtueller Umgebungen entwickeln, lassen sich die beschriebenen Prinzipien körperlich gebundener Wahrnehmung und räumlicher Interaktion auch auf andere immersive oder räumliche digitale Umgebungen übertragen.
 Neben Head-Mounted-Display-basierten XR-Systemen zählen hierzu insbesondere projektionsbasierte Installationen, Medienräume oder interaktive Umgebungen, in denen Architektur selbst zur Schnittstelle wird. Charakteristisch ist die Abkehr von klassischen Desktop-Metaphern hin zu Interaktionsformen, die Körper, Raum und Kontext als integrale Bestandteile der Eingabe und des Feedbacks nutzen.
+
+Zur Beschreibung räumlicher Interaktion ist zudem eine Einordnung nach grundlegenden Interaktionsaufgaben hilfreich. In räumlichen Interfaces lassen sich insbesondere die Aufgaben Selektion, Manipulation und Navigation unterscheiden \parencite[Kap.~5]{LaViola20043DUserInterfaces}. Selektion bezeichnet dabei die Auswahl von Objekten oder Funktionen, Manipulation deren Veränderung oder direkte Bearbeitung und Navigation die Fortbewegung innerhalb einer virtuellen oder projizierten Umgebung. Diese Unterscheidung bietet eine nützliche Strukturierung, um unterschiedliche Interaktionsansätze in räumlichen Systemen vergleichend einzuordnen.
 
 Das Konzept der \textit{Proxemic Interaction} nach \textcite{ballendatmarquardtgreenberg2010proxemicinteraction} beschreibt, wie räumliche Beziehungen wie Distanz, Orientierung und Bewegung zwischen Nutzer:innen und Systemen gezielt als Interaktionsparameter genutzt werden können. Interaktion entsteht dabei sowohl implizit, etwa durch Annäherung oder Blickrichtung, als auch explizit durch gezielte Handlungen im Raum.
 
@@ -44,6 +49,8 @@ Diese Erkenntnisse sind insbesondere für projektionsbasierte multisensorische U
 
 
 \subsection{Controllerfreie Mid-Air und Whole-Body Interaktion}
+\label{sec:rw_midair}
+
 Innerhalb solcher räumlichen Interaktionsumgebungen stellen Mid-Air- und Whole-Body-Interaktionen zentrale controllerfreie Eingabeformen dar. Anstelle physischer Eingabegeräte wie Maus, Tastatur oder Controller werden hierbei Handbewegungen, Gesten oder Körperpositionen direkt als Eingabeparameter genutzt \parencite{spittle2023reviewinteractiontechniquesforimmersiveenvironments, gavgiotaki2023gesturebasedinteractionforarsystemsreview}.
 Ein wesentliches Potenzial dieser Interaktionsformen liegt in ihrer Nähe zu realweltlichen Handlungen. Durch die direkte Kopplung von Bewegung und Systemreaktion können Interaktionen als intuitiver, natürlicher und immersiver wahrgenommen werden. Insbesondere in räumlichen und multisensorischen Umgebungen ermöglichen Mid-Air- und Whole-Body-Interaktionen eine enge Verbindung zwischen physischem Verhalten und digitalem Feedback und unterstützen damit zentrale Prinzipien körperbasierter Interaktion.
 
@@ -64,11 +71,29 @@ Insgesamt zeigt die Literatur, dass Mid-Air- und Whole-Body-Interaktion ein hohe
 % Um diese Grenzen zu überwinden, rücken multimodale Ansätze zunehmend in den Fokus: Evangelou et al. (2024)(QUELLE) zeigen, dass die Kombination von Mid-Air-Gesten mit haptischem Feedback die Wahrnehmung von Kontrolle und Vertrauen erhöht, während Vieira et al. (2024) ein Design-Space-Modell vorschlagen, das die konsistente Integration von Gesten, Sprache und Feedback als zentral für glaubwürdige Interaktionen identifiziert. Ein weiterer Trend ist die Entwicklung whole-body-interaktion, die den Fokus von den Händen auf den gesamten Körper ausdehnt: Position, Haltung und Bewegung als zentrale Interaktionsmittel (Matar et al., 2023).
 
 
+\subsection{Navigation in immersiven Umgebungen}
+\label{sec:rw_navigation}
+
+Navigation stellt eine grundlegende Interaktionsaufgabe in immersiven Umgebungen dar, da Nutzer:innen sich innerhalb virtueller oder projizierter Räume orientieren und fortbewegen müssen. In der Forschung zu immersiven Interaktionssystemen werden unterschiedliche Lokomotionsansätze unterschieden, die sich hinsichtlich ihrer Natürlichkeit, des Grads der körperlichen Beteiligung und des Platzbedarfs unterscheiden \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}.
+
+\textcite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques} klassifizieren Lokomotionstechniken unter anderem in selection-based, walking-based, steering-based, manipulation-based und automated Verfahren. Besonders verbreitet sind selection-based Ansätze wie Point-and-Teleport sowie joystickbasierte Steuerungen, die eine effiziente, jedoch nur gering körperlich eingebundene Navigation ermöglichen \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Demgegenüber zielen körperbasierte Verfahren darauf ab, die Fortbewegung enger an reale Bewegungen anzulehnen. Hierzu zählen insbesondere steering-based und walking-based Techniken, bei denen Nutzer:innen ihre Bewegungsrichtung aktiv bestimmen oder Gehbewegungen zur Navigation einsetzen.
+
+Ein verbreiteter Ansatz für räumlich begrenzte Umgebungen ist das sogenannte Walking-in-Place, bei dem eine Gehbewegung auf der Stelle genutzt wird, um kontinuierliche Fortbewegung zu simulieren \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}. Darüber hinaus ermöglicht Redirected Walking eine Anpassung des Bewegungspfads durch gezielte, für Nutzer:innen kaum wahrnehmbare Verzerrungen, sodass auch in physisch begrenzten Räumen ein großräumiges Bewegungserlebnis erzeugt werden kann \parencite{deBack2024naturalAndRedirectedWalkingInVirtualReality}.
+
+Studien zeigen, dass gehbasierte Ansätze im Vergleich zu abstrakten Methoden wie Teleportation ein stärkeres Gefühl physischer Präsenz und eine natürlichere Raumwahrnehmung fördern \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}. Insbesondere natürliches Gehen verbessert nachweislich die räumliche Orientierung und Distanzwahrnehmung \parencite{deBack2024naturalAndRedirectedWalkingInVirtualReality}. Gleichzeitig müssen solche Verfahren hinsichtlich Ermüdung, Tracking-Genauigkeit und physischer Sicherheit sorgfältig gestaltet werden, insbesondere in offenen Interaktionsräumen.
+
+Für projektionsbasierte immersive Umgebungen ist Navigation daher nicht nur als technische Fortbewegung, sondern als körperlich und räumlich eingebettete Interaktionsform zu verstehen. Die Wahl eines geeigneten Lokomotionsansatzes hängt wesentlich vom verfügbaren Raum, dem Anwendungskontext und dem gewünschten Grad körperlicher Beteiligung ab.
+
+
 \subsection{Gestendesign und Auswahlmechanismen}
+\label{sec:rw_gestures}
+
 Die Gestaltung geeigneter Gesten stellt einen zentralen Bestandteil controllerfreier Interaktionssysteme dar. Gesten fungieren dabei als primäres Eingabemedium und sollten sowohl intuitiv verständlich als auch technisch zuverlässig interpretierbar sein.
 In der Forschung werden Gesten anhand unterschiedlicher Taxonomien klassifiziert. Eine häufig verwendete Einordnung orientiert sich an der Beziehung zwischen Geste und Bedeutung und unterscheidet unter anderem symbolische, metaphorische, deiktische und abstrakte Gesten  \parencite{dimSilpasuwanchai2016DesigningMidAirTvGEsturesForBlindPeople}.
 
 Symbolische Gesten hingegen besitzen keine direkte Entsprechung in der realen Welt und müssen erlernt werden, etwa spezifische Handzeichen zur Auslösung von Befehlen. Metaphorische Gesten ahmen reale Handlungen nach, etwa das Greifen oder Verschieben eines Objekts, und werden häufig als besonders intuitiv wahrgenommen \parencite{kostic2024exploringmidairhandinteractionindatavisualization}. Deiktische Gesten beziehen sich auf räumliche Informationen von Objekten, beispielsweise Zeigegesten. Abstrakte Gesten weisen keine direkte Ähnlichkeit oder nachvollziehbare Beziehung zu ihrer Bedeutung auf und müssen daher in der Regel erlernt werden \parencite{dimSilpasuwanchai2016DesigningMidAirTvGEsturesForBlindPeople}. Sie sind also willkürlich \parencite{dimSilpasuwanchai2016DesigningMidAirTvGEsturesForBlindPeople}.
+
+Neben frei definierten Gesten greifen räumliche Interaktionssysteme häufig auch auf etablierte Interaktionsmuster aus anderen Domänen zurück und übertragen diese in neue Kontexte. Solche Ansätze knüpfen an bekannte Bedienlogiken an, etwa wenn Handbewegungen als Cursorsteuerung interpretiert oder Auswahlbewegungen an vertraute Zeige- und Greifhandlungen angelehnt werden. \textcite{williamsOrtega2020evolutionaryGesturesWhenAGestureIsNotQuireLegacyBiased} beschreiben solche Übertragungen als "Evolutionary Gestures", also Interaktionsformen, die bekannte Konzepte aufgreifen und an neue Interaktionsräume anpassen, ohne sie unverändert zu übernehmen. Die Nutzung solcher vertrauten Zuordnungen kann die Verständlichkeit und Erlernbarkeit räumlicher Interaktion unterstützen.
 
 {\color{red} TODO: Nochmal überlegen ob das der richtige Ort ist oder ob das überhuapt erwähnt werden muss, wenn genau das Paper in Menüinterkation nochmal erklärt wird}
 Darüber hinaus werden sogenannte Mikrogesten untersucht, die kurze, subtile Bewegungen mit gerichteten Interaktionen kombinieren und dadurch eine ergonomische sowie visuell unaufdringliche Steuerung erlauben \parencite{baillyPometti2024MarkARExploringTheBenefitsOfCombiningMicrogesturesAndMidAirMarksToTriggerCommandsInAR}.
@@ -92,6 +117,8 @@ Insgesamt zeigt sich, dass Gestendesign und Auswahlmechanismen eng miteinander v
 %Neben diskreten Auswahlmöglichkeiten spielen auch kontinuierliche Interaktionsformen eine wichtige Rolle in räumlichen Interfaces. Für die Anpassung von Parametern wie Lautstärke oder Helligkeit werden häufig Slider oder ähnliche Steuerungselemente eingesetzt. Aktuelle Ansätze kombinieren dabei Auswahlgesten mit gerichteten Bewegungen, um eine präzise und ergonomische Steuerung zu ermöglichen. Beispielsweise zeigen Systeme wie \textit{MarkAR}, dass sich Mikrogesten mit räumlichen Bewegungen kombinieren lassen, um kontinuierliche Anpassungen effizient umzusetzen \parencite{baillyPometti2024MarkARExploringTheBenefitsOfCombiningMicrogesturesAndMidAirMarksToTriggerCommandsInAR}.
 
 \subsection{Menübasierte Interaktion}
+\label{sec:rw_menus}
+
 Zur Strukturierung von Interaktionen und zur Bereitstellung sichtbarer Funktionen spielen menübasierte Ansätze eine zentrale Rolle in räumlichen Interaktionssystemen. Insbesondere in Mid-Air- und gestenbasierten Interfaces adressieren Menüs ein grundlegendes Problem: die geringe Discoverability freier Gestensysteme. Da mögliche Interaktionen häufig nicht sichtbar sind, können Nutzer:innen ohne geeignete visuelle Unterstützung Schwierigkeiten haben, verfügbare Funktionen zu erkennen und korrekt auszuführen \parencite{vogiatzidakis2018gestureeliticationstudiesreview, wobbrock2005discoverability}.
 
 Räumliche Menüs übertragen etablierte Konzepte grafischer Benutzeroberflächen in den dreidimensionalen Raum und passen diese an die Eigenschaften körperbasierter Interaktion an. Dabei kommen unterschiedliche Menüformen zum Einsatz, darunter lineare Menüs und radiale Menüs. Während lineare Menüs aus Desktop-Kontexten bekannt sind, zeigen Studien, dass diese Formen in Mid-Air-Interaktionen häufig mit erhöhtem Bewegungsaufwand und geringerer Effizienz verbunden sind, da sie längere Zielwege und präzisere Bewegungen erfordern \parencite{callahan1988comparisonPieVsLinearMenus}.
@@ -109,6 +136,8 @@ Insgesamt verdeutlicht die Literatur, dass räumliche Menüs eine zentrale Rolle
 
 
 \subsection{Multisensorische und atmosphärische Interaktion}
+\label{sec:rw_multisensory}
+
 Aktuelle Interaktionssysteme adressieren häufig nur einen begrenzten Teil der menschlichen Sinneswahrnehmung, wobei visuelle und auditive Reize dominieren, während andere Modalitäten wie Berührung oder Geruch oft unberücksichtigt bleiben. Multisensorische immersive Umgebungen verfolgen das Ziel, diese Einschränkung zu überwinden, indem sie mehrere Sinneskanäle gleichzeitig ansprechen und so ein umfassenderes Erleben digitaler Inhalte ermöglichen.
 
 Solche Systeme werden in unterschiedlichen Kontexten erforscht und eingesetzt, etwa in Bereichen wie Therapie, Unterhaltung oder erfahrungsorientierten Ausstellungs- und Interaktionsräumen. Ein Beispiel hierfür ist das von \textcite{matar2023designOfAMixedRealityBasedImmersiveVirtualEnvironmentSystem} vorgestellte System, das eine 270°-Umgebung mit wandfüllender Projektion nutzt und Interaktion über Körperposition und Handgesten ermöglicht. Nutzer:innen können dabei durch ihre Bewegung im Raum sowie durch Handgesten virtuelle Umgebungen manipulieren. Im Unterschied zu individuell getragenen XR-Systemen steht dabei eine gemeinsam nutzbare, nicht wearable-basierte räumliche Interaktion im Vordergrund. Das Beispiel verdeutlicht, dass projektionsbasierte immersive Umgebungen nicht auf rein rezeptive Erfahrungen beschränkt sind, sondern auch aktive Eingriffe in die dargestellte Szene unterstützen können.
