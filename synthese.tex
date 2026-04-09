@@ -55,30 +55,29 @@ Die Analyse zeigt, dass mehrere der betrachteten Ansätze nur eingeschränkt fü
 
 UI-basierte Interaktionsflächen innerhalb der Projektion bieten zwar eine klare Sichtbarkeit von Funktionen, können jedcoh die immersive Atmosphäre des Raums beeinträchtigen, da sie dauerhaft Teil der visuellen Szene sind \parencite{vogiatzidakis2018gestureeliticationstudiesreview}. Gestenbasierte Interaktionen ermöglichen hingegen eine controllerlose und körpernahe Steuerung digitaler Inhalte, sind jedoch mit Herausforderungen hinsichtlich Discoverability, die Fähigkeit, Gesten ohne Anleitung zu erkennen, und möglicher Fehlinterpretationen verbunden \parencite{vogiatzidakis2018gestureeliticationstudiesreview, }. Positionsbasierte Interaktionen nutzen die Bewegung der Nutzer:innen im Raum als Interaktionsparameter und ermöglichen eine direkte Kopplung zwischen physischem Verhalten und Systemzustand \parencite{ballendatmarquardtgreenberg2010proxemicinteraction}.
 
-Vor diesem Hintergrund wurden insbesondere gestenbasierte sowie positionsbasierte Interaktionsformen als vielversprechende Ansätze identifiziert, da sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte sowie die Integration der räumlichen Bewegung in die Interaktion unterstützen.
+Vor diesem Hintergrund wurden vornehmlich gestenbasierte sowie positionsbasierte Interaktionsformen als vielversprechende Ansätze identifiziert, da sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte sowie die Integration der räumlichen Bewegung in die Interaktion unterstützen.
 
-// TODO: Übergang erwähnen dass vollständige Übersicht im Anhang
+Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im Anhang dargestellt (vgl. Tab.~\ref{tab:interaktionsansatz}). Im Folgenden wird eine verdichtete Auswahl jener Ansätze präsentiert, die für die Entwicklung der nachfolgenden Konzepte als besonders relevant erachtet wurden (Tab. \ref{tab:interaktionsmoeglichkeiten}).
 
 \begin{table}[H]
     \centering
     \small
     \caption{Verdichtete Übersicht über identifizierte Interaktionsmöglichkeiten // TODO ggf. Anzahl der anwendbaren Szenarien mit rein (?)}
-    \begin{tabular}{p{4cm} p{3cm} p{8cm}}
+    \begin{tabular}{p{0.03cm} {p{3.97cm} p{3cm} p{8cm}}
         \toprule
-        \textbf{Interaktions\-möglichkeit} & \textbf{Art} & \textbf{Beschreibung} \\
+        \textbf {Nr.} & \textbf{Interaktions\-möglichkeit} & \textbf{Art} & \textbf{Beschreibung} \\
         \midrule
-        Zusatzinformationen anzeigen & Explizit, Selektion & Durch Auslösen eines Events (beispielsweise Zeigen auf Objekt oder näheres Herantreten) werden zusätzliche Informationen zu Objekten oder Umgebungen angezeigt. \\
-        Administrative Steuerung der Lautstärke, Helligkeit, Virbationsintensität & Explizit, Selektion & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen) \\
-        Präsentationssteuerung & Explizit, Selektion & Nutzer:innen können Videomaterial abspielen, pausieren und die Wiedergabe vor-/zurückspulen \\
-        Virtuelle Objekte Manipulieren & Explizit, Manipulation & Drehen, vergrößern, verkleinern von virtuellen Objekten \\
-        TEXT & TEXT & TEXT \\
-        TEXT & TEXT & TEXT \\
-        TEXT & TEXT & TEXT \\
-        TEXT & TEXT & TEXT \\
-        TEXT & TEXT & TEXT \\
-        TEXT & TEXT & TEXT \\
-        TEXT & TEXT & TEXT \\
+        2 & Administrative Steuerung der Lautstärke, Helligkeit, Virbationsintensität & Explizit, Selektion & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen) \\
 
+        3 & Präsentationssteuerung & Explizit, Selektion & Nutzer:innen können Videomaterial abspielen, pausieren und die Wiedergabe vor-/zurückspulen \\
+
+        9 & Objekte markieren und annotieren & Explizit, Manipulation & Nahe Inhalte oder projizierte Objekte können direkt markiert oder annotiert werden, um bestimmte Aspekte visuell zu betonen. \\
+
+        10 & Schubbasierte Navigation & Explizit, Navigation & Eine Schubbewegung in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
+
+        11 & Navigation durch Gehen auf der Stelle & Explizit, Navigation & Das Gehen auf der Stelle in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
+
+        15 & Aktivierung von Interaktion & Explizit, Selektion & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (z.\,B. Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden.
 
         \bottomrule
     \end{tabular}
@@ -89,53 +88,53 @@ Vor diesem Hintergrund wurden insbesondere gestenbasierte sowie positionsbasiert
 Aus dem beschriebenen Designraum wurden drei Interaktionsansätze für eine vertiefte konzeptionelle Ausarbeitung ausgewählt: administrative Steuerung, objektbasierte Interaktion sowie positionsbasierte Navigation. 
 Diese Auswahl basiert darauf, dass die drei Ansätze zentrale Interaktionsaufgaben in räumlichen Systemen abdecken, nämlich Selektion, Manipulation und Navigation, und zugleich unterschiedliche Grade der Explizitheit repräsentieren. Die ausgewählten Ansätze werden im Folgenden anhand exemplarischer Storyboards konkretisiert.
 
-
 \subsubsection{Storyboard: Administrative Steuerung}
+
 Das erste Storyboard zeigt ein Konzept für eine administrative Steuerung in Form eines radialen Menüs, das über eine gestenbasierte Interaktion aktiviert wird (vgl. Abb.~\ref{fig:storyboard_menu}).
 
-Die Interaktion beginnt damit, dass sich die Nutzer:innen in einem definierten Bereich des Raumes positionieren. Durch das Anheben der Hand wird ein radial angeordnetes Menü über der eigentlichen Anwendung eingeblendet. Die Auswahl einzelner Funktionen erfolgt durch die relative Position der Hand im Raum, die als Cursor innerhalb des Menüs interpretiert wird. 
+Die Interaktion beginnt mit der Ausrichtung der Nutzer:innen in Richtung einer Raumwand (Abb.~\ref{fig:storyboard_menu}, a). Durch das Anheben der Hand wechselt das System in einen quasi-modalen Interaktionszustand. Dieser dient dazu, unbeabsichtigte Aktivierungen zu vermeiden \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays}. In diesem Zustand wird ein radial angeordnetes Menü über der Anwendung eingeblendet (Abb.~\ref{fig:storyboard_menu}, b-c). Die Auswahl von Funktionen erfolgt über die relative Position der Hand im Raum, die als Cursor innerhalb des Menüs interpretiert wird (Abb.~\ref{fig:storyboard_menu}, d).
 
-Ein kurzer Verbleib in einem Menüsegment oder eine bestätigende Geste führt zur Aktivierung der jeweiligen Funktion. Zusätzlich können Untermenüs geöffnet werden, um weitere Optionen bereitzustellen. Nach Abschluss der Interaktion wird das Menü automatisch ausgeblendet, sodass die visuelle Szene wieder in den Vordergrund tritt.
+Ein kurzer Verbleib in einem Menüsegment oder eine bestätigende Geste aktiviert die jeweilige Funktion (Abb.~\ref{fig:storyboard_menu}, e-f). Zusätzlich können Untermenüs geöffnet werden, um weitere Optionen bereitzustellen (Abb.~\ref{fig:storyboard_menu}, g). Einzelne Menüsegmente ermöglichen darüber hinaus kontinuierliche Interaktionen, beispielsweise in Form einer Slidersteuerung (Abb.~\ref{fig:storyboard_menu}, h-i).
+
+Nach Abschluss der Interaktion wird das Menü automatisch ausgeblendet, sodass die visuelle Szene wieder in den Vordergrund tritt (Abb.~\ref{fig:storyboard_menu}, j).
 
 Das Konzept dient als Beispiel für eine explizite, gestenbasierte Interaktion zur Steuerung systemweiter Funktionen und wird im weiteren Verlauf der Arbeit hinsichtlich seiner Eignung für den Einsatz im MIR detaillierter untersucht.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.98\linewidth]{content/images/storyboard_menu.png}
-    \caption{Storyboard Administrative Steuerung{\color{red} (TODO: Stattdessen einheitliche Bilder, ordentlich zeichnen + Nummerierung (a), (b), (c) und dann unten drunter die Beschreibung - sonst sehr unüberischtlich)}}
+    \caption{Storyboard Administrative Steuerung}
     \label{fig:storyboard_menu}
 \end{figure}
 
 
 \subsubsection{Storyboard: Objektinteraktion}
-Das zweite Storyboard zeigt ein Konzept für eine gestenbasierte Objektinteraktion innerhalb der projizierten Szene, exemplarisch dargestellt anhand eines medizinischen Anwendungsszenarios, einer etablierten Domäne für berührungslose Interaktion \parencite{gavgiotaki2023gesturebasedinteractionforarsystemsreview} (vgl. Abb.~\ref{fig:storyboard_paint}).
+Das zweite Storyboard beschreibt ein Konzept zur Objektinteraktion innerhalb der projizierten Szene, exemplarisch anhand eines medizinischen Anwendungsszenarios, einer etablierten Domäne für berührungslose Interaktion \parencite{gavgiotaki2023gesturebasedinteractionforarsystemsreview} (vgl. Abb.~\ref{fig:storyboard_paint}).
 
-Nach Auswahl einer Projektion positionieren sich die Nutzer:innen vor der Projektionsfläche und wechseln durch Annäherung an die Wand sowie das Anheben der Hand in einen quasi-modalen Interaktionszustand. Dieser dient dazu, unbeabsichtigte Aktivierungen zu vermeiden \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays}.
+Nach Auswahl einer Projektion positionieren sich die Nutzer:innen vor der Projektionsfläche (Abb.~\ref{fig:storyboard_paint}, a). Durch Annäherung an die Wand und das Anheben der Hand wird ein quasi-modaler Interaktionszustand aktiviert, um unbeabsichtigte Eingaben zu vermeiden \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays}.
 
-Die Handposition wird dabei als Cursor interpretiert, was einem bekannten Interaktionsparadigma aus Desktopumgebungen entspricht. Gleichzeitig wird die natürliche Handbewegung als Eingabemedium genutzt, was dem Paradigma der "Reality-Based Interaction" folgt, bei dem digitale Interaktionen an reale Handlungen angelehnt sind \parencite{jacob2008realitybasedinteraction}.
+Die Handposition fungiert dabei als Cursor (Abb.~\ref{fig:storyboard_paint}, b) und überträgt ein etabliertes Interaktionsprinzip aus Desktopumgebungen in den räumlichen Kontext. Gleichzeitig bleibt die Eingabe an natürliche Bewegungen gekoppelt, im Sinne der Reality-Based Interaction, bei der digitale Interaktionen an reale Handlungen angelehnt sind \parencite{jacob2008realitybasedinteraction}.
 
-Gezielte Gesten ermöglichen das Setzen von Markierungen: Ein kurzer "Point-and-Draw"-Sweep hebt relevante Strukturen (z.\,B. Knochen, Muskeln oder Röntgenansichten) hervor. Diese Form der Interaktion entspricht semaphorischen (symbolischen) Gesten, die an bekannte Alltagsbewegungen wie das Zeichnen mit einem Stift angelehnt sind. Solche Gesten werden bevorzugt eingesetzt, da sie intuitiv verständlich sind, schnell erlernt werden können und die Wahrscheinlichkeit von Fehlinterpretationen reduzieren \parencite{kostic2024exploringmidairhandinteractionindatavisualization}.
+Gezielte Gesten ermöglichen das Setzen von Markierungen: Ein kurzer Point-and-Draw-Sweep hebt relevante Strukturen hervor (z.\,B. Knochen, Muskeln oder Röntgenansichten) (Abb.~\ref{fig:storyboard_paint}, c). Diese Interaktion entspricht semaphorischen Gesten, die an bekannte Handlungen wie das Zeichnen durch Absetzen und Auflegen eines Stifts angelehnt sind. Solche Gesten gelten als intuitiv, leicht erlernbar und vergleichsweise robust gegenüber Fehlinterpretationen \parencite{kostic2024exploringmidairhandinteractionindatavisualization}.
 
-Das Auswählen bestehender Markierungen erfolgt über eine "Grab"-Geste, die das Greifen eines physischen Objekts imitiert. Durch das Halten dieser Geste können zuvor gesetzte Markierungen wieder entfernt werden.
+Die Selektion bestehender Markierungen erfolgt über eine Grab-Geste, die das Greifen physischer Objekte imitiert. Durch Halten der Geste können Markierungen entfernt werden (Abb.~\ref{fig:storyboard_paint}, d–e).
 
-Nach Abschluss der Interaktion wird diese über ein Menüsystem beendet. Das dargestellte Konzept illustriert damit grundlegende Interaktionsaufgaben in räumlichen Systemen, insbesondere Selektion und Manipulation \parencite{LaViola20043DUserInterfaces}.
-
-Das Konzept dient somit als Beispiel für eine explizite, gestenbasierte Interaktion zur Selektion und Manipulation von Inhalten innerhalb der projizierten Szene.
+Das Konzept adressiert damit zentrale Interaktionsaufgaben räumlicher Systeme, insbesondere Selektion und Manipulation \parencite{LaViola20043DUserInterfaces}, und dient als Grundlage für die weitere Ausgestaltung inhaltsbezogener Interaktionen im MIR.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{content/images/storyboard_paint.png}
+    \includegraphics[width=0.98\linewidth]{content/images/storyboard_paint.png}
     \caption{Storyboard Objektinteraktion}
     \label{fig:storyboard_paint}
 \end{figure}
 
 
 \subsubsection{Storyboard: Navigaton im Raum}
-Das dritte Storyboard (Abb. \ref{fig:storyboard_navigation}) skizziert zwei Konzepte für positionsbasierte Navigation, die die körperliche Bewegung der Nutzer:innen als primären Interaktionsparameter nutzen, um eine Fortbewegung in der viertuellen Szene ohne zusätzliche Eingabegeräte zu ermöglichen.
+Das dritte Storyboard (Abb. \ref{fig:storyboard_navigation}) skizziert zwei Konzepte für positionsbasierte Navigation, die die körperliche Bewegung der Nutzer:innen als primären Interaktionsparameter nutzen, um eine Fortbewegung in der virtuellen Szene ohne zusätzliche Eingabegeräte zu ermöglichen.
 
-Der erste Ansatz basiert auf einer schubbasierten Navigation, die als steering-based Methode klassifiziert werden kann \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Hierbei bewegen sich Nutzer:innen in die gewünschte Richtung und initiieren die Fortbewegung durch eine aktive Schubbewegung mit den Händen. Diese explizite Kopplung von Position, Geste und virtueller Bewegung ermöglicht eine hohe Kontrolle und wird, wie die Forschung zur Ganzkörperinteraktion zeigt, als besonders immersiv und intuitiv wahrgenommen \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}.
+Der erste Ansatz basiert auf einer schubbasierten Navigation (Abb. \ref{fig:storyboard_navigation}, a-c), die als steering-based Methode klassifiziert werden kann \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Hierbei bewegen sich Nutzer:innen in die gewünschte Richtung und initiieren die Fortbewegung durch eine aktive Schubbewegung mit den Händen. Diese explizite Kopplung von Position, Geste und virtueller Bewegung ermöglicht eine hohe Kontrolle und wird, wie die Forschung zur Ganzkörperinteraktion zeigt, als besonders immersiv und intuitiv wahrgenommen \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}.
 
-Der zweite Ansatz nutzt Walking-in-Place, eine etablierte walking-based Lokomotionstechnik \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Die Bewegung wird durch eine Laufgeste auf der Stelle eingeleitet und aktiviert nach einer kurzen Verweildauer die Navigation im Raum, welche durch die Bewegung der Szene in die entsprechende Richtung eine kontinuierliche Fortbewegung simuliert.  Die Bewegung endet, sobald die Nutzer:innen ihre Position verändern oder Walking-in-Place stoppen. Studien belegen, dass geh-basierte Ansätze im Vergleich zu abstrakten Steuerungen wie Joysticks oder Teleportation ein signifikant stärkeres Gefühl physischer Präsenz und eine natürlichere Raumwahrnehmung fördern \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}. Diese Methode ist besonders für physisch begrenzte Räume wie den MIR geeignet, da sie die kognitiven Vorteile natürlicher Fortbewegung simuliert, ohne ein großes Platzangebot vorauszusetzen.
+Der zweite Ansatz nutzt Walking-in-Place, eine etablierte walking-based Lokomotionstechnik \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques}. Die Ausgangssituation ist auch hier wieder, dass die Person sich in die Richtung begiebt, in die die Umgebung navigiert werden soll (Abb. \ref{storyboard_navigation}, d-e). Die Bewegung wird durch eine Laufgeste auf der Stelle eingeleitet und aktiviert nach einer kurzen Verweildauer die Navigation im Raum (Abb. \ref{storyboard_navigation}, f), welche durch die Bewegung der Szene in die entsprechende Richtung eine kontinuierliche Fortbewegung simuliert (Abb. \ref{storyboard_navigation}, g).  Die Bewegung endet, sobald die Nutzer:innen ihre Position verändern oder Walking-in-Place stoppen. Studien belegen, dass geh-basierte Ansätze im Vergleich zu abstrakten Steuerungen wie Joysticks oder Teleportation ein signifikant stärkeres Gefühl physischer Präsenz und eine natürlichere Raumwahrnehmung fördern \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}. Diese Methode ist besonders für physisch begrenzte Räume wie den MIR geeignet, da sie die kognitiven Vorteile natürlicher Fortbewegung simuliert, ohne ein großes Platzangebot vorauszusetzen.
 
 Beide Ansätze verfolgen das Ziel, Navigation ohne zusätzliche Eingabegeräte zu ermöglichen und die körperliche Bewegung im Raum als primären Interaktionsparameter zu nutzen. Während die schubbasierte Variante eine aktive und bewusst gesteuerte Interaktion darstellt, setzt die Dwell-basierte Variante auf eine reduzierte Interaktionslast und eine stärker implizite Steuerung.
 
@@ -143,7 +142,7 @@ Das Storyboard illustriert damit unterschiedliche Ausprägungen positionsbasiert
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{content/images/storyboard_navigation.png}
+    \includegraphics[width=0.98\linewidth]{content/images/storyboard_navigation.png}
     \caption{Storyboard für Navigation im Raum}
     \label{fig:storyboard_navigation}
 \end{figure}
@@ -165,7 +164,7 @@ Gleichzeitig stellt die Gestaltung geeigneter Interaktionsmechanismen im dreidim
 
 Komplexe gestenbasierte Interaktionssysteme wurden im Rahmen dieser Arbeit jedoch bewusst nicht als primärer Interaktionsmechanismus gewählt. Obwohl Gesten eine natürliche Form körperbasierter Interaktion darstellen, weisen solche Systeme mehrere Herausforderungen auf. Viele Gestensysteme besitzen eine vergleichsweise hohe Lernkurve, da Nutzer:innen zunächst wissen müssen, welche Gesten verfügbar sind und wie diese korrekt ausgeführt werden müssen \parencite{wobbrock2005discoverability}. Darüber hinaus können Gestenerkennungssysteme in offenen Interaktionsräumen zu Fehlinterpretationen führen, wenn alltägliche Bewegungen fälschlicherweise als Interaktion interpretiert werden. Ein weiteres Problem besteht in der geringen Discoverability solcher Systeme, da verfügbare Funktionen häufig nicht sichtbar sind und daher aktiv erlernt werden müssen \parencite{wobbrock2005discoverability}. \textcite{wobbrock2005discoverability} beschreiben in diesem Zusammenhang den Begriff der Guessability, also die Fähigkeit von Nutzer:innen, die Bedeutung einer Geste ohne vorherige Einweisung korrekt zu erschließen.
 
-Um diese Herausforderungen zu adressieren, wurde ein menübasiertes Interaktionskonzept gewählt, das verfügbare Funktionen explizit sichtbar macht und gleichzeitig eine gestenbasierte Steuerung ermöglicht. Ein Ansatz, der sich für solche Interaktionskontexte besonders eignet, sind radiale Menüs, auch als Marking Menus bezeichnet \parencite{kurtenbachbuxton1993markingmenus}. Diese ordnen Funktionen kreisförmig um einen zentralen Punkt an und ermöglichen eine Auswahl durch kurze gerichtete Bewegungen. Aufgrund ihrer kurzen Zielwege, ihrer schnellen Erlernbarkeit sowie ihrer Eignung für Mid-Air-Interaktionen wurden Marking Menus als zentrales Interaktionsparadigma für den MIR ausgewählt.
+Um diese Herausforderungen zu adressieren, wurde ein menübasiertes Interaktionskonzept gewählt, das verfügbare Funktionen explizit sichtbar macht und gleichzeitig eine gestenbasierte Steuerung ermöglicht. Ein Ansatz, der sich für solche Interaktionskontexte besonders eignet, sind radiale Menüs, auch als Marking-Menus bezeichnet \parencite{kurtenbachbuxton1993markingmenus}. Diese ordnen Funktionen kreisförmig um einen zentralen Punkt an und ermöglichen eine Auswahl durch kurze gerichtete Bewegungen. Aufgrund ihrer kurzen Zielwege, ihrer schnellen Erlernbarkeit sowie ihrer Eignung für Mid-Air-Interaktionen wurden Marking Menus als zentrales Interaktionsparadigma für den MIR ausgewählt.
 
 
 \subsection{Konzeption des Interaktionssystems} % Hauptkapitel + hier nochmal Requirements erwähnen?
@@ -212,7 +211,7 @@ Die Hand fungiert somit als zentraler Interaktionsanker, über den Auswahl- und 
 \subsubsection{Radiales Menü}
 {\color{red} TODO: Reihenfolge komisch - erst erzählen was radiales menü und marking menü ist oder erst erzählen warum man das gewählt hat und dann darauf eingehen, was das ist - wenn zuerst erklärung kommt, fällt man irgendwie mit der Tür ins Haus -> Entscheidung treffen}
 
-Als zentrale Interaktionsschnittstelle wurde ein radiales Menü gewählt, da es im Vergleich zu linearen Menüs eine schnellere, weniger ermüdende und insgesamt angenehmere Nutzung ermöglicht \parencite{Mao2024comparisonOfPanelAndPieMenusForMidAirInteractionInPhotoBooth, callahan1988comparisonPieVsLinearMenus}. Radiale Menüs ordnen Funktionen kreisförmig um einen zentralen Punkt an. Wird die Auswahl über gerichtete Gestenbewegungen realisiert, werden sie als Marking Menus bezeichnet \parencite{kurtenbachbuxton1993markingmenus, kurtenbachPaul1993theDesignAndEvaluationOfMarkingMenus}.
+Als zentrale Interaktionsschnittstelle wurde ein radiales Menü gewählt, da es im Vergleich zu linearen Menüs eine schnellere, weniger ermüdende und insgesamt angenehmere Nutzung ermöglicht \parencite{Mao2024comparisonOfPanelAndPieMenusForMidAirInteractionInPhotoBooth, callahan1988comparisonPieVsLinearMenus}. Radiale Menüs ordnen Funktionen kreisförmig um einen zentralen Punkt an. Wird die Auswahl über gerichtete Gestenbewegungen realisiert, werden sie als Marking-Menus bezeichnet \parencite{kurtenbachbuxton1993markingmenus, kurtenbachPaul1993theDesignAndEvaluationOfMarkingMenus}.
 
 Für Mid-Air-Interaktionen bieten radiale Menüs mehrere Vorteile. Die gleichmäßige Anordnung der Menüelemente führt zu kurzen und in alle Richtungen gleich langen Zielwegen, wodurch Auswahlbewegungen im dreidimensionalen Raum vergleichsweise einfach ausführbar sind. Zudem unterstützen sie sowohl eine visuelle als auch eine gestenbasierte Interaktion \parencite{kurtenbachbuxton1993markingmenus, kurtenbachPaul1993theDesignAndEvaluationOfMarkingMenus}.
 
