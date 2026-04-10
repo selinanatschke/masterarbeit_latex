@@ -1,6 +1,8 @@
 \section{Praktische Umsetzung}
+
+{\color{red} TODO: Überlegen wo Bidler aus MIR hin sollen}
 % Einleitung ins Kapitel
-Dieses Kapitel beschreibt die praktische Umsetzung des entwickelten gestenbasierten Interaktionssystems. Im Vordergrund steht dabei nicht eine spezifische Zielanwendung, sondern ein generisches System, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Die Implementierung wurde daher so aufgebaut, dass Benutzungsoberfläche und Anwendungsanbindung voneinander getrennt sind. Dadurch kann das System unabhängig entwickelt, getestet und prinzipiell in verschiedene Anwendungskontexte integriert werden.
+Auf Grundlage der Analyse bestehender Szenarien sowie der Auseinandersetzung mit verwandten Arbeiten wurde ein gestenbasiertes Marking-Menu als zentrales Interaktionsparadigma ausgewählt und im Synthesekapitel konzeptionell ausgearbeitet. Dieses Kapitel beschreibt die praktische Umsetzung dieses Konzepts. Im Vordergrund steht dabei nicht eine spezifische Zielanwendung, sondern ein generisches System, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Die Implementierung wurde daher so aufgebaut, dass Benutzungsoberfläche und Anwendungsanbindung voneinander getrennt sind. Dadurch kann das System unabhängig entwickelt, getestet und prinzipiell in verschiedene Anwendungskontexte integriert werden.
 
 
 \subsection{Systemarchitektur}
@@ -181,6 +183,7 @@ Der Ablauf der Zustände wurde in Abbildung \ref{fig:state_flow_diagram_alt} vis
 {\color{red} TODO: Fotos von der Anwendung in allen Zuständen einfügen - überlegen ob hier oder wo anders}
 
 \subsection{Electron-Overlay}
+\subsubsection{Technische Umsetzung}
 Das visuelle Interaktionssystem wurde als Overlay mit Electron umgesetzt. 
 Electron ist eine Open-Source-Plattform zur Entwicklung plattformübergreifender Desktopanwendungen auf Basis von Webtechnologien \parencite{electronDocumentation}. Anwendungen werden dabei in einer Chromium-Umgebung ausgeführt und können gleichzeitig auf systemnahe Funktionen zugreifen.
 Die Wahl von Electron ermöglicht eine flexible und plattformunabhängige Implementierung der Benutzungsoberfläche, wodurch das Overlay unabhängig von der jeweiligen Zielanwendung ausgeführt werden kann.
@@ -188,7 +191,7 @@ Electron fungiert dabei als eigenständiger UI-Layer, der unabhängig von der je
 Durch diese Architektur kann das Interaktionssystem als zusätzliche Steuerungsschicht über bestehende Anwendungen gelegt werden, ohne dass diese selbst angepasst werden müssen.
 
 
-\subsubsection{Visualisierung}
+\subsubsection{Visuelle Darstellung und Rückmeldungen}
 Das Overlay wird als transparentes Fenster über der eigentlichen Anwendung dargestellt. Dabei ist das Fenster standardmäßig nicht fokussierbar, sodass Tastatureingaben weiterhin an die darunterliegende Anwendung weitergeleitet werden können. Dies ist insbesondere wichtig, da die Zielanwendung in vielen Szenarien weiterhin über klassische Eingabegeräte steuerbar bleiben soll.
 Für Entwicklungs- und Konfigurationszwecke kann das Overlay temporär in einen Konfigurationsmodus versetzt werden. In diesem Modus können Tastatur- und Mauseingaben abgefangen und für Kalibrierungsfunktionen verwendet werden. Der Konfigurationsmodus wird in Abschnitt \ref{sec:development} näher erläutert.
 
@@ -402,7 +405,7 @@ Damit entsteht eine kontinuierliche Kommunikationsschnittstelle zwischen Interak
 
 \subsubsection{Nachrichtenstruktur}
 Die übertragenen Nachrichten folgen einer einheitlichen JSON-Struktur (Tab. \ref{tab:websocket_message}). 
-Dieses Schema ermöglicht die Beschreibung unterschiedlicher Interaktionsereignisse (z. B. diskrete Buttonaktionen
+Dieses Schema ermöglicht die Beschreibung unterschiedlicher Interaktionsereignisse (zum Beispiel diskrete Buttonaktionen
 oder kontinuierliche Slideränderungen) innerhalb eines einheitlichen Kommunikationsprotokolls. Das Interaktionsereignis wird über das Feld \texttt{action} beschrieben.
 Nachrichten mit der Aktion \texttt{update} werden bei Änderungen kontinuierlicher Werte verwendet, während \texttt{pressed} diskrete Button-Aktionen beschreibt. Nachrichten mit der \texttt{action initial} werden für die Initialisierung genutzt und können initiale Sliderwerte oder die Menüstruktur selbst senden. Der \texttt{type} einer Nachricht gibt an, welches Element die Nachricht ausgelöst hat. \texttt{slider} Nachrichten gehören immer zur \texttt{action update}, während \texttt{pressed} immer zum \texttt{type button} gehört und \texttt{type menu} immer zur \texttt{action initial}. Das \texttt{target} gibt immer das Ziel oder den Kontext der aktuellen Interaktion an, wie \texttt{volume} oder \texttt{presentation}. \texttt{value} gibt an, welchen Wert die Aktion aktualisiert hat. Im Falle von Slidern sind das meist Angaben zwischen 0 und 1, für Buttons können es spezifische Klick-Events sein. Die \texttt{id} gibt an, zu welchem Menüelement die Aktion gehört, was nützlich ist, falls es beispielsweise mehrere Slider mit dem \texttt{target volume} gibt.
 
@@ -440,7 +443,7 @@ label={lst:slider_update}]
 
 Neben der funktionalen Beschreibung der Nachrichtenstruktur ist auch deren Entstehung und Bewertung relevant. Die Nachrichtenstruktur entstand im Rahmen eines iterativen Entwicklungsprozesses, bei dem zunächst einfache Interaktionsereignisse übertragen wurden und das Schema schrittweise erweitert wurde, um zusätzliche Anforderungen wie Initialisierung, Zustandssynchronisation und unterschiedliche UI-Elemente abzudecken.
 
-Diese evolutionäre Entwicklung führte zu einer funktionalen, jedoch nicht vollständig konsistenten Struktur. Beispielsweise besteht eine teilweise Redundanz zwischen den Feldern \texttt{action} und \texttt{type}, da bestimmte Kombinationen implizit festgelegt sind (z. B. \texttt{pressed} nur für \texttt{button}). Ebenso ist das Feld \texttt{value} nicht strikt typisiert, da es sowohl kontinuierliche Werte als auch diskrete Zustände (z. B. \texttt{play}/\texttt{pause}) oder Zeitangaben enthalten kann.
+Diese evolutionäre Entwicklung führte zu einer funktionalen, jedoch nicht vollständig konsistenten Struktur. Beispielsweise besteht eine teilweise Redundanz zwischen den Feldern \texttt{action} und \texttt{type}, da bestimmte Kombinationen implizit festgelegt sind (zum Beispiel \texttt{pressed} nur für \texttt{button}). Ebenso ist das Feld \texttt{value} nicht strikt typisiert, da es sowohl kontinuierliche Werte als auch diskrete Zustände (zum Beispiel \texttt{play}/\texttt{pause}) oder Zeitangaben enthalten kann.
 
 Eine mögliche Weiterentwicklung des Protokolls könnte eine stärkere Trennung von Ereignistyp und Datenstruktur sowie eine strengere Typisierung der übertragenen Werte beinhalten. Beispielsweise könnten unterschiedliche Nachrichtentypen oder spezialisierte Payload-Strukturen definiert werden, um die Semantik klarer abzubilden und die Erweiterbarkeit zu verbessern.
 
@@ -450,11 +453,9 @@ Trotz dieser strukturellen Schwächen erfüllt das gewählte Nachrichtenformat d
 
 
 \subsubsection{Kommunikationsfluss}
-Nach dem Aufbau der WebSocket-Verbindung sendet die Zielanwendung zunächst Initialisierungsnachrichten mit Konfigurations- und Zustandsdaten, welche den aktuellen Zustand der Anwendung beschreiben. Diese enthalten sowohl die Menüstruktur des Zielsystems als auch weitere Zustandsinformationen, beispielsweise die Länge eines Videos oder aktuelle Parameterwerte. Das Overlay verwendet diese Informationen, um seine UI-Elemente zu initialisieren und mit dem Zustand der Zielanwendung zu synchronisieren. Während der Interaktion übermittelt das Overlay anschließend Ereignisse, etwa Slideränderungen oder Buttonaktionen, an die Zielanwendung. Diese verarbeitet die eingehenden Nachrichten und sendet gegebenenfalls aktualisierte Parameterwerte zur Bestätigung des neuen Zustands.
+Nach dem Aufbau der WebSocket-Verbindung sendet die Zielanwendung zunächst Initialisierungsnachrichten mit Konfigurations- und Zustandsdaten, welche den aktuellen Zustand der Anwendung beschreiben. Diese enthalten sowohl die Menüstruktur des Zielsystems als auch weitere Zustandsinformationen, beispielsweise die Länge eines Videos oder aktuelle Parameterwerte. Das Overlay verwendet diese Informationen, um seine UI-Elemente zu initialisieren und mit dem Zustand der Zielanwendung zu synchronisieren. Während der Interaktion übermittelt das Overlay anschließend Ereignisse, etwa Slideränderungen oder Buttonaktionen, an die Zielanwendung. Diese verarbeitet die eingehenden Nachrichten und sendet aktualisierte Parameterwerte zur Bestätigung des neuen Zustands. Das Overlay empfängt diese erst nach Beendigung der aktiven Aktion (beispielsweise wenn der Slider losgelassen wurde), um konsistentes Überschreiben zu vermeiden.
 
 Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in Abbildung~\ref{fig:communication_flow} dargestellt. Die Abbildung verdeutlicht, dass die Kommunikation nicht nur zur Übertragung von Aktionen dient, sondern auch zur Initialisierung sowie zur Synchronisierung von Zustandsinformationen zwischen beiden Komponenten.
-
-% TODO machen, dass Werte nur im UI Ankommen, wenn man Pinch loslässt
 
 % WIP Diagramm:
 %@startuml
@@ -483,7 +484,7 @@ Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in A
 %note right of Zielanwendung
 %Empfängt Nachricht und aktualisiert
 %interne Werte des target-Typs
-%(z. B. Lautstärke)
+%(zum Beispiel Lautstärke)
 %end note
 %Zielanwendung-> UI : sendet Nachricht mit aktuellen Werten\nals Bestätigung / Synchronisation
 %UI -> UI : Werte speichern
@@ -631,48 +632,11 @@ Diese Informationen steuern das im Electron-Overlay dargestellte radiale Menü s
 Über die WebSocket-Schnittstelle werden Interaktionsereignisse an die angebundene Zielanwendung übertragen und mit deren Zustand synchronisiert. 
 Die datengetriebene Menüstruktur ermöglicht es dabei, die Interaktionsoberfläche flexibel an unterschiedliche Anwendungsszenarien anzupassen.
 
-Durch die modulare Architektur bleiben Tracking, Benutzungsoberfläche und Zielanwendung voneinander getrennt.
-Dadurch kann das Interaktionssystem unabhängig entwickelt und potenziell in verschiedene Anwendungskontexte integriert werden.
+Durch die modulare Architektur bleiben Tracking, Benutzungsoberfläche und Zielanwendung voneinander getrennt, wodurch das System flexibel an unterschiedliche Anwendungsszenarien angepasst werden kann.
 
 Das entwickelte System stellt damit eine prototypische Umsetzung körperbasierter Interaktion im MIR dar, die als Grundlage für zukünftige Erweiterungen und Anwendungsszenarien dienen kann.
 
 \subsection{Diskussion}
-% Slider löst ausversehen aus, wenn man Hand runter nimmt, wahrscheinlich wegen Implementierung von pinch Geste und Kamerawinkel 
-%{\color{red} TODO: Schreiben; Bugs; Slider löst ausversehene aus, wenn man Hand runter nimmt (Wahrscheinlich wegen Implementierung von Pinch Geste + Kamerawinkel; conrad hat beim testen gesagt, dass grab halten intuitiv ist für super schnelle auswahl - sehr doof, dass das noch verbuggt ist - ggf. als future Work aufnehmen; nachrichten nur empfangen, wenn losgelassen doof; nachrichten sollen nur bei volume/brightness kontinuierlich gesendet werden, aber bei präsentationssteuerung laggt es zu sehr bei langen Videos }
-%
-%was robust funktioniert
-%was nur prototypisch funktioniert
-%wo Trackinggrenzen liegen
-%welche Interaktionen störanfällig sind
-%welche Designentscheidungen eher heuristisch sind
-%
-%
-%1. Was funktioniert gut?
-%modulare Architektur
-%generisches Overlay
-%WebSocket-Anbindung
-%mehrbildschirmfähige Struktur
-%
-%2. Wo liegen technische Grenzen?
-%Trackinggenauigkeit
-%Kameraperspektiven
-%Pinch/Grab-Fehlklassifikation
-%Latenz bei Präsentationssteuerung
-%
-%3. Welche Entscheidungen sind bewusst prototypisch?
-%heuristische Gestenerkennung
-%vereinfachte Nachrichtenstruktur
-%Bedienlogik für Slider
-%Kalibrierung nicht vollständig automatisiert
-%
-%4. Was folgt daraus?
-%Future Work
-%Evaluation
-%robustere Gestenmodelle
-%multimodale Erweiterung
-
-\subsection{Diskussion}
-
 Die prototypische Umsetzung zeigt, dass ein gestenbasiertes Marking-Menu als zusätzliche Interaktionsschicht für den Multisensorischen Interaktionsraum grundsätzlich realisierbar ist. Insbesondere die modulare Trennung zwischen Benutzungsoberfläche und Kommunikation mit der Zielanwendung erwies sich als vorteilhaft, da einzelne Komponenten unabhängig voneinander entwickelt und getestet werden konnten. Die angestrebte Szenariounabhängigkeit des Systems wird dabei weniger durch die reine Architektur als vielmehr durch die datengetriebene Menüstruktur sowie die abstrahierte Eventkommunikation unterstützt.
 
 Eine zentrale Stärke des entwickelten Prototyps liegt daher in der flexiblen, datengetriebenen Menüstruktur. Da die Menükonfiguration nicht fest im Overlay verankert ist, sondern von der Zielanwendung bereitgestellt wird, lässt sich die Interaktionsoberfläche an unterschiedliche Anwendungskontexte anpassen, ohne Änderungen an der Interaktionslogik oder der Benutzungsoberfläche selbst vorzunehmen. In Kombination mit der WebSocket-basierten Kommunikation entsteht so eine lose Kopplung zwischen Interaktionssystem und Zielanwendung. Auch wenn die konkrete Umsetzung der Nachrichtenstruktur noch nicht vollständig konsistent ist, erwies sich dieser Ansatz grundsätzlich als geeignet, um Interaktionsereignisse in Echtzeit zu übertragen und unterschiedliche Anwendungsszenarien anzubinden.
@@ -698,9 +662,9 @@ Für zukünftige Arbeiten ergeben sich daraus mehrere Entwicklungsperspektiven. 
 
 
 \section{Zusammenfassung und Ausblick}
-Ziel dieser Arbeit war die Konzeption und prototypische Umsetzung eines controllerfreien, körperbasierten Interaktionssystems für den Multisensorischen Interaktionsraum (MIR). Im Fokus stand die Entwicklung eines auf Basis der Anwendungsanalyse identifizierten Interaktionskonzepts, das die zuvor abgeleiteten Anforderungen bestmöglich erfüllt: eine Nutzung ohne zusätzliche Eingabegeräte, die Unterstützung freier Bewegung im Raum, ein geringer Integrationsaufwand sowie ein schneller und intuitiver Zugriff auf Interaktionsmöglichkeiten.
+Ziel dieser Arbeit war die Konzeption und prototypische Umsetzung eines controllerfreien, körperbasierten Interaktionssystems für den Multisensorischen Interaktionsraum (MIR). Im Fokus stand die Entwicklung eines auf Basis der Anwendungsanalyse identifizierten Interaktionskonzepts, das die zuvor abgeleiteten Anforderungen adressiert: eine Nutzung ohne zusätzliche Eingabegeräte, die Unterstützung freier Bewegung im Raum, ein geringer Integrationsaufwand sowie ein schneller und intuitiver Zugriff auf Interaktionsmöglichkeiten.
 
-Auf Grundlage der Analyse bestehender Szenarien sowie der Auseinandersetzung mit verwandten Arbeiten wurde ein gestenbasiertes Marking-Menu als zentrales Interaktionspotenzial ausgewählt. Dieses wurde im weiteren Verlauf konzeptionell ausgearbeitet und in Form eines prototypischen Interaktionssystems umgesetzt. Die entwickelte Lösung kombiniert eine radiale Menüstruktur mit gestenbasierter Auswahl, kontinuierlichen Steuerungsmechanismen und wird als eigenständige Interaktionsschicht über bestehende Anwendungen gelegt.
+Auf Grundlage der Analyse bestehender Szenarien sowie der Auseinandersetzung mit verwandten Arbeiten wurde ein gestenbasiertes Marking-Menu als zentrales Interaktionspotenzial ausgewählt. Im Vergleich zu den ebenfalls betrachteten objektbasierten und positionsbasierten Interaktionsansätzen zeigt sich, dass der menübasierte Ansatz insbesondere durch seine Anwendungsunabhängigkeit und geringe Anforderungen an die Zielanwendung eine besonders hohe Übertragbarkeit auf unterschiedliche MIR-Szenarien besitzt. Dieses Konzept wurde daher im weiteren Verlauf konzeptionell ausgearbeitet und in Form eines prototypischen Interaktionssystems umgesetzt. Die entwickelte Lösung kombiniert eine radiale Menüstruktur mit gestenbasierter Auswahl, kontinuierlichen Steuerungsmechanismen und wird als eigenständige Interaktionsschicht über bestehende Anwendungen gelegt.
 
 Die praktische Umsetzung zeigt, dass ein solches System grundsätzlich realisierbar ist und zentrale Anforderungen an körperbasierte Interaktion im MIR adressieren kann. Insbesondere die modulare Architektur, die datengetriebene Menüstruktur sowie die lose Kopplung zwischen Interaktionssystem und Zielanwendung ermöglichen eine flexible Integration in unterschiedliche Anwendungsszenarien. Gleichzeitig verdeutlichen die Ergebnisse, dass die Gestaltung robuster und präziser Mid-Air-Interaktion weiterhin eine Herausforderung darstellt. Aspekte wie Gestenerkennung, kontinuierliche Steuerung und Mehrbildschirminteraktion erfordern eine sorgfältige Abstimmung zwischen technischer Umsetzung und Interaktionsdesign.
 

@@ -8,20 +8,20 @@ Die zugrunde liegenden Analyse- und Kategorisierungsdimensionen wurden induktiv 
 % induktiv = ich schaue mir szenarien an und erkenne dann das Muster statt ich nehme Kategorien aus der Literatur und prüfe sie (das wäre deduktiv)
 
 Die Analyse basiert auf einer Auswahl der aktuell verfügbaren MIR-Szenarien, die zum Zeitpunkt der Untersuchung im System implementiert und zugänglich waren. Insgesamt wurden neun Szenarien betrachtet, die unterschiedliche Anwendungskontexte wie atmosphärische Erlebnisräume, narrative Präsentationen sowie simulations- oder lehrorientierte Anwendungen abdecken.
-Es ist zu berücksichtigen, dass im MIR darüber hinaus weitere experimentelle oder frühere Szenarien existieren können, die jedoch im Rahmen dieser Arbeit nicht systematisch untersucht wurden. Die betrachteten Szenarien stellen somit eine repräsentative Auswahl der aktuell genutzten Anwendungen dar und dienen als Grundlage für die anschließende Analyse der Interaktionsstrukturen.
+Es ist zu berücksichtigen, dass im MIR darüber hinaus weitere Szenarien existieren können, die jedoch im Rahmen dieser Arbeit nicht systematisch untersucht wurden. Die betrachteten Szenarien stellen somit eine exemplarische Auswahl der aktuell genutzten Anwendungen dar und dienen als Grundlage für die anschließende Analyse der Interaktionsstrukturen.
 
 Die untersuchten MIR-Szenarien befassen sich mit den folgenden Inhalten:
 \begin{itemize}
     \item \textbf{Waldbaden:} Vorgerendertes atmosphärisches Szenario mit audiovisueller Darstellung einer natürlichen Waldumgebung.
-    \item \textbf{Fußballstadion:} Vorgerendertes Szenario eines Fußballstadions mit mehreren perspektivischen Ansichten des Spielgeschehens.
+    \item \textbf{Fußballstadion:} Vorgerendertes atmosphärisches Szenario eines Fußballstadions mit mehreren perspektivischen Ansichten des Spielgeschehens.
     \item \textbf{Kokon:} Vorgerendertes atmosphärisches Szenario, das die audiovisuelle Innenansicht eines Kokons als abstrahierte Umgebung inszeniert.
-    \item \textbf{Zug fahren:} Vorgerendertes Szenario mit wechselnden Ansichten aus einer Zugfahrt und situativen Haltepunkten zur Betrachtung der Umgebung.
+    \item \textbf{Zug fahren:} Vorgerendertes atmosphärisches Szenario mit wechselnden Ansichten aus einer Zugfahrt und situativen Haltepunkten zur Betrachtung der Umgebung.
     \item \textbf{YouTube 360°:} Wiedergabe externer 360°-Videoinhalte, die auf die Projektionsflächen des MIR angepasst werden.
-    \item \textbf{Dschungel Level:} Live gerendertes Szenario einer virtuellen Dschungelumgebung.
+    \item \textbf{Dschungel Level:} Live gerendertes atmosphärisches Szenario einer virtuellen Dschungelumgebung.
     \item \textbf{Smart Factory:} Live gerenderte Simulation einer Smart Factory mit digital repräsentierten Maschinen- und Prozessabläufen.
-    \item \textbf{OP:} Vorgerendertes Szenario einer realen Operationsumgebung zu Simulations- und Demonstrationszwecken.
-    \item \textbf{Hubschrauberlandeplatz:} Vorgerendertes Szenario eines realen Hubschrauberlandeplatzes zu Simulations- und Demonstrationszwecken.
-    \item \textbf{KI-Szenarien:} Konzeptuell vorgesehene, KI-generierte Umgebungen, die durch Texteingaben der Nutzer:innen verändert werden können.
+    \item \textbf{OP:} Vorgerendertes Lehrszenario einer realen Operationsumgebung zu Simulations- und Demonstrationszwecken.
+    \item \textbf{Hubschrauberlandeplatz:} Vorgerendertes Lehrszenario eines realen Hubschrauberlandeplatzes zu Simulations- und Demonstrationszwecken.
+    \item \textbf{(KI-Szenarien):} Konzeptuell vorgesehene, KI-generierte Umgebungen, die durch Texteingaben der Nutzer:innen verändert werden können.
 \end{itemize}
 
 
@@ -35,13 +35,12 @@ Die untersuchten Szenarien lassen sich hinsichtlich ihrer medialen Inhaltsstrukt
 \end{enumerate}
 
 Der Großteil der bestehenden Anwendungen basiert auf vorgerenderten Inhalten.
-Hierbei handelt es sich in der Regel um vorab produzierte audiovisuelle Inhalte, die für die Projektion auf die 270°-Leinwände räumlich angepasst und synchronisiert werden. \parencite{orawetz2024mir} 
+Hierbei handelt es sich in der Regel um vorab produzierte audiovisuelle Inhalte, die für die Projektion auf die 270°-Leinwände räumlich angepasst und synchronisiert wurden \parencite{orawetz2024mir}.
 Live gerenderte Inhalte werden in der Unreal Engine generiert und ermöglichen eine direkte Manipulation oder Navigation innerhalb der virtuellen Szene.
-KI-generierte Inhalte wurden bislang nur punktuell berücksichtigt und weisen noch keinen integrativen Stellenwert innerhalb der bestehenden Szenarien auf. Es soll Nutzer:innen damit möglich sein, ihre Umgebung mit einem Prompt zu verändern.
+KI-generierte Inhalte wurden bislang nur punktuell berücksichtigt und weisen noch keinen integrativen Stellenwert innerhalb der bestehenden Szenarien auf. Diese Inhalte zielen darauf ab, Veränderungen der Umgebung über Texteingaben der Nutzer:innen zu ermöglichen.
 
-Technologisch basieren die meisten Anwendungen auf einer Kombination aus 270°-Visualisierung, 360°-Audiosystem und teilweise zusätzlichem Bodenfeedback (Vibration) (in Tab. \ref{tab:charakteristika} ersichtlich). Diese multisensorische Konfiguration dient primär der Immersionssteigerung und der atmosphärischen Verdichtung des Raumerlebens. Die technische Infrastruktur ist somit deutlich auf Wahrnehmungsintensivierung ausgerichtet, weniger jedoch auf Interaktionsdynamik.
+Technologisch basieren die meisten Anwendungen auf einer Kombination aus 270°-Visualisierung, 360°-Audiosystem und teilweise zusätzlichem Bodenfeedback (Vibration) (vgl. Tab. \ref{tab:charakteristika}). Diese multisensorische Konfiguration dient primär der Immersionssteigerung und der atmosphärischen Verdichtung des Raumerlebens. Die technische Infrastruktur erscheint damit vor allem auf Wahrnehmungsintensivierung und atmosphärische Verdichtung ausgerichtet, während interaktive Dynamiken in den bestehenden Szenarien bislang weniger stark ausgeprägt sind.
 
-Wie aus Tabelle~\ref{tab:charakteristika} ersichtlich, dominieren vorgerenderte Inhalte. 
 
 \begin{table}[H]
 \centering
@@ -69,12 +68,13 @@ Eine detaillierte Übersicht aller erfassten Szenarien und Analysekategorien bef
 
 
 \subsection{Physische Raumgestaltung}
-Ein weiteres Merkmal mancher Szenarien ist der Einsatz physischer Props zur atmosphärischen Anreicherung. Hierzu zählen unter anderem Wiesenboden, Stühle, textile Elemente, ein manueller Reparaturarbeitsplatz  oder Lehrobjekte. Die meisten dieser materiellen Ergänzungen fungieren primär als haptisch-visuelle Verstärker der dargestellten Szenarien und unterstützen die Kohärenz zwischen physischem und projiziertem Raum. Eine Ausnahme bildet das Szenario "Smart Factory", in dem der manuelle Reparaturarbeitsplatz als interaktive Komponente genutzt wird. % TODO aktuelle Interaktion beschreiben, siehe Paper von elena zu avisar (chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://ceur-ws.org/Vol-3704/paper11.pdf)
-Es zeigt sich jedoch, dass die meisten dieser Objekte primär dekorativ oder symbolisch eingesetzt werden. Eine systematische sensorische Einbindung (z. B. über NFC, UWB oder andere Tracking-Technologien) zur Erzeugung interaktiver Zustandsänderungen ist bislang kaum implementiert. Somit bleibt das Potenzial physischer Objekte als Schnittstelle zwischen Körper und digitalem System weitgehend ungenutzt.
+Ein weiteres Merkmal einiger Szenarien ist der Einsatz physischer Inszenierungselemente zur atmosphärischen Anreicherung. Hierzu zählen unter anderem Wiesenboden, Stühle, textile Elemente, ein manueller Reparaturarbeitsplatz  oder Lehrobjekte. Die meisten dieser materiellen Ergänzungen fungieren primär als haptisch-visuelle Verstärker der dargestellten Szenarien und unterstützen die Kohärenz zwischen physischem und projiziertem Raum. Eine Ausnahme bildet das Szenario ``Smart Factory'', in dem der manuelle Reparaturarbeitsplatz funktional mit dem digitalen System gekoppelt ist und dadurch nicht nur atmosphärisch, sondern auch interaktiv wirksam wird.
+Es zeigt sich jedoch, dass die meisten dieser Objekte primär dekorativ oder symbolisch eingesetzt werden. Eine systematische sensorische Einbindung (zum Beispiel über NFC, UWB oder andere Tracking-Technologien) zur Erzeugung interaktiver Zustandsänderungen ist bislang kaum implementiert. Somit bleibt das Potenzial physischer Objekte als Schnittstelle zwischen Nutzer:in und digitalem System weitgehend ungenutzt.
 
 
 \subsection{Szenarioziele}
-Die Mehrheit der Szenarien verfolgt einen atmosphärischen Zweck, d.h. in die Realität der vorgerendeteren Medien einzutauchen, entweder in narrativer oder ambienter Ausprägung. Zu den ambienten Szenarien beispielsweise der Kokon und der Wald, da dort die Nutzer:innen nicht an bestimmte zeitliche Ereignisse gebunden sind und es keine zeitliche Beschränkung gibt. Atmosphärische Szenarien verfolgen primär das Ziel, eine immersive Stimmung zu erzeugen, ohne dass eine aktive Interaktion erforderlich ist. In solchen Fällen könnte zusätzliche Interaktivität sogar als störend wahrgenommen werden. Narrative Szenarien hingegen, wie beispielsweise das Fußballstadion, folgen einer zeitlich strukturierten Ereignisabfolge. Hier könnte Interaktion potenziell genutzt werden, um Übergänge, Perspektivwechsel oder Zusatzinformationen zu steuern.
+Die Mehrheit der Szenarien verfolgt primär ein atmosphärisches Ziel. Im Vordergrund steht dabei nicht die aktive Bearbeitung eines Systems, sondern das Eintauchen in eine medial inszenierte räumliche Situation. Innerhalb der atmosphärischen Szenarien lassen sich ambient orientierte und narrativ strukturierte Formen unterscheiden. Zu den ambienten Szenarien zählen beispielsweise der Kokon und der Wald, da dort die Nutzer:innen nicht an bestimmte zeitliche Ereignisse gebunden sind
+und eher auf ein kontinuierliches atmosphärisches Erleben ausgerichtet sind. Ambiente atmosphärische Szenarien verfolgen also primär das Ziel, eine immersive Stimmung zu erzeugen, ohne dass eine aktive Interaktion erforderlich ist. In solchen Fällen könnte zusätzliche Interaktivität sogar als störend wahrgenommen werden. Narrative Szenarien hingegen, wie beispielsweise das Fußballstadion, folgen einer zeitlich strukturierten Ereignisabfolge. Hier könnte Interaktion potenziell genutzt werden, um Übergänge, Perspektivwechsel oder Zusatzinformationen zu steuern.
 
 Simulations- und Lehrszenarien weisen tendenziell höhere Interaktivitätsgrade auf, allerdings erfolgt die Steuerung bisher meist über klassische Eingabegeräte am Rechner oder über explizite UI-Elemente. Die Interaktion bleibt somit gerätezentriert.
 
@@ -88,12 +88,12 @@ In einzelnen Fällen, insbesondere bei live-gerenderten Szenarien, wird eine fre
 
 Wo Interaktion implementiert ist, geschieht sie überwiegend in folgenden Formen:
 \begin{itemize}
-\item UI-basierte Eingaben (z. B. Schaltflächen oder Prompteingabe)
-\item Objektinteraktionen (z. B. im Szenario Smart Factory)
+\item UI-basierte Eingaben (zum Beispiel Schaltflächen oder Prompteingabe)
+\item Objektinteraktionen (zum Beispiel im Szenario Smart Factory (vgl. Abschnitt \ref{sec:rw_multisensory}))
 \item Tastatur- und Maussteuerung zur Navigation in virtuellen Umgebungen
 \end{itemize}
 
-Diese Interaktionen sind meist diskret, explizit und funktional motiviert. Eine kontinuierliche, implizite Kopplung zwischen Körperzustand und Systemverhalten ist kaum ausgeprägt. Darüber hinaus reagiert das System in den meisten Fällen nicht auf alltägliche oder subtile Nutzerbewegungen. Selbst bei freier Bewegung im Raum bleibt der mediale Zustand häufig unverändert. Die Interaktionslogik ist somit überwiegend ereignisbasiert statt kontinuierlich zustandsbasiert.
+Diese Interaktionen sind meist diskret, explizit und funktional motiviert. Eine kontinuierliche, implizite Kopplung zwischen Körperzustand und Systemverhalten ist kaum ausgeprägt. Darüber hinaus reagiert das System in den meisten Fällen nicht auf alltägliche oder subtile Bewegungen. Die Interaktionslogik ist somit überwiegend ereignisbasiert statt kontinuierlich zustandsbasiert.
 
 Die unterschiedlichen Ausprägungen von Navigation und Interaktion sowie die daraus resultierenden Systemreaktionen sind in Tabelle~\ref{tab:interaktion} zusammengefasst.
 
@@ -111,7 +111,7 @@ Kokon & keine & keine & keine & keine \\
 Zug fahren & keine & zeitbasierter Wechsel & keine & fester Perspektiv\-wechsel \\
 YouTube 360° & keine & keine & keine & fester Perspektiv\-wechsel \\
 Jungle Level & Tasta\-tur/Maus & Bewegung im Raum & explizit & frei (mit Tasta\-tur) \\
-Smart Factory & Tasta\-tur/Maus, Gesteninteraktion & Zustands\-änderung im Reparatur\-arbeitsplatz ändert System\-zustände & explizit & eingeschränkt (mit Tasta\-tur) \\
+Smart Factory & Tasta\-tur/Maus, Gesteninteraktion & Zustands\-än\-der\-ung im Re\-pa\-ra\-tur\-ar\-beits\-platz ändert System\-zu\-stän\-de & explizit & eingeschränkt (mit Tasta\-tur) \\
 OP & keine & keine & keine & fester Perspektiv\-wechsel \\
 Hubschrauber\-landeplatz & keine & keine & keine  & keine \\
 \bottomrule
@@ -119,10 +119,10 @@ Hubschrauber\-landeplatz & keine & keine & keine  & keine \\
 \label{tab:interaktion}
 \end{table}
 
-Insgesamt zeigt sich, dass sowohl Navigation als auch Interaktion überwiegend system- oder gerätebasiert umgesetzt sind und kaum an die körperliche Präsenz der Nutzer:innen im Raum gekoppelt sind.
+Insgesamt zeigt sich, dass sowohl Navigation als auch Interaktion bisher überwiegend system- oder gerätebasiert umgesetzt wurden und kaum an die körperliche Präsenz der Nutzer:innen im Raum gekoppelt sind.
 
 
-\subsection{Räumlich-körperliche Funktionen}
+\subsection{Räumlich-körperliche Einflussfaktoren}
 Darüber hinaus wurde im Rahmen der Untersuchung auch die räumliche Nutzung des Systems beobachtet. Dabei zeigte sich, dass körperliche Faktoren einen wesentlichen Einfluss auf das Immersionserleben haben. 
 Beispielsweise verändert sich die visuelle Wahrnehmung der Projektionen abhängig von der Körperhaltung der Nutzer:innen. Bei Nutzung der Bodenvibrationsplatte im Stehen verschiebt sich der Blickwinkel tendenziell nach oben, wodurch Teile der Projektion außerhalb des direkten Sichtfeldes liegen können.
 Darüber hinaus ist aufgrund der drei Projektionsflächen eine bevorzugte Blickrichtung im Raum gegeben. Die immersive Wahrnehmung ist daher nicht in allen Raumrichtungen gleichermaßen ausgeprägt.
@@ -131,8 +131,8 @@ Diese Beobachtungen verdeutlichen, dass körperliche Präsenz und räumliche Kon
 
 
 \subsection{Zusammenfassende Bewertung}
-Die Analyse zeigt, dass bestehende MIR-Szenarien primär als immersive, multisensorische Erfahrungsräume konzipiert sind, jedoch kaum als interaktive Systeme im Sinne körperbasierter Mensch-Computer-Interaktion.
-Die Interaktionsarchitektur ist überwiegend
+Die Analyse zeigt, dass bestehende MIR-Szenarien primär als immersive, multisensorische Erfahrungsräume konzipiert sind, jedoch wenige interaktive Möglichkeiten aufweisen.
+Die bestehende Interaktionsarchitektur lässt sich überwiegend wie folgt charakterisieren:
 \begin{itemize}
 \item passiv-rezeptiv statt partizipativ, % Nutzer konsumiert nur Inhalte / schaut nur zu & beeinflusst nicht Ablauf (das wäre partizipativ)
 \item explizit statt implizit,
@@ -157,7 +157,7 @@ Navigation & primär systemgesteuert, vordefiniert \\
 Interaktion & selten, meist explizit und gerätebasiert \\
 Systemreaktivität & kaum vorhanden, ereignisbasiert \\ %kaum vorhanden → Nutzer beeinflussen das System fast nicht; ereignisbasiert → nur bei expliziten Aktionen, nicht kontinuierlich
 Körperintegration & nicht mit Systemzustand gekoppelt \\
-Physische Objekte & meist dekorativ, kaum interaktiv eingebunden \\
+Physische Inszenierungselemente & meist dekorativ, kaum interaktiv eingebunden \\
 \bottomrule
 \end{tabular}
 \label{tab:muster}
