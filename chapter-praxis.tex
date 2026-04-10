@@ -105,7 +105,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten. Verwe
 \begin{subfigure}[t]{0.32\textwidth}
     \centering
     \includegraphics[height=4cm, angle=-90, trim=12cm 2cm 1cm 2cm, clip]
-    {content/images/pinch_gesture_image.jpeg}
+    {content/images/pinch_gesture_image.png}
     \caption{Pinch Geste nutzt den Abstand zwischen der Zeigefingerspitze und Daumenspitze}
     \label{fig:pinch_gesture_image}
 \end{subfigure}
@@ -113,7 +113,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten. Verwe
 \begin{subfigure}[t]{0.32\textwidth}
     \centering
     \includegraphics[height=4cm, angle=-90, trim=12cm 2cm 1cm 2cm, clip]
-    {content/images/grab_gesture_image.jpeg}
+    {content/images/grab_gesture_image.png}
     \caption{Grab Geste nutzt den Abstand zwischen allen Fingerspitzen (außer Daumen) und der Handballenunterseite}
     \label{fig:grab_gestute_image}
 \end{subfigure}
@@ -121,12 +121,11 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten. Verwe
 \begin{subfigure}[t]{0.32\textwidth}
     \centering
     \includegraphics[height=4cm, angle=-90, trim=12cm 2cm 1cm 2cm, clip]
-    {content/images/openpalm_gesture_image.jpeg}
+    {content/images/open_palm_gesture_image.png}
     \caption{Open Palm Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite.}
     \label{fig:openpalm_gesture_image}
 \end{subfigure}
-\caption{{\color{red} TODO: Überlegen ob verschieben zur ersten Erwähnung der Gesten und hier dann vlt nur zeigen, welche Landmarken genutzt werden? Oder ist das überhaupt interessant?}
-Gesten mit Markierung der getrackten Landmarken für Abstandsbestimmungen}
+\caption{{\color{red} TODO: Überlegen ob verschieben zur ersten Erwähnung der Gesten und hier dann vlt nur zeigen, welche Landmarken genutzt werden? Oder ist das überhaupt interessant?} Verwendete Gesten und die jeweils zur heuristischen Erkennung herangezogenen Landmarken bzw. Distanzbeziehungen.}
 \label{fig:gesture_images_photos}
 \end{figure}
 
@@ -165,12 +164,12 @@ Der Ablauf der Zustände wurde in Abbildung \ref{fig:state_flow_diagram_alt} vis
 % DWELL --> MENU : Hand erfasst
 % DWELL --> ACTIVATION : Hand für >3s nicht erfasst
 % @enduml
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\linewidth]{content/diagrams/state_flow_diagram.png}
-    \caption{Zustandsdiagramm {\color{red} TODO: Verschachtelung behalten oder weg?}}
-    \label{fig:state_flow_diagram}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.7\linewidth]{content/diagrams/state_flow_diagram.png}
+%    \caption{Zustandsdiagramm {\color{red} TODO: Verschachtelung behalten oder weg?}}
+%    \label{fig:state_flow_diagram}
+%\end{figure}
 
 \begin{figure}[H]
     \centering
@@ -203,50 +202,49 @@ Zusätzlich zeigt ein Handicon an, ob eine Hand erkannt wurde und welche Geste a
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/hand_with_dwell.png}
     \caption{Dwell-Kreis, während Aktivierungsgeste erkannt wird}
     \label{fig:hand_with_dwell}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/hand_with_grab.png}
     \caption{Dwell-Kreis, während Grab-Geste erkannt wird}
     \label{fig:hand_with_grab}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/no_hand_detected.png}
     \caption{Dwell-Kreis, wenn keine Hand erkannt wird}
     \label{fig:no_hand_detected}
 \end{subfigure}
-\caption{Verschiedene Zustände der Fortschrittsanzeige (Dwell-Kreis) {\color{red} TODO: Höhere Auflösung}}
+\caption{Verschiedene Zustände der Fortschrittsanzeige (Dwell-Kreis)}
 \label{fig:gesture_icons}
 \end{figure}
 
-Das Marking-Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nicht fest in der Oberfläche kodiert, sondern aus einer externen Konfiguration geladen, welche von der Zielanwendung bereitgestellt wird. Dadurch kann die Anzahl der Einträge, ihre Hierarchie sowie die Zuordnung zu Aktionen flexibel angepasst werden. Ein Menüeintrag kann entweder ein Untermenü öffnen (Abb. \ref{fig:menu_with_submenu}) oder direkt eine Aktion auslösen, beispielsweise einen Slider zur kontinuierlichen Parametersteuerung, sichtbar an der Slider-Preview, die sich beim Hovern des Elements öffnet (Abb. \ref{fig:menu_with_slider_presentation}), oder eine Button-Aktion (Abb. \ref{fig:menu_with_button}).
-{\color{red} TODO: Überlegen ob hier die drei Bilder oder nur eins für "ah da öffnet sich submenü" und eins für "ah hier öffnet sich kein submenü, also muss es slider oder button sein (aber schwer screenshot zu machen, weil das wäre nur im Hover Zustand komplett blau (sonst mit dwell))}
+Das Marking-Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nicht fest in der Oberfläche hinterlegt, sondern aus einer externen Konfiguration geladen, welche von der Zielanwendung bereitgestellt wird. Dadurch kann die Anzahl der Einträge, ihre Hierarchie sowie die Zuordnung zu Aktionen flexibel angepasst werden. Ein Menüeintrag kann entweder ein Untermenü öffnen (Abb. \ref{fig:menu_with_submenu}) oder direkt eine Aktion auslösen, beispielsweise einen Slider zur kontinuierlichen Parametersteuerung zu öffnen. Slider öffnen beim Hovern über das Menüelement, welches sie öffnen würde, eine Vorschau (Abb. \ref{fig:menu_with_slider_presentation}). Menüeinträge, die Button Aktionen ausführen, zeigen einen ihrer Zustände als Label (Abb. \ref{fig:menu_with_button}).
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/menu_with_submenu.png}
     \caption{Cursor befindet sich auf Menüelement, das ein Submenü öffnet.}
     \label{fig:menu_with_submenu}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.35\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/menu_with_slider_presentation.png}
     \caption{Cursor befindet sich auf Menüelement, das Slider öffnet.}
     \label{fig:menu_with_slider_presentation}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/menu_with_button.png}
     \caption{Cursor befindet sich auf Menüelement, das als Button fungiert}
@@ -256,7 +254,7 @@ Das Marking-Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nic
 \label{fig:gesture_images}
 \end{figure}
 
-Ein wichtiger Bestandteil des Overlays ist zudem die Zustandslogik für Auswahl und Bestätigung. Menüsegmente werden zunächst durch Cursorbewegung fokussiert (Abb. \ref{fig:zustandsvisualisierungen} c)). Die Auswahl kann anschließend entweder über Verweildauer bestätigt (Abb. \ref{fig:zustandsvisualisierungen} d)) oder alternativ durch eine erkannte Grab-Geste ausgelöst werden. Die erfolgreiche Selektion wird visuell hervorgehoben (Abb. \ref{fig:zustandsvisualisierungen} b)). Dieses Zusammenspiel aus räumlicher Navigation und expliziter Bestätigung reduziert Fehlauslösungen und unterstützt eine kontrollierte Interaktion. 
+Ein wichtiger Bestandteil des Overlays ist zudem die Zustandslogik für Auswahl und Bestätigung. Menüsegmente werden zunächst durch Cursorbewegung fokussiert (Abb. \ref{fig:zustandsvisualisierungen} c)). Die Auswahl kann anschließend entweder über eine Dwell-Time mit entsprechender Füllanimation (Abb. \ref{fig:zustandsvisualisierungen}d) bestätigt oder alternativ durch eine Grab-Geste ausgelöst werden. Die erfolgreiche Selektion wird visuell hervorgehoben (Abb. \ref{fig:zustandsvisualisierungen}b). Dieses Zusammenspiel aus räumlicher Navigation und expliziter Bestätigung reduziert Fehlauslösungen und unterstützt eine kontrollierte Interaktion.
 
 \begin{figure}[H]
     \centering
@@ -265,7 +263,7 @@ Ein wichtiger Bestandteil des Overlays ist zudem die Zustandslogik für Auswahl 
     \label{fig:zustandsvisualisierungen}
 \end{figure}
 
-Für kontinuierliche Parameteränderungen wurden Slider integriert. Diese werden nach der Auswahl eines entsprechenden Menüeintrags eingeblendet und in Bezug auf die Position des auslösenden Menüsegments angeordnet. Während ein Slider aktiv ist, wird das Menü visuell abgeschwächt dargestellt (Abb. \ref{fig:slider_active_screenshot}), und die Eingabe erfolgt über eine Pinch-Geste in Kombination mit Handbewegung. Dadurch wird zwischen diskreter Auswahl im Menü und kontinuierlicher Feinsteuerung klar unterschieden.
+Für kontinuierliche Parameteränderungen wurden Slider integriert. Diese werden nach der Auswahl eines entsprechenden Menüeintrags eingeblendet und passend zur Position des auslösenden Menüsegments über, unter, rechts oder links vom Menü sichtbar. Während ein Slider aktiv ist, wird das Menü visuell abgeschwächt dargestellt (Abb. \ref{fig:slider_active_screenshot}). Die Interaktion erfolgt über eine Pinch-Geste in Kombination mit Handbewegung. Dadurch wird zwischen diskreter Auswahl im Menü und kontinuierlicher Feinsteuerung klar unterschieden.
 
 \begin{figure}[H]
     \centering
@@ -282,17 +280,25 @@ Für jede aktive Menüebene wird ein separater Interaktionszustand verwaltet.
 Ein solcher Zustand umfasst Informationen über das aktuell vom Cursor fokussierte Element, das ausgewählte Element sowie den Fortschritt eines Dwell-Timers zur automatischen Auswahl. 
 Zusätzlich werden Zustandsinformationen wie das zuvor fokussierte Element oder der Status einer aktiven Greifgeste gespeichert.
 
-Die Verwaltung von Interaktionszuständen pro Menüebene ermöglicht eine konsistente Verarbeitung mehrstufiger Menühierarchien. 
+Die Verwaltung von Interaktionszuständen pro Menüebene (Level) ermöglicht eine konsistente Verarbeitung mehrstufiger Menühierarchien. Eine Visualisierung der Menüebenen ist in Abbildung \ref{fig:levels} dargestellt.
 Für jede Ebene können dadurch unabhängige Hover-, Auswahl- und Dwell-Zustände geführt werden. 
 Gleichzeitig unterstützt diese Struktur eine iterative Verarbeitung während des Renderings, da alle aktiven Ebenen sequenziell ausgewertet werden können.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{content/images/levels.png}
+    \caption{Visualisierung der Menüebenen (Level) im Menü.}
+    \label{fig:levels}
+\end{figure}
+
 Zur Erkennung von Zustandsänderungen zwischen einzelnen Frames werden zusätzlich vorherige Interaktionszustände gespeichert. 
-Dadurch können Änderungen wie ein Wechsel des fokussierten Menüelements oder das erstmalige Auftreten einer Greifgeste zuverlässig erkannt werden. 
-Diese framebasierte Zustandsverfolgung trägt wesentlich zu einer stabilen und konsistenten Interaktionsauswertung bei.
+Dadurch werden Änderungen wie ein Wechsel des fokussierten Menüelements oder das erstmalige Auftreten einer Greifgeste zuverlässig erkannt.
+Diese framebasierte Zustandsverfolgung trägt zu einer möglichst stabilen und konsistenten Interaktionsauswertung bei.
 
 Listing~\ref{lst:levelstates} zeigt beispielhaft eine Funktion zur Erzeugung eines Interaktionszustands für eine einzelne Menüebene. 
 Die Funktion gibt ein Zustandsobjekt mit den relevanten Interaktionsparametern zurück und kann entsprechend der Anzahl aktiver Menüebenen mehrfach instanziiert werden.
 
+{\color{red} TODO: text kleiner formatieren, codebeispiel sieht schlimm aus}
 \begin{lstlisting}[language=JavaScript,caption={Beispielhafte Struktur eines Interaktionszustands pro Menüebene},label={lst:levelstates}]
 function createLevelState() {
     return {
@@ -313,7 +319,7 @@ Diese Zustandsstruktur bildet die Grundlage für die Auswertung der Nutzerintera
 
 
 \subsection{Datengetriebene Menüstruktur}
-Das im Overlay dargestellte radiale Menü ist nicht statisch implementiert, sondern vollständig datengetrieben aufgebaut. Die Struktur des Menüs wird durch eine JSON-basierte Konfiguration beschrieben, die von der Zielanwendung an das Overlay übermittelt wird. Dadurch kann die Menüstruktur dynamisch angepasst werden, ohne Änderungen an der Benutzungsoberfläche selbst vornehmen zu müssen. Das Overlay ist damit ausschließlich für Darstellung und Interaktionslogik verantwortlich.
+Das im Overlay dargestellte radiale Menü ist nicht statisch implementiert, sondern wird von der Zielanwendung konfiguriert. Daher muss es eine definierte Struktur geben, wie das Menü aufgebaut sein darf. Die Struktur des Menüs wird durch eine JSON-basierte Konfiguration beschrieben, die von der Zielanwendung an das Overlay übermittelt wird. Dadurch kann die Menüstruktur dynamisch angepasst werden, ohne Änderungen an der Benutzungsoberfläche selbst vornehmen zu müssen. Das Overlay ist damit ausschließlich für Darstellung und Interaktionslogik verantwortlich.
 
 Die Konfiguration des Menüs definiert sowohl globale Eigenschaften des Menüs, wie beispielsweise den Radius der Hauptmenüebene {\color{red} (TODO: eigentlich Quatsch, dass Radius mit dem Menü mitgeschickt wird. Wenn noch Zeit ist, das in der Implementierung und im Text hier ändern)} oder die Größe von Untermenüs, als auch die einzelnen Menüeinträge. 
 Ein Menüeintrag kann dabei entweder als Navigationsknoten fungieren, der ein weiteres Untermenü öffnet, oder direkt eine Interaktion auslösen, etwa die Aktivierung eines Buttons oder die Steuerung eines kontinuierlichen Parameters über einen Slider. Dadurch entsteht eine klare Trennung zwischen Navigationsknoten und Aktionsknoten.
@@ -384,6 +390,7 @@ Durch diese generische Beschreibung der Menüstruktur bleibt das Interaktionssys
   ]
 }
 \end{lstlisting}
+HIER NOCH RIGENDWO ERGÄNZEN; DASS BISHER NUR DIE BESCHRIEBENEN AKTIONEN MÖGLICH SIND; ABER DASS ES DURCHAUS SINNVOLL WÄRE ZB BEI BUTTONS GENERISCHE AKTIONEN AUSZULÖSEN; WOBEI DANN DIE ZIELANWENDUNG EINFACH EIN BESTIMMTES EVENT AUSLÖSE ZB REGEN
 
 
 \subsection{Eventkommunikation}
@@ -396,7 +403,8 @@ Damit entsteht eine kontinuierliche Kommunikationsschnittstelle zwischen Interak
 \subsubsection{Nachrichtenstruktur}
 Die übertragenen Nachrichten folgen einer einheitlichen JSON-Struktur (Tab. \ref{tab:websocket_message}). 
 Dieses Schema ermöglicht die Beschreibung unterschiedlicher Interaktionsereignisse (z. B. diskrete Buttonaktionen
-oder kontinuierliche Slideränderungen) innerhalb eines einheitlichen Kommunikationsprotokolls. Das Interaktionsereignis wird über das Feld \texttt{action} beschrieben. \texttt{update} sind hierbei Nachrichten, die im Falle einer Sliderwertänderung gesendet werden, während \texttt{pressed} bei einem Button-Klick gesendet wird. Nachrichten mit der \texttt{action initial} werden für die Initialisierung genutzt und können initiale Sliderwerte oder die Menüstruktur selbst senden. Der \texttt{type} einer Nachricht gibt an, welches Element die Nachricht ausgelöst hat. \texttt{slider} Nachrichten gehören immer zur \texttt{action update}, während \texttt{pressed} immer zum \texttt{type button} gehört und \texttt{type menu} immer zur \texttt{action initial}. Das \texttt{target} gibt immer das Ziel oder den Kontext der aktuellen Interaktion an, wie \texttt{volume} oder \texttt{presentation}. \texttt{value} gibt an, welchen Wert die Aktion aktualisiert hat. Im Falle von Slidern sind das meist Angaben zwischen 0 und 1, für Buttons können es spezifische Klick-Events sein. Die \texttt{id} gibt an, zu welchem Menüelement die Aktion gehört, was nützlich ist, falls es beispielsweise mehrere Slider mit dem \texttt{target volume} gibt.
+oder kontinuierliche Slideränderungen) innerhalb eines einheitlichen Kommunikationsprotokolls. Das Interaktionsereignis wird über das Feld \texttt{action} beschrieben.
+Nachrichten mit der Aktion \texttt{update} werden bei Änderungen kontinuierlicher Werte verwendet, während \texttt{pressed} diskrete Button-Aktionen beschreibt. Nachrichten mit der \texttt{action initial} werden für die Initialisierung genutzt und können initiale Sliderwerte oder die Menüstruktur selbst senden. Der \texttt{type} einer Nachricht gibt an, welches Element die Nachricht ausgelöst hat. \texttt{slider} Nachrichten gehören immer zur \texttt{action update}, während \texttt{pressed} immer zum \texttt{type button} gehört und \texttt{type menu} immer zur \texttt{action initial}. Das \texttt{target} gibt immer das Ziel oder den Kontext der aktuellen Interaktion an, wie \texttt{volume} oder \texttt{presentation}. \texttt{value} gibt an, welchen Wert die Aktion aktualisiert hat. Im Falle von Slidern sind das meist Angaben zwischen 0 und 1, für Buttons können es spezifische Klick-Events sein. Die \texttt{id} gibt an, zu welchem Menüelement die Aktion gehört, was nützlich ist, falls es beispielsweise mehrere Slider mit dem \texttt{target volume} gibt.
 
 Eine beispielhafte Nachricht ist in Listing \ref{lst:slider_update} dargestellt.
 
@@ -508,7 +516,7 @@ Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in A
 \end{figure}
 
 
-\subsubsection{Sonderfall: Präsentationssteuerung}
+\subsubsection{Anwendungsfall Präsentationssteuerung}
 {\color{red} TODO: für Button Aktionen nochmal eigenes Kapitel oder hier ok?}
 Für den Anwendungsfall der Präsentationssteuerung ergeben sich besondere Anforderungen an die Interaktionslogik, da sowohl diskrete als auch kontinuierliche Eingaben unterstützt werden müssen. 
 Im Gegensatz zu reinen Menüinteraktionen kommen hierbei sowohl Button- als auch Slider-Elemente innerhalb eines Kontexts zum Einsatz.
@@ -591,7 +599,7 @@ Dies ist insbesondere dann relevant, wenn eine Hand von mehreren Kameras teilwei
         \caption{Aktivierungsgeste wird aus dieser Perspektive nicht erkannt.}
         \label{fig:hand_site}
     \end{subfigure}
-    \caption{Handorientierung: gültige und ungültige Aktivierungsgeste}}
+    \caption{Handorientierung: gültige und ungültige Aktivierungsgeste}
     \label{fig:hand_frontal_site}
 \end{figure}
 
@@ -630,7 +638,78 @@ Das entwickelte System stellt damit eine prototypische Umsetzung körperbasierte
 
 \subsection{Diskussion}
 % Slider löst ausversehen aus, wenn man Hand runter nimmt, wahrscheinlich wegen Implementierung von pinch Geste und Kamerawinkel 
-{\color{red} TODO: Schreiben; Bugs; Slider löst ausversehene aus, wenn man Hand runter nimmt (Wahrscheinlich wegen Implementierung von Pinch Geste + Kamerawinkel; conrad hat beim testen gesagt, dass grab halten intuitiv ist für super schnelle auswahl - sehr doof, dass das noch verbuggt ist - ggf. als future Work aufnehmen; nachrichten nur empfangen, wenn losgelassen doof; nachrichten sollen nur bei volume/brightness kontinuierlich gesendet werden, aber bei präsentationssteuerung laggt es zu sehr bei langen Videos }
+%{\color{red} TODO: Schreiben; Bugs; Slider löst ausversehene aus, wenn man Hand runter nimmt (Wahrscheinlich wegen Implementierung von Pinch Geste + Kamerawinkel; conrad hat beim testen gesagt, dass grab halten intuitiv ist für super schnelle auswahl - sehr doof, dass das noch verbuggt ist - ggf. als future Work aufnehmen; nachrichten nur empfangen, wenn losgelassen doof; nachrichten sollen nur bei volume/brightness kontinuierlich gesendet werden, aber bei präsentationssteuerung laggt es zu sehr bei langen Videos }
+%
+%was robust funktioniert
+%was nur prototypisch funktioniert
+%wo Trackinggrenzen liegen
+%welche Interaktionen störanfällig sind
+%welche Designentscheidungen eher heuristisch sind
+%
+%
+%1. Was funktioniert gut?
+%modulare Architektur
+%generisches Overlay
+%WebSocket-Anbindung
+%mehrbildschirmfähige Struktur
+%
+%2. Wo liegen technische Grenzen?
+%Trackinggenauigkeit
+%Kameraperspektiven
+%Pinch/Grab-Fehlklassifikation
+%Latenz bei Präsentationssteuerung
+%
+%3. Welche Entscheidungen sind bewusst prototypisch?
+%heuristische Gestenerkennung
+%vereinfachte Nachrichtenstruktur
+%Bedienlogik für Slider
+%Kalibrierung nicht vollständig automatisiert
+%
+%4. Was folgt daraus?
+%Future Work
+%Evaluation
+%robustere Gestenmodelle
+%multimodale Erweiterung
+
+\subsection{Diskussion}
+
+Die prototypische Umsetzung zeigt, dass ein gestenbasiertes Marking-Menu als zusätzliche Interaktionsschicht für den Multisensorischen Interaktionsraum grundsätzlich realisierbar ist. Insbesondere die modulare Trennung zwischen Benutzungsoberfläche und Kommunikation mit der Zielanwendung erwies sich als vorteilhaft, da einzelne Komponenten unabhängig voneinander entwickelt und getestet werden konnten. Die angestrebte Szenariounabhängigkeit des Systems wird dabei weniger durch die reine Architektur als vielmehr durch die datengetriebene Menüstruktur sowie die abstrahierte Eventkommunikation unterstützt.
+
+Eine zentrale Stärke des entwickelten Prototyps liegt daher in der flexiblen, datengetriebenen Menüstruktur. Da die Menükonfiguration nicht fest im Overlay verankert ist, sondern von der Zielanwendung bereitgestellt wird, lässt sich die Interaktionsoberfläche an unterschiedliche Anwendungskontexte anpassen, ohne Änderungen an der Interaktionslogik oder der Benutzungsoberfläche selbst vorzunehmen. In Kombination mit der WebSocket-basierten Kommunikation entsteht so eine lose Kopplung zwischen Interaktionssystem und Zielanwendung. Auch wenn die konkrete Umsetzung der Nachrichtenstruktur noch nicht vollständig konsistent ist, erwies sich dieser Ansatz grundsätzlich als geeignet, um Interaktionsereignisse in Echtzeit zu übertragen und unterschiedliche Anwendungsszenarien anzubinden.
+
+Gleichzeitig zeigte die praktische Umsetzung mehrere technische und konzeptionelle Grenzen des Systems. Eine zentrale Herausforderung betrifft die Robustheit der Gestenerkennung. Die verwendeten Gestenheuristiken basieren auf einfachen Distanzmaßen zwischen Landmarken und sind dadurch zwar effizient und nachvollziehbar, jedoch anfällig gegenüber Perspektivwechseln, unvollständiger Erfassung sowie unterschiedlichen Abständen zur Kamera. Während diese Problematik in der Entwicklung auf einem Laptop kaum sichtbar war, trat sie im Multisensorischen Interaktionsraum deutlich hervor, da sich Nutzer:innen frei im Raum bewegen und somit in variierenden Distanzen und Winkeln zur Kamera befinden.
+
+Insbesondere bei der Pinch-Geste zur Slidersteuerung kam es zu Fehlinterpretationen. Durch schräge Kameraperspektiven konnte es vorkommen, dass sich Daumen und Zeigefinger im Kamerabild scheinbar überlagerten, obwohl sie räumlich getrennt waren. Dies führte dazu, dass unbeabsichtigt eine Pinch-Geste erkannt wurde, beispielsweise beim Absenken der Hand, wodurch Parameterwerte unbeabsichtigt verändert wurden und Nutzer:innen explizit darauf achten mussten, Fehlinterpretationen zu vermeiden.
+
+Auch die kontinuierliche Interaktion über Slider erwies sich als sensibler Bereich. Während die Steuerung grundlegender Parameter wie Lautstärke, Helligkeit oder Vibrationsintensität funktional zuverlässig funktionierte, zeigte sich insbesondere bei der Präsentationssteuerung ein Spannungsverhältnis zwischen Interaktivität und Systemreaktion. Bei längeren Videoinhalten oder häufigen Zustandsaktualisierungen kann die kontinuierliche Synchronisierung mit der Zielanwendung zu Verzögerungen führen. Gleichzeitig besteht bei Parametern wie Lautstärke oder Helligkeit die Erwartung, Änderungen unmittelbar und kontinuierlich wahrzunehmen. Daraus ergibt sich, dass unterschiedliche Interaktionstypen unterschiedliche Anforderungen an die Kommunikationsstrategie stellen: Während für kontinuierliche Parameter eine laufende Übertragung sinnvoll ist, kann für andere Anwendungsfälle eine Übermittlung erst nach Abschluss der Interaktion stabiler und effizienter sein.
+
+Eine weitere Herausforderung zeigte sich im Mehrbildschirmbetrieb. Zwar konnte das System erfolgreich auf mehrere Projektionsflächen erweitert werden, jedoch erhöht diese räumliche Verteilung die Anforderungen an Kameraauswahl, Kalibrierung und Gestenerkennung erheblich. Die Einschränkung, Aktivierungsgesten nur bei ausreichend frontaler Handausrichtung zu erkennen, reduzierte Fehlaktivierungen zwischen mehreren Leinwänden, erwies sich jedoch nicht als vollständig robust. Die Zuordnung zwischen Nutzer:innen, Kameraansicht und Interaktionsfläche bleibt damit ein kritischer Bestandteil des Systems, insbesondere in dynamischen Nutzungssituationen.
+
+Zusätzlich wurde deutlich, dass das System derzeit nicht für Mehrnutzerinteraktion ausgelegt ist. Es wird nicht unterschieden, von welcher Person oder welcher Hand eine Interaktion ausgeht. Dies führt zu Einschränkungen, etwa wenn das Menü ausgeblendet werden soll, da hierfür sichergestellt werden muss, dass gar keine Hand mehr im Kamerabild erkannt wird.
+
+Auch die Stabilität der Cursorbewegung stellte eine Herausforderung dar. Im praktischen Einsatz zeigte sich ein deutliches Jitter in der Handerkennung, wodurch der Cursor unruhig über die Oberfläche springt. Dieses Verhalten trat insbesondere im MIR auf und war in der Laptop-basierten Entwicklungsumgebung kaum vorhanden. In der Folge kann es dazu kommen, dass der Cursor unbeabsichtigt Menügrenzen überschreitet, wodurch beispielsweise Submenüs geschlossen werden, obwohl die Interaktion fortgesetzt werden sollte. Eine mögliche Verbesserung wäre hier die Einführung erweiterter Interaktionsbereiche oder toleranter Kollisionszonen, die kurzfristige Positionssprünge abfangen und so die Interaktion stabilisieren.
+
+
+Darüber hinaus ist der aktuelle Prototyp bewusst als explorative Umsetzung zu verstehen und nicht als vollständig ausgereiftes Produktivsystem. Mehrere Aspekte wurden pragmatisch im Rahmen eines iterativen Entwicklungsprozesses realisiert. Dazu zählen die heuristische Gestenerkennung, die evolutionär gewachsene Nachrichtenstruktur sowie die Kalibrierung von Menü und Kameras. Diese Entscheidungen ermöglichten eine schnelle prototypische Umsetzung und eine frühzeitige Erprobung des Interaktionskonzepts, gehen jedoch zulasten von Standardisierung und technischer Robustheit.
+
+Trotz dieser Einschränkungen zeigt die praktische Umsetzung, dass das entwickelte Interaktionskonzept die im Synthesekapitel formulierten Anforderungen grundsätzlich adressieren kann. Das System ermöglicht eine controllerfreie Interaktion, erhält die Bewegungsfreiheit im Raum und bietet über ein strukturiertes Menü einen klaren Zugriff auf systemweite Funktionen. Besonders hervorzuheben ist, dass menübasierte gestenbasierte Interaktion im MIR nicht nur konzeptionell, sondern auch technisch als eigenständige Interaktionsschicht realisierbar ist.
+
+Für zukünftige Arbeiten ergeben sich daraus mehrere Entwicklungsperspektiven. Dazu zählen insbesondere robustere Verfahren zur Gestenerkennung, etwa durch lernbasierte Ansätze oder durch Algorithmen, die neben der Distanz einzelner Landmarken auch Relationen zur Handgröße sowie perspektivische Verzerrungen berücksichtigen. Ebenso erscheint eine differenziertere Behandlung kontinuierlicher Interaktionen sinnvoll, beispielsweise durch angepasste Synchronisationsstrategien oder spezialisierte Interaktionsmechanismen für unterschiedliche Parametertypen. Darüber hinaus könnte die Integration weiterer Modalitäten, etwa auditiver oder haptischer Rückmeldungen, das Interaktionssystem besser an den multisensorischen Charakter des MIR anpassen. Schließlich wäre eine systematische empirische Evaluation erforderlich, um Usability, Erlernbarkeit, körperliche Belastung und wahrgenommene Immersion im Nutzungskontext des MIR fundiert zu untersuchen.
+
 
 \section{Zusammenfassung und Ausblick}
-{\color{red} TODO: Zusammenfassung schreiben + zB. sagen, dass multimodale Steuerung förderlich wäre, weil alle Quellen sagen, dass multimodal super ist (ggf. Zukunft)}
+Ziel dieser Arbeit war die Konzeption und prototypische Umsetzung eines controllerfreien, körperbasierten Interaktionssystems für den Multisensorischen Interaktionsraum (MIR). Im Fokus stand die Entwicklung eines auf Basis der Anwendungsanalyse identifizierten Interaktionskonzepts, das die zuvor abgeleiteten Anforderungen bestmöglich erfüllt: eine Nutzung ohne zusätzliche Eingabegeräte, die Unterstützung freier Bewegung im Raum, ein geringer Integrationsaufwand sowie ein schneller und intuitiver Zugriff auf Interaktionsmöglichkeiten.
+
+Auf Grundlage der Analyse bestehender Szenarien sowie der Auseinandersetzung mit verwandten Arbeiten wurde ein gestenbasiertes Marking-Menu als zentrales Interaktionspotenzial ausgewählt. Dieses wurde im weiteren Verlauf konzeptionell ausgearbeitet und in Form eines prototypischen Interaktionssystems umgesetzt. Die entwickelte Lösung kombiniert eine radiale Menüstruktur mit gestenbasierter Auswahl, kontinuierlichen Steuerungsmechanismen und wird als eigenständige Interaktionsschicht über bestehende Anwendungen gelegt.
+
+Die praktische Umsetzung zeigt, dass ein solches System grundsätzlich realisierbar ist und zentrale Anforderungen an körperbasierte Interaktion im MIR adressieren kann. Insbesondere die modulare Architektur, die datengetriebene Menüstruktur sowie die lose Kopplung zwischen Interaktionssystem und Zielanwendung ermöglichen eine flexible Integration in unterschiedliche Anwendungsszenarien. Gleichzeitig verdeutlichen die Ergebnisse, dass die Gestaltung robuster und präziser Mid-Air-Interaktion weiterhin eine Herausforderung darstellt. Aspekte wie Gestenerkennung, kontinuierliche Steuerung und Mehrbildschirminteraktion erfordern eine sorgfältige Abstimmung zwischen technischer Umsetzung und Interaktionsdesign.
+
+Die Arbeit leistet damit einen Beitrag zur Gestaltung controllerfreier Interaktion in projektionsbasierten, multisensorischen Umgebungen. Sie zeigt, wie menübasierte Interaktionskonzepte, insbesondere Marking-Menus, in einen räumlichen Kontext übertragen und mit gestenbasierter Eingabe kombiniert werden können. Darüber hinaus wird deutlich, dass die Integration kontinuierlicher Steuerungsmechanismen in solche Systeme eine bislang wenig untersuchte, aber relevante Erweiterung darstellt.
+
+Für zukünftige Arbeiten ergeben sich mehrere Ansatzpunkte. Ein zentraler Aspekt ist die Verbesserung der Gestenerkennung, etwa durch robustere Algorithmen, die perspektivische Verzerrungen und unterschiedliche Abstände zur Kamera besser berücksichtigen. Ebenso erscheint eine differenzierte Behandlung kontinuierlicher Interaktionen sinnvoll, beispielsweise durch adaptive Synchronisationsstrategien.
+
+Darüber hinaus stellt die Erweiterung des Systems um multimodale Interaktionsformen ein vielversprechendes Forschungsfeld dar. Die Kombination von Gesten mit auditivem oder haptischem Feedback könnte die Interaktion stärker in den multisensorischen Charakter des MIR einbetten und sowohl die Wahrnehmung als auch die Kontrolle verbessern.
+
+Ein weiterer wichtiger Schritt besteht in der systematischen Evaluation des entwickelten Interaktionssystems. Empirische Studien könnten Aufschluss darüber geben, wie Nutzer:innen das System hinsichtlich Usability, Erlernbarkeit, körperlicher Belastung und Immersion wahrnehmen. Insbesondere der Vergleich unterschiedlicher Interaktionsmechanismen sowie die Untersuchung von Nutzungsszenarien mit mehreren Personen stellen hierbei relevante Fragestellungen dar.
+
+Zusammenfassend zeigt die Arbeit, dass körperbasierte, gestenbasierte Interaktion im Multisensorischen Interaktionsraum nicht nur konzeptionell, sondern auch technisch umsetzbar ist. Gleichzeitig wird deutlich, dass die Entwicklung robuster, intuitiver und kontextangemessener Interaktionssysteme in solchen Umgebungen weiterhin ein offenes und vielschichtiges Forschungsfeld darstellt.
