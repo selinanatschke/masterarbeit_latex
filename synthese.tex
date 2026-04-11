@@ -174,6 +174,7 @@ Vor diesem Hintergrund wurden Marking-Menus als zentrales Interaktionsparadigma 
 
 
 \subsection{Konzeption des Interaktionssystems} % Hauptkapitel + hier nochmal Requirements erwähnen?
+\label{sec:synthese_konzeption_des_interaktionssystems}
 
 
 % ZUSAMMENGEFASST MIT QUELLEN:
@@ -191,6 +192,7 @@ Durch diese Entkopplung von Interaktion und Anwendung wird eine flexible und sze
 
 
 \subsubsection{Handtracking und Cursor}
+\label{sec:synthese_handtracking}
 
 Die Position der Hand im Raum wird als primärer Interaktionspunkt genutzt und dient als Cursor innerhalb des Overlays. Die Interpretation der Handposition orientiert sich bewusst an bekannten Interaktionsmustern aus etablierten Benutzungsoberflächen und überträgt diese in den räumlichen Kontext. Die Nutzung dieses Prinzips soll dazu beitragen, dass Nutzer:innen das System und die Steuerungsmöglichkeiten ohne vorherige Anleitung anwenden können (vgl. Abschnitt~\ref{sec:rw_gestures} zu Evolutionary Gestures).
 
@@ -241,8 +243,7 @@ Da im MIR nicht die möglichst schnelle Ausführung von Aufgaben im Vordergrund 
 \subsubsection{Auswahlmechanismen}
 Für die Auswahl von Menüeinträgen wurden zwei unterschiedliche Interaktionsmechanismen vorgesehen: eine aktive Greifgeste sowie eine zeitbasierte Auswahl (Dwell Selection). Diese Kombination greift die in Abschnitt~\ref{sec:rw_gestures} dargestellten Vor- und Nachteile impliziter und expliziter Selektionsmechanismen auf.
 
-Bei der Dwell-basierten Auswahl wird ein Menüeintrag automatisch aktiviert, wenn der Cursor für eine definierte Zeitspanne über dem Element verweilt. Dieser Mechanismus reduziert die motorischen Anforderungen an präzise Gesten und ermöglicht eine niedrigschwellige Interaktion insbesondere für unerfahrene Nutzer:innen.
-
+Die Dwell-basierte Auswahl ermöglicht einen niedrigschwelligen Zugriff auf Menüfunktionen, da sie keine zusätzliche Bestätigungsgeste voraussetzt. Damit eignet sie sich insbesondere für Erstnutzende oder für Situationen, in denen möglichst wenig gestische Komplexität erforderlich ist. Gleichzeitig ist, wie in Abschnitt~\ref{sec:rw_gestures} diskutiert, bekannt, dass Dwell-basierte Verfahren leicht verständlich sein können, jedoch mit längeren Interaktionszeiten einhergehen können.
 
 Zusätzlich wurde eine Greifgeste als explizite Auswahlmethode vorgesehen (Abb. \ref{fig:grab_gesture}). Dabei orientiert sich das Konzept bewusst an einer vertrauten Handlungsmetapher des Greifens und somit physichen Auswählens, um die Erlernbarkeit zu unterstützen. Um die Discoverability der expliziten Geste zu fördern, wird sie durch einen visuellen Hinweis eingeführt (Abb. \ref{fig:grab_hint}). Dies adressiert die in Abschnitt~\ref{sec:rw_gestures} diskutierte Bedeutung von Guessability und Discoverability in gestenbasierten Systemen.
 
@@ -273,7 +274,12 @@ Durch die Kombination beider Mechanismen kann das System sowohl Einsteiger als a
 
 
 \subsubsection{Visuelle Gestaltung und Zustandsrückmeldungen}
-Es wurden mehrere visuelle Zustände implementiert, um den aktuellen Interaktionsstatus nachvollziehbar darzustellen. Befindet sich der Cursor über einem Menüsegment, wird dieses visuell hervorgehoben (Hover-Zustand, vgl. Abb. \ref{fig:zustandsvisualisierungen_synthese}, c). Diese Hervorhebung dient als unmittelbare Rückmeldung darüber, welches Menüelement aktuell fokussiert ist.
+
+Da Mid-Air-Interaktion im Unterschied zu physischen Eingabegeräten keine direkte haptische Rückmeldung bietet, kommt der visuellen Kommunikation von Interaktionszuständen eine zentrale Rolle zu. Das Interaktionssystem sieht daher vor, relevante Zustände wie Fokussierung, Auswahl und laufende Aktivierung sichtbar zu machen. Dadurch soll jederzeit nachvollziehbar bleiben, welche Funktion aktuell adressiert wird und in welchem Zustand sich die Interaktion befindet.
+
+Diese Form der Rückmeldung ist insbesondere vor dem Hintergrund der in Abschnitt~\ref{sec:rw_midair} beschriebenen Herausforderungen hinsichtlich Präzision, Kontrolle und Fehlinterpretation relevant. Visuelle Hinweise dienen hier nicht nur der Bestätigung erfolgreicher Eingaben, sondern auch der Reduktion von Unsicherheit während der Interaktion.
+
+Es es sinnvoll mehrere visuelle Zustände zu planen, um den aktuellen Interaktionsstatus nachvollziehbar darzustellen. Befindet sich der Cursor über einem Menüsegment, wird dieses visuell hervorgehoben (Hover-Zustand, vgl. Abb. \ref{fig:zustandsvisualisierungen_synthese}, c). Diese Hervorhebung dient als unmittelbare Rückmeldung darüber, welches Menüelement aktuell fokussiert ist.
 
 Wird ein Menüeintrag aktiv ausgewählt, durch eine Greifgeste oder durch das Auslösen eines Dwell-Timers, wechselt das entsprechende Segment in einen ausgewählten Zustand (Abb. \ref{fig:zustandsvisualisierungen_synthese}, b), der durch eine deutlichere Farbänderung dargestellt wird.
 
@@ -353,7 +359,9 @@ Verlässt der Cursor sowohl den Menüeintrag als auch das zugehörige Untermenü
 \end{figure}
 
 \subsubsection{Slider}
-Wenn Menüeinträge die Steuerung von kontinuierliche Parametern wie Lautstärke, Helligkeit oder Intensität von Effekten ermöglichen sollen, ist es nicht sinnvoll sich ausschließlich auf diskrete Auswahlsteuerung zu verlassen. Aus diesem Grund wird das Menü an dieser Stelle um eine neue Steuerungsfunktionalität erweitert. Wie in Abschnitt~\ref{sec:rw_menus} diskutiert, besteht die Möglichkeit, durch eine bestimmte Interaktion in einen anderen Modus zu wechseln, der eine alternative Form der Interaktionssteuerung bereitstellt. Im Kontext des Marking-Menus erfolgt dies durch die Auswahl eines Menüeintrags, der bereits während des Hover-Zustands durch eine visuelle Vorschau auf die veränderte Interaktionsart hinweist (Abb.~\ref{fig:slider_preview}). Die reduzierte visuelle Hervorhebung signalisiert dabei, dass zunächst eine explizite Auswahl des Menüsegments erforderlich ist, um die Sliderinteraktion zu aktivieren. Nach Bestätigung der Auswahl wechselt das System in einen Anpassungsmodus, in dem der Parameter direkt verändert werden kann (Abb.~\ref{fig:slider_active}). In diesem Modus wird das Menü visuell zurückgenommen und der Cursor ausgeblendet, um den Fokus auf die Sliderinteraktion zu lenken.
+Während das radiale Menü insbesondere für diskrete Auswahlentscheidungen geeignet ist, erfordern kontinuierliche Parameter wie Lautstärke, Helligkeit oder Vibrationsintensität eine andere Form der Interaktion. Deshalb wurde das menübasierte Konzept um Slider als Mechanismus zur kontinuierlichen Steuerung erweitert.
+Diese Erweiterung greift die in Abschnitt~\ref{sec:rw_menus} diskutierte Frage auf, wie Marking-Menu-artige Systeme über reine Befehlsauswahl hinaus auch zur feineren Parametersteuerung genutzt werden können. Das Ziel besteht darin, diskrete und kontinuierliche Interaktion innerhalb eines gemeinsamen Systems zu vereinen, anstatt für unterschiedliche Aufgaben vollständig getrennte Interaktionsparadigmen einzuführen.
+Im Kontext des Marking-Menus erfolgt dies durch die Auswahl eines Menüeintrags, der bereits während des Hover-Zustands durch eine visuelle Vorschau auf die veränderte Interaktionsart hinweist (Abb.~\ref{fig:slider_preview}). Die reduzierte visuelle Hervorhebung signalisiert dabei, dass zunächst eine explizite Auswahl des Menüsegments erforderlich ist, um die Sliderinteraktion zu aktivieren. Nach Bestätigung der Auswahl wechselt das System in einen Anpassungsmodus, in dem der Parameter direkt verändert werden kann (Abb.~\ref{fig:slider_active}). In diesem Modus wird das Menü visuell zurückgenommen und der Cursor ausgeblendet, um den Fokus auf die Sliderinteraktion zu lenken.
 
 \begin{figure}[H]
     \centering
@@ -406,9 +414,7 @@ Durch die Integration solcher Slider lassen sich kontinuierliche Parameter inner
 {\color{red} TODO: überlegen ob button doch in extra abschnitt muss, aber denke eigentlich nicht, weil es gibt ja nur den einen => dann eher generalisierbarkeit als todo in den ausblick }
 
 Die Marking-Menu Interaktionen umfassen sowohl kontinuierliche Parametersteuerungen als auch diskrete Steuerungsfunktionen.
-
 Ein zentraler Anwendungsfall für kontinuierliche Interaktion sind Slider zur Anpassung von Parametern wie Helligkeit, Vibration und Lautstärke. Diese werden in Form prozentualer Werte dargestellt und ermöglichen eine direkte, kontinuierliche Kontrolle der jeweiligen Systemparameter.
-
 
 Darüber hinaus wird das Interaktionssystem zur Steuerung vorgerenderter Medieninhalte eingesetzt. In diesem Kontext dient ein Slider zur Navigation innerhalb eines Videos, indem er die aktuelle Abspielposition repräsentiert und gleichzeitig die Gesamtlänge des Materials visualisiert. Während der Wiedergabe bewegt sich der Slider automatisch entlang der Zeitleiste, wodurch der aktuelle Fortschritt kontinuierlich angezeigt wird.
 
