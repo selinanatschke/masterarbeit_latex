@@ -7,9 +7,9 @@ Ziel dieses Kapitels ist es, aus den identifizierten Rahmenbedingungen konkrete 
 
 Die Analyse der bestehenden MIR-Szenarien (vgl. Kapitel~\ref{sec:analyse}) zeigt, dass der Raum derzeit primär als immersiver Erfahrungsraum genutzt wird und nur in begrenztem Maße interaktive Steuerungsmöglichkeiten bietet. Gleichzeitig ergeben sich aus der räumlichen und technischen Gestaltung spezifische Rahmenbedingungen, die bei der Entwicklung zukünftiger Interaktionskonzepte berücksichtigt werden müssen.
 
-Auf Grundlage dieser Beobachtungen lassen sich zentrale Anforderungen an körperbasierte Interaktionsformen im MIR ableiten und werden durch die in Kapitel~\ref{sec:rw} dargestellten Erkenntnisse zu körperbasierter, controllerfreier und multisensorischer Interaktion gerahmt.
+Auf Grundlage dieser Beobachtungen lassen sich zentrale Anforderungen an körperbasierte Interaktionsformen im MIR ableiten.
 
-Eine grundlegende Anforderung ergibt sich aus der Vielfalt der bestehenden Szenarien, dass Interaktionskonzepte möglichst anwendungsübergreifend einsetzbar sein sollten (R1). Interaktionsmechanismen sollten unabhängig von spezifischen Inhalten oder Szenariostrukturen funktionieren, um eine flexible Nutzung im gesamten System zu ermöglichen.
+Eine grundlegende Anforderung ergibt sich aus der Vielfalt der bestehenden Szenarien: Interaktionskonzepte sollten möglichst anwendungsübergreifend einsetzbar sein (R1). Interaktionsmechanismen sollten unabhängig von spezifischen Inhalten oder Szenariostrukturen funktionieren, um eine flexible Nutzung im gesamten System zu ermöglichen.
 
 Darüber hinaus soll Interaktionen ohne am Körper getragene Geräte oder zusätzliche Eingabemedien möglich sein (R2). Nutzer:innen sollen ohne Controller, Maus, Tastatur oder Marker mit dem System interagieren können. Der Einsatz solcher Geräte würde einen Bruch zwischen körperlicher Präsenz im Raum und der Steuerung digitaler Inhalte erzeugen und steht damit im Widerspruch zu den in Abschnitt~\ref{sec:rw_embodied} dargestellten Prinzipien körperbasierter und realitätsnaher Interaktion.
 
@@ -17,8 +17,7 @@ Weiterhin soll die Interaktion die freie Bewegung der Nutzer:innen im Raum nicht
 
 Zusätzlich sollte der technische Integrationsaufwand möglichst gering gehalten werden (R4). Neue Interaktionskonzepte sollten ohne umfangreiche Anpassungen bestehender Szenarien implementierbar sein und keine zusätzliche spezialisierte Hardware wie Motion-Capture-Systeme oder dedizierte Sensortechnik erfordern.
 
-
-Schließlich sollte ein Interaktionssystem einen schnellen und intuitiven Zugriff auf häufig benötigte Funktionen ermöglichen, ohne die Aufmerksamkeit der Nutzer:innen dauerhaft von der immersiven Umgebung abzulenken (R5). Interaktion sollte somit unterstützend wirken, ohne die Wahrnehmung der Szene zu dominieren oder zu stören. Dies entspricht den in Abschnitt~\ref{sec:rw_multisensory} dargestellten Anforderungen an kontextangemessene Interaktion in multisensorischen und atmosphärischen Umgebungen.
+Schließlich sollte ein Interaktionssystem einen schnellen und intuitiven Zugriff auf häufig benötigte Funktionen ermöglichen, ohne die Aufmerksamkeit der Nutzer:innen dauerhaft von der immersiven Umgebung abzulenken (R5). Interaktion sollte somit unterstützend wirken, ohne die Wahrnehmung der Szene zu dominieren oder zu stören.
 
 Die daraus abgeleiteten Anforderungen sind in Tabelle~\ref{tab:requirements} zusammengefasst.
 
@@ -41,32 +40,24 @@ R5 & Schnelle Zugriffsmöglichkeiten \\
 
 
 \subsection{Exploration möglicher Interaktionsformen}
-Auf Basis der zuvor abgeleiteten Anforderungen wurde ein Designraum möglicher Interaktionsformen entwickelt und systematisch hinsichtlich ihrer Eignung für den Einsatz im MIR untersucht. Ziel dieser Exploration war es, potenzielle Ansätze für körperbasierte Interaktion zu identifizieren und im Kontext der spezifischen räumlichen und technischen Gegebenheiten des Systems zu bewerten.
+Auf Basis der zuvor abgeleiteten Anforderungen wurden mögliche Interaktionsformen entwickelt und systematisch hinsichtlich ihrer Eignung für den Einsatz im MIR untersucht. Ziel dieser Exploration war es, potenzielle Ansätze für körperbasierte Interaktion zu identifizieren und im Kontext der spezifischen räumlichen und technischen Gegebenheiten des Systems zu bewerten.
 
-Die betrachteten Ansätze umfassen sowohl sensorbasierte als auch kamerabasierte Interaktionsformen. Dazu zählen unter anderem NFC-basierte Interaktionen mit physischen Objekten, kamerabasierte Markierungssysteme, UI-basierte Eingaben, gestenbasierte Interaktionen sowie positionsbasierte Steuerung durch Bewegung im Raum. Eine umfassende Übersicht der im Explorationsprozess betrachteten Möglichkeiten ist im Anhang in Abbildung~\ref{fig:interaktionsmoeglichkeiten} dargestellt.
+Die betrachteten Ansätze umfassen sowohl sensorbasierte als auch kamerabasierte Interaktionsformen. Dazu zählen unter anderem NFC-basierte Interaktionen mit physischen Objekten, kamerabasierte Markersysteme, UI-basierte Eingaben, gestenbasierte Interaktionen sowie positionsbasierte Steuerung durch Bewegung im Raum. Eine umfassende Übersicht der im Explorationsprozess betrachteten Möglichkeiten ist im Anhang in Abbildung~\ref{tab:interaktionsansatz} dargestellt.
 
 Zur Strukturierung des Designraums wurden die Interaktionsansätze entlang zweier Dimensionen betrachtet: Zum einen hinsichtlich des Grades der Explizitheit der Interaktion (implizit vs. explizit), zum anderen anhand grundlegender Interaktionsaufgaben in räumlichen Interfaces, insbesondere entlang grundlegender Interaktionsaufgaben räumlicher Systeme, nämlich Selektion, Manipulation und Navigation, wie sie in Abschnitt \ref{sec:rw_spatial} eingeführt wurden.
  Diese Systematisierung ermöglicht eine vergleichende Einordnung der unterschiedlichen Ansätze und unterstützt die Identifikation geeigneter Interaktionsparadigmen.
-
-Die Analyse zeigt, dass mehrere der betrachteten Ansätze nur eingeschränkt für den Einsatz im MIR geeignet sind. NFC-basierte Interaktionen eignen sich insbesondere für objektgebundene Szenarien, setzen jedoch physische Artefakte voraus und sind daher nur begrenzt universell einsetzbar. Kamerabasierte Markierungssysteme ermöglichen eine eindeutige Identifikation von Objekten, erfordern jedoch eine gezielte Ausrichtung auf den Kamerabereich und führen damit zu zusätzlichen Interaktionsschritten.
-
-UI-basierte Interaktionsflächen innerhalb der Projektion bieten zwar eine klare Sichtbarkeit von Funktionen, können jedoch die immersive Wahrnehmung des Raums beeinträchtigen, da sie dauerhaft Teil der visuellen Szene sind. Dies steht im Spannungsverhältnis zu den in Abschnitt~\ref{sec:rw_multisensory} beschriebenen Anforderungen an kontextangemessene Interaktion in atmosphärischen Umgebungen.
- Gestenbasierte Interaktionen ermöglichen hingegen eine controllerlose und körpernahe Steuerung digitaler Inhalte, sind jedoch mit den in Abschnitt~\ref{sec:rw_midair} und Abschnitt~\ref{sec:rw_gestures} dargestellten Herausforderungen hinsichtlich Discoverability und Fehlinterpretation verbunden.
-Positionsbasierte Interaktionen nutzen die Bewegung der Nutzer:innen im Raum als Interaktionsparameter und ermöglichen eine direkte Kopplung zwischen physischem Verhalten und Systemzustand und knüpfen damit an die im Related Work dargestellten Prinzipien proxemischer und räumlich eingebetteter Interaktion an (vgl. Abschnitt~\ref{sec:rw_spatial}).
-
-Vor diesem Hintergrund wurden vornehmlich gestenbasierte sowie positionsbasierte Interaktionsformen als vielversprechende Ansätze identifiziert, da sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte sowie die Integration der räumlichen Bewegung in die Interaktion unterstützen.
 
 Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im Anhang dargestellt (vgl. Tab.~\ref{tab:interaktionsansatz}). Im Folgenden wird eine verdichtete Auswahl jener Ansätze präsentiert, die für die Entwicklung der nachfolgenden Konzepte als besonders relevant erachtet wurden (Tab. \ref{tab:interaktionsmoeglichkeiten}).
 
 \begin{table}[H]
     \centering
     \small
-    \caption{Verdichtete Übersicht über identifizierte Interaktionsmöglichkeiten // TODO ggf. Anzahl der anwendbaren Szenarien mit rein (?)}
-    \begin{tabular}{p{0.03cm} p{3.97cm} p{3cm} p{8cm}}
+    \caption{Verdichtete Übersicht über identifizierte Interaktionsmöglichkeiten}
+    \begin{tabular}{p{1cm} p{3.95cm} p{2.95cm} p{8cm}}
         \toprule
         \textbf {Nr.} & \textbf{Interaktions\-möglichkeit} & \textbf{Art} & \textbf{Beschreibung} \\
         \midrule
-        2 & Administrative Steuerung der Lautstärke, Helligkeit, Virbationsintensität & Explizit, Selektion & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen) \\
+        2 & Administrative Steuerung der Laut\-stärke, Helligkeit, Virbations\-inten\-sität & Explizit, Selektion & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen) \\
 
         3 & Präsentationssteuerung & Explizit, Selektion & Nutzer:innen können Videomaterial abspielen, pausieren und die Wiedergabe vor-/zurückspulen \\
 
@@ -76,16 +67,20 @@ Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im 
 
         11 & Navigation durch Gehen auf der Stelle & Explizit, Navigation & Das Gehen auf der Stelle in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
 
-        15 & Aktivierung von Interaktion & Explizit, Selektion & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (z.\,B. Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden. \\
+        15 & Aktivierung von Interaktion & Explizit, Selektion & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (zum Beispiel Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden. \\
 
         \bottomrule
     \end{tabular}
     \label{tab:interaktionsmoeglichkeiten}
 \end{table}
 
-% Übergang
-Aus dem beschriebenen Designraum wurden drei Interaktionsansätze für eine vertiefte konzeptionelle Ausarbeitung ausgewählt: administrative Steuerung, objektbasierte Interaktion sowie positionsbasierte Navigation. 
-Diese Auswahl basiert darauf, dass die drei Ansätze zentrale Interaktionsaufgaben in räumlichen Systemen abdecken, nämlich Selektion, Manipulation und Navigation, und zugleich unterschiedliche Grade der Explizitheit repräsentieren. Die ausgewählten Ansätze werden im Folgenden anhand exemplarischer Storyboards konkretisiert.
+Die Analyse zeigt, dass mehrere der betrachteten Ansätze nur eingeschränkt für den Einsatz im MIR geeignet sind. NFC-basierte Interaktionen eignen sich insbesondere für objektgebundene Szenarien, setzen jedoch physische Artefakte voraus und sind daher nur begrenzt universell einsetzbar. Kamerabasierte Markersysteme ermöglichen eine eindeutige Identifikation von Objekten, erfordern jedoch eine gezielte Ausrichtung auf den Kamerabereich und führen damit zu zusätzlichen Interaktionsschritten.
+
+UI-basierte Interaktionsflächen innerhalb der Projektion bieten zwar eine klare Sichtbarkeit von Funktionen, können jedoch die immersive Wahrnehmung des Raums beeinträchtigen, da sie dauerhaft Teil der visuellen Szene sind. Gestenbasierte Interaktionen ermöglichen hingegen eine controllerlose und körpernahe Steuerung digitaler Inhalte, sind jedoch mit den in Abschnitt~\ref{sec:rw_midair} und Abschnitt~\ref{sec:rw_gestures} dargestellten Herausforderungen hinsichtlich Discoverability und Fehlinterpretation verbunden.
+Positionsbasierte Interaktionen nutzen die Bewegung der Nutzer:innen im Raum als Interaktionsparameter und ermöglichen eine direkte Kopplung zwischen physischem Verhalten und Systemzustand und knüpfen damit an die in Abschnitt \ref{rw_spatial:rw} dargestellten Prinzipien räumlich eingebetteter Interaktion an.
+
+Vor diesem Hintergrund wurden vornehmlich gestenbasierte sowie positionsbasierte Interaktionsformen als vielversprechende Ansätze identifiziert, da sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte sowie die Integration der räumlichen Bewegung in die Interaktion unterstützen. Daher wurden aus dem beschriebenen Designraum Interaktionsansätze kombiniert, sodass drei Konzepte für eine vertiefte Ausarbeitung ausgewählt werden konnten: administrative Steuerung, objektbasierte Interaktion sowie positionsbasierte Navigation.
+Diese Auswahl basiert darauf, dass diese Ansätze zentrale Interaktionsaufgaben in räumlichen Systemen abdecken, nämlich Selektion, Manipulation und Navigation, und zugleich unterschiedliche Grade der Explizitheit repräsentieren. Die ausgewählten Ansätze werden im Folgenden anhand exemplarischer Storyboards konkretisiert.
 
 
 \subsubsection{Storyboard: Administrative Steuerung}
@@ -93,28 +88,28 @@ Das erste Storyboard zeigt ein Konzept für eine administrative Steuerung in For
 
 Die Interaktion beginnt mit der Ausrichtung der Nutzer:innen in Richtung einer Raumwand (Abb.~\ref{fig:storyboard_menu}, a). Durch das Anheben der Hand wechselt das System in einen quasi-modalen Interaktionszustand, um die in Abschnitt~\ref{sec:rw_midair} beschriebenen Probleme unbeabsichtigter Aktivierungen in offenen Mid-Air-Interaktionsräumen zu adressieren. In diesem Zustand wird ein radial angeordnetes Menü über der Anwendung eingeblendet (Abb.~\ref{fig:storyboard_menu}, b–c). Die Wahl eines radialen Menüs knüpft an die in Abschnitt~\ref{sec:rw_menus} dargestellten Vorteile solcher Menüformen für gestenbasierte Interaktion an, insbesondere an kurze Zielwege und eine gute Sichtbarkeit verfügbarer Funktionen.
 
-Die Auswahl von Funktionen erfolgt über die relative Position der Hand im Raum, die als Cursor innerhalb des Menüs interpretiert wird (Abb.~\ref{fig:storyboard_menu}, d). Ein kurzer Verbleib in einem Menüsegment oder eine bestätigende Geste aktiviert die jeweilige Funktion (Abb.~\ref{fig:storyboard_menu}, e-f). Zusätzlich können weitere Optionen über Untermenüs aufgerufen werden (Abb.~\ref{fig:storyboard_menu}, g). Für bestimmte Funktionen werden kontinuierliche Anpassungen ermöglicht, beispielsweise zur Steuerung von Intensitäten (Abb.~\ref{fig:storyboard_menu}, h–i). Damit greift das Storyboard die in den verwandten Arbeiten beschriebene Trennung zwischen diskreter Auswahl und weiterführender Interaktion auf und überführt sie in ein menübasiertes Konzept für den MIR.
+Die Auswahl von Funktionen erfolgt über die relative Position der Hand im Raum, die als Cursor innerhalb des Menüs interpretiert wird (Abb.~\ref{fig:storyboard_menu}, d). Ein kurzer Verbleib in einem Menüsegment oder eine bestätigende Geste aktiviert die jeweilige Funktion (Abb.~\ref{fig:storyboard_menu}, e-f). Zusätzlich können weitere Optionen über Untermenüs aufgerufen werden (Abb.~\ref{fig:storyboard_menu}, g). Für bestimmte Funktionen werden kontinuierliche Anpassungen ermöglicht, beispielsweise zur Steuerung von Intensitäten (Abb.~\ref{fig:storyboard_menu}, h–i). Damit greift das Storyboard die in den verwandten Arbeiten beschriebene Trennung zwischen diskreter Auswahl und weiterführender Interaktion auf.
 
-Nach Abschluss der Interaktion wird das Menü automatisch ausgeblendet, sodass die visuelle Szene wieder in den Vordergrund tritt (Abb.~\ref{fig:storyboard_menu}, j). Dies entspricht den in Abschnitt~\ref{sec:rw_multisensory} dargestellten Anforderungen an kontextangemessene Interaktion in immersiven und atmosphärischen Umgebungen.
+Nach Abschluss der Interaktion wird das Menü automatisch ausgeblendet, sodass die visuelle Szene wieder in den Vordergrund tritt (Abb.~\ref{fig:storyboard_menu}, j).
 
 Das Storyboard illustriert damit eine explizite, gestenbasierte Interaktion zur Steuerung systemweiter Funktionen und dient als konzeptionelle Grundlage für die im weiteren Verlauf detailliert ausgearbeitete Menüinteraktion.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.98\linewidth]{content/images/storyboard_menu.png}
-    \caption{Storyboard Administrative Steuerung}
+    \caption{Storyboard Administrative Steuerung {\color{red} Soll ich hier lieber nur 4 Pro Reihe machen, damit der Text größer ist?}}
     \label{fig:storyboard_menu}
 \end{figure}
 
 
 \subsubsection{Storyboard: Objektinteraktion}
-Das zweite Storyboard beschreibt ein Konzept zur Objektinteraktion innerhalb der projizierten Szene, exemplarisch anhand eines medizinischen Anwendungsszenarios, in dem berührungslose Interaktion besonders plausibel erscheint.
+Das zweite Storyboard beschreibt ein Konzept zur Objektinteraktion innerhalb der projizierten Szene.
 
-Nach Auswahl einer Projektion positionieren sich die Nutzer:innen vor der Projektionsfläche (Abb.~\ref{fig:storyboard_paint}, a). Durch Annäherung an die Wand und das Anheben der Hand wird ein quasi-modaler Interaktionszustand aktiviert, um unbeabsichtigte Eingaben zu vermeiden und eine bewusste Interaktionsaufnahme zu ermöglichen (vgl. Abschnitt~\ref{sec:rw_midair}).
+Nach Auswahl einer Projektion positionieren sich die Nutzer:innen vor der Projektionsfläche (Abb.~\ref{fig:storyboard_paint}, a). Durch Annäherung an die Wand und das Anheben der Hand wird auch hier ein quasi-modaler Interaktionszustand aktiviert, um unbeabsichtigte Eingaben zu vermeiden und eine bewusste Interaktionsaufnahme zu ermöglichen (vgl. Abschnitt~\ref{sec:rw_midair}).
 
-Die Handposition fungiert dabei als Cursor (Abb.~\ref{fig:storyboard_paint}, b) und überträgt ein etabliertes Interaktionsprinzip aus Desktopumgebungen in den räumlichen Kontext. Dadurch bleibt die Interaktion an nachvollziehbare, körpernahe Bewegungen gekoppelt.
+Die Handposition fungiert dabei als Cursor (Abb.~\ref{fig:storyboard_paint}, b) und überträgt ein etabliertes Interaktionsprinzip aus Desktopumgebungen in den räumlichen Kontext (vgl. \ref{sec:rw_gestures}). Dadurch bleibt die Interaktion an nachvollziehbare, körpernahe Bewegungen gekoppelt.
 
-Gezielte Gesten ermöglichen das Setzen von Markierungen: Ein kurzer Point-and-Draw-Sweep hebt relevante Strukturen hervor (z.\,B. Knochen, Muskeln oder Röntgenansichten) (Abb.~\ref{fig:storyboard_paint}, c). Dabei orientiert sich das Konzept bewusst an bekannten Handlungsmetaphern wie Zeichnen und Greifen, um eine möglichst verständliche Interaktion zu unterstützen.
+Gezielte Gesten ermöglichen das Setzen von Markierungen: Ein kurzer Point-and-Draw-Sweep hebt relevante Strukturen hervor (in medizinischen Szenarien zum Beispiel Knochen, Muskeln oder Röntgenansichten) (Abb.~\ref{fig:storyboard_paint}, c). Dabei orientiert sich das Konzept bewusst an bekannten Handlungsmetaphern wie Zeichnen und Greifen, um eine möglichst verständliche Interaktion zu unterstützen.
 
 Die Selektion bestehender Markierungen erfolgt über eine Grab-Geste, die das Greifen physischer Objekte imitiert. Durch Halten der Geste können Markierungen entfernt werden (Abb.~\ref{fig:storyboard_paint}, d–e).
 
@@ -134,7 +129,7 @@ Das dritte Storyboard (Abb. \ref{fig:storyboard_navigation}) skizziert zwei Konz
 Der erste Ansatz basiert auf einer schubbasierten Navigation (Abb. \ref{fig:storyboard_navigation}, a-c), die als steering-based Methode klassifiziert werden kann (vgl. \ref{sec:rw_navigation}). Hierbei bewegen sich Nutzer:innen in die gewünschte Richtung und initiieren die Fortbewegung durch eine aktive Schubbewegung mit den Händen. Diese explizite Kopplung von Position, Geste und virtueller Bewegung ermöglicht eine hohe Kontrolle und kann als besonders immersive Interaktionsform interpretiert werden, da sie eine enge Kopplung von Körperbewegung und virtueller Fortbewegung ermöglicht (vgl. Abschnitt~\ref{sec:rw_navigation})
 
 % TODO FIX Satz
-Der zweite Ansatz nutzt Walking-in-Place (vgl. \ref{sec:rw_navigation}), also das Gehen auf der Stelle als Auslöser virtueller Fortbewegung. Die Ausgangssituation ist auch hier wieder, dass die Person sich in die Richtung begiebt, in die die Umgebung navigiert werden soll (Abb. \ref{fig:storyboard_navigation}, d-e). Die Bewegung wird durch eine Laufgeste auf der Stelle eingeleitet und aktiviert nach einer kurzen Verweildauer die Navigation im Raum (Abb. \ref{storyboard_navigation}, f), welche durch die Bewegung der Szene in die entsprechende Richtung eine kontinuierliche Fortbewegung simuliert (Abb. \ref{storyboard_navigation}, g). Die Bewegung endet, sobald die Nutzer:innen ihre Position verändern oder Walking-in-Place stoppen. Diese Methode ist besonders für physisch begrenzte Räume wie den MIR geeignet, da sie die kognitiven Vorteile natürlicher Fortbewegung simuliert, ohne ein großes Platzangebot vorauszusetzen.
+Der zweite Ansatz nutzt Walking-in-Place (vgl. \ref{sec:rw_navigation}), also das Gehen auf der Stelle als Auslöser virtueller Fortbewegung. Die Ausgangssituation ist auch hier wieder, dass die Person sich in die Richtung begiebt, in die die Umgebung navigiert werden soll (Abb. \ref{fig:storyboard_navigation}, d-e). Die Bewegung wird durch eine Laufgeste auf der Stelle eingeleitet und aktiviert nach einer kurzen Verweildauer die Navigation im Raum (Abb. \ref{fig:storyboard_navigation}, f), welche durch die Bewegung der Szene in die entsprechende Richtung eine kontinuierliche Fortbewegung simuliert (Abb. \ref{fig:storyboard_navigation}, g). Die Bewegung endet, sobald die Nutzer:innen ihre Position verändern oder Walking-in-Place stoppen. Diese Methode ist besonders für physisch begrenzte Räume wie den MIR geeignet, da sie die kognitiven Vorteile natürlicher Fortbewegung simuliert, ohne ein großes Platzangebot vorauszusetzen.
 
 Beide Ansätze verfolgen das Ziel, Navigation ohne zusätzliche Eingabegeräte zu ermöglichen und die körperliche Bewegung im Raum als primären Interaktionsparameter zu nutzen. Während die schubbasierte Variante eine aktive und bewusst gesteuerte Interaktion darstellt, setzt die Dwell-basierte Variante auf eine reduzierte Interaktionslast und eine stärker implizite Steuerung.
 
@@ -156,22 +151,20 @@ Das Storyboard illustriert damit unterschiedliche Ausprägungen positionsbasiert
 
 Die im Rahmen der konzeptionellen Exploration entwickelten Storyboards repräsentieren drei grundlegende Interaktionsansätze im MIR: administrative Steuerung über ein Menü, objektbasierte Interaktion innerhalb der Szene sowie positionsbasierte Navigation im Raum. 
 
-Diese drei Ansätze unterscheiden sich hinsichtlich ihrer Übertragbarkeit auf bestehende MIR-Szenarien. Die positionsbasierte Navigation setzt voraus, dass Bewegung im Raum selbst Teil der Anwendung ist, etwa im Sinne freier Fortbewegung innerhalb einer virtuellen Umgebung. Wie die Analyse der bestehenden MIR-Szenarien gezeigt hat, ist dies derzeit jedoch nur im Dschungel-Szenario vertreten. Für die überwiegend atmosphärischen und narrativen Anwendungen ist dieser Ansatz daher nur eingeschränkt geeignet.
+Diese drei Ansätze unterscheiden sich hinsichtlich ihrer Übertragbarkeit auf bestehende MIR-Szenarien. Die positionsbasierte Navigation setzt voraus, dass Bewegung im Raum selbst Teil der Anwendung ist, etwa im Sinne freier Fortbewegung innerhalb einer virtuellen Umgebung. Wie die Analyse der bestehenden MIR-Szenarien gezeigt hat (Abschnitt \ref{sec:analyse}), ist dies derzeit jedoch nur im Dschungel-Szenario vertreten. Für die überwiegend vorgerenderten Anwendungsszenarien ist dieser Ansatz daher nicht eingeschränkt geeignet.
 
-Auch objektbasierte Interaktionen sind nur begrenzt generalisierbar. Sie setzen explizite Interaktionsobjekte oder markierbare Inhalte innerhalb der Szene voraus und erfordern damit eine entsprechende Gestaltung oder Anpassung der jeweiligen Anwendung. Da viele der bestehenden MIR-Szenarien keine solchen Interaktionspunkte vorsehen, ist dieser Ansatz nur eingeschränkt auf das Gesamtsystem übertragbar.
+Auch objektbasierte Interaktionen sind nur limitiert generalisierbar. Sie setzen explizite Interaktionsobjekte oder markierbare Inhalte innerhalb der Szene voraus und erfordern damit eine entsprechende Gestaltung oder Anpassung der jeweiligen Anwendung. Da viele der bestehenden MIR-Szenarien keine solchen Interaktionspunkte vorsehen, ist dieser Ansatz nur eingeschränkt auf das Gesamtsystem übertragbar.
 
-Im Gegensatz dazu ist eine administrative Steuerung über ein Menü unabhängig von der konkreten Szenariostruktur einsetzbar. Sie ermöglicht den Zugriff auf systemweite Funktionen, ohne dass die zugrunde liegenden Anwendungen angepasst werden müssen, und weist damit eine hohe Generalisierbarkeit auf. Beispielsweise die simpelsten Einstellungen wie die der Lautstärke, Helligkeit und Vibrationsintensität sind für die meisten Szenarien einsetzbar. 
-Vor dem Hintergrund der zuvor abgeleiteten Anforderungen, insbesondere der anwendungsübergreifenden Einsetzbarkeit (R1) sowie der Nutzung ohne zusätzliche Eingabegeräte, erscheint dieser Ansatz für den MIR besonders geeignet.
-
-Darüber hinaus zeigt die konzeptionelle Exploration, dass gestenbasierte Interaktionsformen grundsätzlich ein hohes Potenzial für den Einsatz im MIR besitzen. Sie ermöglichen eine controllerlose Bedienung und lassen sich direkt an natürliche Handbewegungen der Nutzer:innen koppeln. Damit unterstützen sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte (R2) sowie die Erhaltung der Bewegungsfreiheit im Raum (R3). Diese Einschätzung deckt sich mit den im Related Work dargestellten Potenzialen körperbasierter und Mid-Air-basierter Interaktion (vgl. Abschnitt~\ref{sec:rw_embodied} und Abschnitt~\ref{sec:rw_midair}).
+Im Gegensatz dazu ist eine administrative Steuerung über ein Menü unabhängig von der konkreten Szenariostruktur einsetzbar. Sie ermöglicht den Zugriff auf systemweite Funktionen, ohne dass die zugrunde liegenden Anwendungen angepasst werden müssen, und weist damit eine hohe Generalisierbarkeit auf. Beispielsweise die allgemeinen Einstellungen wie die Lautstärke, Helligkeit und Vibrationsintensität sind für die meisten Szenarien einsetzbar.
+Sie ermöglichen eine controllerlose Bedienung und lassen sich direkt an natürliche Handbewegungen der Nutzer:innen koppeln. Damit unterstützen sie zentrale Anforderungen wie die Nutzung ohne zusätzliche Eingabegeräte (R2) sowie die Erhaltung der Bewegungsfreiheit im Raum (R3). Diese Einschätzung deckt sich mit den in Abschnitt \ref{sec:rw} dargestellten Potenzialen körperbasierter und Mid-Air-basierter Interaktion (vgl. Abschnitt~\ref{sec:rw_embodied} und Abschnitt~\ref{sec:rw_midair}).
 
 Gleichzeitig stellt die Gestaltung geeigneter Interaktionsmechanismen im dreidimensionalen Raum eine Herausforderung dar.
-Verwandte Arbeiten zeigen, dass klassische grafische Benutzungsschnittstellen nur eingeschränkt auf Mid-Air-Interaktionen übertragbar sind, da sie in der Regel für zweidimensionale Displays und präzise Eingabegeräte optimiert wurden (vgl. Abschnitt~\ref{sec:rw_midair} und Abschnitt~\ref{sec:rw_menus}).
+Abschnitt~\ref{sec:rw_midair} und Abschnitt~\ref{sec:rw_menus} zeigen, dass klassische grafische Benutzungsschnittstellen nur eingeschränkt auf Mid-Air-Interaktionen übertragbar sind, da sie in der Regel für zweidimensionale Displays und präzise Eingabegeräte optimiert wurden.
 
 Komplexe gestenbasierte Interaktionssysteme wurden im Rahmen dieser Arbeit jedoch bewusst nicht als primärer Interaktionsmechanismus gewählt. Obwohl Gesten eine natürliche Form körperbasierter Interaktion darstellen, weisen solche Systeme mehrere Herausforderungen auf. Wie in den verwandten Arbeiten dargestellt, gehen freie Gestensysteme häufig mit einer geringen Discoverability, einer erhöhten Lernanforderung sowie dem Risiko unbeabsichtigter Aktivierungen einher (vgl. Abschnitt~\ref{sec:rw_midair} und Abschnitt~\ref{sec:rw_gestures}). Darüber hinaus können Gestenerkennungssysteme in offenen Interaktionsräumen zu Fehlinterpretationen führen, wenn alltägliche Bewegungen fälschlicherweise als Interaktion interpretiert werden.
 
-Um diese Herausforderungen zu adressieren, wurde ein menübasiertes Interaktionskonzept gewählt, das verfügbare Funktionen explizit sichtbar macht und gleichzeitig eine gestenbasierte Steuerung ermöglicht. Wie in Abschnitt~\ref{sec:rw_menus} gezeigt, eignen sich radiale Menüs beziehungsweise Marking Menus besonders für solche Kontexte, da sie kurze Zielwege, eine hohe Erlernbarkeit und die Unterstützung motorischen Lernens kombinieren.
-Vor diesem Hintergrund wurden Marking Menus als zentrales Interaktionsparadigma für den MIR ausgewählt.
+Um diese Herausforderungen zu adressieren, wurde ein menübasiertes Interaktionskonzept gewählt, das verfügbare Funktionen explizit sichtbar macht und gleichzeitig eine gestenbasierte Steuerung ermöglicht. Wie in Abschnitt~\ref{sec:rw_menus} gezeigt, eignen sich Marking-Menus besonders für solche Kontexte, da sie kurze Zielwege, eine hohe Erlernbarkeit und die Unterstützung motorischen Lernens kombinieren.
+Vor diesem Hintergrund wurden Marking-Menus als zentrales Interaktionsparadigma für den MIR ausgewählt.
 
 
 \subsection{Konzeption des Interaktionssystems} % Hauptkapitel + hier nochmal Requirements erwähnen?
@@ -184,34 +177,32 @@ Vor diesem Hintergrund wurden Marking Menus als zentrales Interaktionsparadigma 
 
 Auf Basis der getroffenen Auswahl wird das Konzept einer menübasierten, gestenbasierten Interaktion im Folgenden weiter konkretisiert. Während das Storyboard bereits die grundlegende Interaktionsidee und den Nutzungskontext skizziert, liegt der Fokus dieses Kapitels auf der detaillierten Ausgestaltung des Interaktionsmechanismus.
 
-Dabei werden zentrale Designentscheidungen hinsichtlich Struktur, Interaktionsablauf und visueller Gestaltung des radialen Menüs systematisch hergeleitet und im Kontext der spezifischen Anforderungen des MIR begründet.
+Dabei werden zentrale Designentscheidungen hinsichtlich Struktur, Interaktionsablauf und visueller Gestaltung des radialen Menüs hergeleitet. \\
 
-Das entwickelte Interaktionskonzept basiert auf Handtracking und einem radialen Menü, das als zentrale Schnittstelle zwischen Nutzer:innen und Anwendung fungiert. Die Position der Hand im Raum wird dabei als Cursor interpretiert, über den Nutzer:innen mit dem Menü interagieren können. Das Menü wird als Overlay über der jeweiligen Anwendung eingeblendet und ermöglicht den Zugriff auf systemweite Steuerungsfunktionen, ohne dass bestehende Szenarien angepasst werden müssen.
+Das entwickelte Interaktionskonzept basiert auf Handtracking und einem radialen Menü, das als zentrale Schnittstelle zwischen Nutzer:innen und Zielanwendung fungiert. Die Position der Hand im Raum wird dabei als Cursor interpretiert, über den Nutzer:innen mit dem Menü interagieren können. Das Menü wird als Overlay über der jeweiligen Zielanwendung eingeblendet und ermöglicht den Zugriff auf systemweite Steuerungsfunktionen, ohne dass die bestehende Anwendung angepasst werden muss.
 
 Durch diese Entkopplung von Interaktion und Anwendung wird eine flexible und szenariounabhängige Nutzung des Systems ermöglicht.
-
-{\color{red} TODO: Aktivierung des Menüs?}
-%Zur Aktivierung soll eine spezifische Geste gehalten werden, um eine versehentliche Auslösung zu verhindern (vgl. Abschnitt~\ref{sec:rw_midair}). Das Menü erscheint stets zentral auf dem Bildschirm, was die Ausrichtung der Gesten zur Kamera erleichtert ({\color{red} TODO: ursprünglich geplant, dass menü dort erscheint wo nutzer an der wand steht }).
-% % Wird keine Hand erkannt, blendet das Menü nach einem Countdown aus. Ein permanenter Indikator oben rechts zeigt die Aktivierungsgeste, um die grundsätzliche Interaktionsmöglichkeit sichtbar zu machen (Discoverability) \parencite{wobbrock2005discoverability}.
 
 
 \subsubsection{Handtracking und Cursor}
 
-Die Position der Hand im Raum wird als primärer Interaktionspunkt genutzt und dient als Cursor innerhalb der Benutzungsoberfläche. Die Interpretation der Handposition orientiert sich bewusst an bekannten Interaktionsmustern aus etablierten Benutzungsoberflächen und überträgt diese in den räumlichen Kontext. Die Nutzung dieses Prinzips ermöglicht eine unmittelbare Verständlichkeit der Interaktion, da Nutzer:innen das zugrunde liegende Mapping bereits aus etablierten Interfaces kennen (vgl. Abschnitt~\ref{sec:rw_gestures} zu Evolutionary Gestures).
+Die Position der Hand im Raum wird als primärer Interaktionspunkt genutzt und dient als Cursor innerhalb des Overlays. Die Interpretation der Handposition orientiert sich bewusst an bekannten Interaktionsmustern aus etablierten Benutzungsoberflächen und überträgt diese in den räumlichen Kontext. Die Nutzung dieses Prinzips soll ermöglichen, dass Nutzer:innen das System und die Steuerungsmöglichkeiten ohne vorige Anleitung anwenden können (vgl. Abschnitt~\ref{sec:rw_gestures} zu Evolutionary Gestures).
 
-Im Gegensatz zu klassischen Eingabegeräten wie Maus oder Controller entsteht dadurch eine direkte räumliche Beziehung zwischen Nutzerbewegung und Systemreaktion. Gleichzeitig können Nutzer:innen ihre Hände frei im Raum bewegen, wodurch die Interaktion mit der natürlichen Bewegungsfreiheit im MIR vereinbar bleibt.
+Im Gegensatz zu klassischen Eingabegeräten wie Maus oder Controller entsteht dadurch eine direkte räumliche Beziehung zwischen Nutzerbewegung und Systemreaktion. Gleichzeitig können Nutzer:innen ihre Hände frei im Raum bewegen, wodurch die Interaktion mit der natürlichen Bewegungsfreiheit im MIR vereinbar bleibt (R3).
 
-Das Menü wird an einer festen Position im Raum eingeblendet. Der Cursor wird jedoch beim Öffnen des Menüs initial im Zentrum positioniert, sodass die Interaktion relativ zu diesem Ausgangspunkt erfolgt. Dadurch entsteht ein lokaler Interaktionsraum um die Aktivierungsposition herum (vgl. Abb.~\ref{fig:Interaktionsraum}), der unabhängig von der Körpergröße oder Haltung der Nutzer:innen genutzt werden kann.
+Das Menü wird an einer festen Position im Raum eingeblendet, standardmäßig in der Mitte des aktiven Bildschirms. Der Cursor wird jedoch beim Öffnen des Menüs initial im Zentrum positioniert, sodass die Interaktion relativ zu diesem Ausgangspunkt erfolgt. Dadurch entsteht ein lokaler Interaktionsraum um die Aktivierungsposition herum (vgl. Abb.~\ref{fig:Interaktionsraum}), der unabhängig von der Körpergröße oder Haltung der Nutzer:innen genutzt werden kann. Diese Gestaltung ermöglicht eine konsistente und ergonomische Interaktion, da Nutzer:innen das Menü aus unterschiedlichen Positionen im Raum heraus aktivieren können, ohne dass die relative Erreichbarkeit der Menüelemente beeinflusst wird. Zugleich adressiert sie die in Abschnitt~\ref{sec:rw_midair}  beschriebenen Ermüdungsprobleme länger gehaltener Mid-Air-Interaktion, da Nutzer:innen selbst bestimmen können, in welcher Haltung die Interaktion am komfortabelsten für sie ist.
 
-Diese Gestaltung ermöglicht eine konsistente und ergonomische Interaktion, da Nutzer:innen das Menü aus unterschiedlichen Positionen im Raum heraus aktivieren können, ohne dass die relative Erreichbarkeit der Menüelemente beeinflusst wird. Zugleich adressiert sie die in Abschnitt~\ref{sec:rw_midair}  beschriebenen Ermüdungsprobleme länger gehaltener Mid-Air-Interaktion.
-
-Zur weiteren Vereinfachung der Interaktion wird bewusst nur ein einzelnes Menü verwendet, das unabhängig von der gewählten Hand gesteuert werden kann. Dadurch wird die Komplexität reduziert und die Bedienbarkeit erhöht, da keine Unterscheidung zwischen linker und rechter Hand erforderlich ist.
+        {\color{red} TODO: Aktivierung des Menüs?}
+%Zur Aktivierung soll eine spezifische Geste gehalten werden, um eine versehentliche Auslösung zu verhindern (vgl. Abschnitt~\ref{sec:rw_midair}). Das Menü erscheint stets zentral auf dem Bildschirm, was die Ausrichtung der Gesten zur Kamera erleichtert ({\color{red} TODO: ursprünglich geplant, dass menü dort erscheint wo nutzer an der wand steht }).
+% % Wird keine Hand erkannt, blendet das Menü nach einem Countdown aus. Ein permanenter Indikator oben rechts zeigt die Aktivierungsgeste, um die grundsätzliche Interaktionsmöglichkeit sichtbar zu machen (Discoverability) \parencite{wobbrock2005discoverability}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.98\linewidth]{content//images/Interaktionsraum.png}
+    \includegraphics[width=0.7\linewidth]{content//images/Interaktionsraum.png}
     \caption{Schematische Darstellung des Interaktionsraums: Der Cursor (Handposition) wird beim Öffnen im Zentrum des Menüs initialisiert, wodurch ein lokaler, körperzentrierter Interaktionsraum entsteht.}    \label{fig:Interaktionsraum}
 \end{figure}
+
+Zur weiteren Vereinfachung der Interaktion wird nicht unterschieden welche Hand die Nutzer:innen für die Steuerung des Menüs nutzen. Dadurch wird die Komplexität reduziert und die Bedienbarkeit erhöht, da Nutzer:innen beliebig die Interaktionshand wechseln können.
 
 Die Hand fungiert somit als zentraler Interaktionsanker, über den Auswahl- und Steuerungsaktionen ausgeführt werden können. Dadurch kann auf zusätzliche Eingabegeräte verzichtet werden, während gleichzeitig eine natürliche und intuitive Interaktion ermöglicht wird.
 
