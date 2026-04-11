@@ -229,7 +229,10 @@ Zusätzlich zeigt ein Handicon an, ob eine Hand erkannt wurde und welche Geste a
 \label{fig:gesture_icons}
 \end{figure}
 
-Das Marking-Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nicht fest in der Oberfläche hinterlegt, sondern aus einer externen Konfiguration geladen, welche von der Zielanwendung bereitgestellt wird. Dadurch kann die Anzahl der Einträge, ihre Hierarchie sowie die Zuordnung zu Aktionen flexibel angepasst werden. Ein Menüeintrag kann entweder ein Untermenü öffnen (Abb. \ref{fig:menu_with_submenu}) oder direkt eine Aktion auslösen, beispielsweise einen Slider zur kontinuierlichen Parametersteuerung zu öffnen. Slider öffnen beim Hovern über das Menüelement, welches sie öffnen würde, eine Vorschau (Abb. \ref{fig:menu_with_slider_presentation}). Menüeinträge, die Button Aktionen ausführen, zeigen einen ihrer Zustände als Label (Abb. \ref{fig:menu_with_button}).
+Das Marking-Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nicht fest in der Oberfläche hinterlegt, sondern aus einer externen Konfiguration geladen, welche von der Zielanwendung bereitgestellt wird. Dadurch kann die Anzahl der Einträge, ihre Hierarchie sowie die Zuordnung zu Aktionen flexibel angepasst werden. Wie in Abschnitt \ref{sec:synthese_radiales_menü} diskutiert, wird auf eine starre Begrenzung der Segmentanzahl verzichtet, um eine flexible Anpassung an anwendungsspezifische Anforderungen zu ermöglichen. Stattdessen wird bei zunehmender Menütiefe ein Hinweis ausgegeben, der auf potenzielle Usability-Probleme aufmerksam macht. Dadurch werden Gestaltungsrichtlinien berücksichtigt, ohne die Konfigurierbarkeit des Systems einzuschränken. \\
+
+% TODO Übergang?
+Beim inhaltlichen Aufbau des Menüs kann ein Menüeintrag entweder ein Untermenü öffnen (Abb. \ref{fig:menu_with_submenu}) oder direkt eine Aktion auslösen, beispielsweise einen Slider zur kontinuierlichen Parametersteuerung zu öffnen. Slider öffnen beim Hovern über das Menüelement, welches sie öffnen würde, eine Vorschau (Abb. \ref{fig:menu_with_slider_presentation}). Menüeinträge, die Button Aktionen ausführen, zeigen einen ihrer Zustände als Label (Abb. \ref{fig:menu_with_button}).
 
 \begin{figure}[H]
 \centering
