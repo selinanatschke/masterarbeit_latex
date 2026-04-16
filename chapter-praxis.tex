@@ -129,7 +129,7 @@ Auf Basis dieser Landmarken bestimmt das System, ob eine Hand erkannt wurde und 
 
 Ein zentraler Schritt besteht anschließend in der Überführung der Trackingdaten in eine zweidimensionale Cursorposition. Hierfür wird die Handposition auf den Bildschirmraum abgebildet. Der resultierende Cursor dient als primäres Eingabeelement für die Menüinteraktion. Dadurch entsteht eine direkte Kopplung zwischen Handbewegung im Kamerabild und Navigation innerhalb des Overlays.
 
-Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie in Abschnitt~\ref{sec:synthese_konzeption_des_interaktionssystems}. Verwendet werden eine offene Hand zur Aktivierung der Menüinteraktion, eine Grab-Geste zur schnellen Bestätigung, sowie eine Pinch-Geste zur kontinuierlichen Steuerung von Slidern. Die Gestenerkennung basiert auf Distanzmaßen zwischen ausgewählten Landmarken (visualisiert in Abb. \ref{fig:gesture_images_photos}, beispielsweise zwischen Fingerspitzen und Handbasis oder zwischen Daumen und Zeigefinger. Diese Heuristiken ermöglichen eine einfache, nachvollziehbare und in Echtzeit ausführbare Klassifikation. {\color{red} TODO: Hier noch dazu, dass Aktivierungsgeste nur frontal oder soll das lieber in Abschnitt für 3 Leinwände bleiben?} Die erkannten Gesten dienen anschließend als Eingaben für eine zustandsbasierte Interaktionslogik, welche das Verhalten des Menüs steuert.
+Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie in Abschnitt~\ref{sec:synthese_konzeption_des_interaktionssystems} erwähnt. Verwendet werden eine offene Hand zur Aktivierung der Menüinteraktion, eine Grab-Geste zur schnellen Bestätigung, sowie eine Pinch-Geste zur kontinuierlichen Steuerung von Slidern. Die Gestenerkennung basiert auf Distanzmaßen zwischen ausgewählten Landmarken (visualisiert in Abb. \ref{fig:gesture_images_photos}), beispielsweise zwischen Fingerspitzen und Handbasis oder zwischen Daumen und Zeigefinger. Diese Heuristiken ermöglichen eine einfache, nachvollziehbare und in Echtzeit ausführbare Klassifikation. {\color{red} TODO: Hier noch dazu, dass Aktivierungsgeste nur frontal oder soll das lieber in Abschnitt für 3 Leinwände bleiben?} Die erkannten Gesten dienen anschließend als Eingaben für eine zustandsbasierte Interaktionslogik, welche das Verhalten des Menüs steuert.
 %Bei der Geste zur Aktivierung wurde zusätzlich darauf geachtet, dass die Geste nur bei frontaler Erkennung ausgelöst wird, um sicherzustellen, dass nur die Kamera an der aktuell frontalen Projektionsfläche das Menü aktivieren kann.
 
 \begin{figure}[H]
@@ -138,7 +138,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie i
     \centering
     \includegraphics[width=\linewidth]
     {content/images/open_palm_gesture_image.png}
-    \caption{Open Palm Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite.}
+    \caption{Open Palm Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite, sowie Spitzen von Daumen und kleinem Finger}
     \label{fig:openpalm_gesture_image}
 \end{subfigure}
 \hfill

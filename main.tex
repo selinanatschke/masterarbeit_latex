@@ -117,18 +117,19 @@
 \clearpage
 \section{Einleitung}
 % Motivation
-Digitale Kommunikations- und Interaktionsszenarien, wie etwa Videochats, virtuelle Meetings oder immersive Umgebungen, sprechen bislang nur einen Bruchteil der menschlichen Sinneskanäle an. Wesentliche sensorische Dimensionen wie Berührung, Temperatur oder Geruch bleiben ungenutzt, obwohl sie in realen Umgebungen zur Wahrnehmung einer Situation und Schaffung von Atmosphären beitragen. Während Gestalter:innen virtueller Umgebungen häufig den Realitätsgrad ihrer Darstellungen und das Konzept der Immersion in den Vordergrund stellen, wird die gezielte Erzeugung und Steuerung von Atmosphäre als funktionales Gestaltungselement bislang kaum berücksichtigt.
+Digitale Kommunikations- und Interaktionsszenarien, wie etwa Videochats, virtuelle Meetings oder immersive Umgebungen, sprechen bislang nur einen Bruchteil der menschlichen Sinneskanäle an. Insbesondere taktile, olfaktorische und thermische Reize bleiben ungenutzt, obwohl sie entscheidend für die Wahrnehmung von Atmosphäre und Präsenz in realen Umgebungen sind. Dieser Mangel an multisensorischer Gestaltung stellt eine zentrale Herausforderung für immersive Systeme dar.
 
 % Motivation & Problem
-Um dies vorzubeugen, bietet der mehrsinnliche Interaktionsraum (MIR) \parencite{orawetz2024mir} bereits die technische Grundlage, da er Atmosphären multisensorisch erzeugen soll. Das System umfasst eine 270°-Projektion über drei Leinwände, ein 16-Kanal-Audiosystem für räumlichen Klang, eine Beduftungseinheit sowie taktile Displays, die gemeinsam ein immersives, realitätsnahes Erlebnis schaffen. Aufbauend auf diesem Fundament soll der MIR durch neue Interaktionstechnologien zu einem aktiven, dynamischen Erfahrungsraum weiterentwickelt werden.
+Um dem entgegenzuwirken, wurde der mehrsinnliche Interaktionsraum (MIR) \parencite{orawetz2024mir} entwickelt, welcher mit seiner 270°-Projektion, räumlichem Audio, Beduftung und taktilem Feedback eine technische Infrastruktur bietet, um atmosphärische Erfahrungen multisensorisch zu gestalten.
+Allerdings bleibt die Interaktion bislang passiv: Die Atmosphäre wird präsentiert, aber nicht aktiv durch die Nutzer:innen beeinflusst. Um dieses Potenzial zu entfalten, ist eine Weiterentwicklung hin zu einem dynamischen, körperbasierten Interaktionsraum notwendig.
 
 % Ziel
-Ziel dieser Arbeit ist es daher, den MIR um natürliche, körperbasierte Interaktionsformen zu erweitern und ein Konzept für deren prototypische Umsetzung zu entwickeln. Im Zentrum steht die Frage, wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierte Steuerung so gestaltet und technisch integriert werden können, dass Nutzer:innen die Atmosphäre des Raumes intuitiv und unmittelbar beeinflussen können. Dabei werden verschiedene Interaktionskonzepte entwickelt, darunter Konzepte für die Manipulation von Objekten, Auswahl von Systemfunktionen und Navigation im Raum analysiert, bewertet und auf ihre Eignung für den multisensorischen, atmosphärischen Kontext des MIR geprüft. Auf Basis dieser Analyse wird ein geeignetes Konzept ausgewählt und prototypisch umgesetzt.
+Ziel dieser Arbeit ist es daher, den MIR um natürliche, körperbasierte Interaktionsformen zu erweitern und ein Konzept für deren prototypische Umsetzung zu entwickeln. Im Zentrum steht die Frage, wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierte Steuerung so gestaltet und technisch integriert werden können, dass Nutzer:innen die Atmosphäre des Raumes intuitiv und unmittelbar beeinflussen können. Dabei werden verschiedene Interaktionskonzepte, wie die Manipulation von Objekten, die Auswahl von Systemfunktionen und die Navigation im Raum entwickelt. Diese Konzepte wurden anschließend auf ihre Eignung für den multisensorischen, atmosphärischen Kontext des MIR geprüft. Auf Basis dessen wird ein geeignetes Konzept ausgewählt und prototypisch umgesetzt.
 Damit soll der MIR von einem überwiegend passiven Präsentationsraum zu einem aktiven, dynamischen Erfahrungsraum weiterentwickelt werden.
 
-Als Ergebnis entsteht ein gestenbasiertes Interaktionssystem, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Das System kombiniert ein radiales Marking-Menu mit diskreten und kontinuierlichen Interaktionsmechanismen und ermöglicht eine controllerfreie Steuerung multisensorischer Parameter. Die prototypische Umsetzung zeigt, dass eine solche Interaktionsform grundsätzlich geeignet ist, um atmosphärische und funktionale Eingriffe im MIR zu realisieren, gleichzeitig jedoch Herausforderungen hinsichtlich Robustheit und Präzision bestehen.
+Als Ergebnis entsteht ein gestenbasiertes Interaktionssystem, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Das System kombiniert ein radiales Menü mit diskreten und kontinuierlichen Interaktionsmechanismen und ermöglicht eine natürliche, körperbasierte Steuerung multisensorischer Parameter. Die prototypische Umsetzung zeigt, dass eine solche Interaktionsform grundsätzlich geeignet ist, um atmosphärische und funktionale Eingriffe im MIR zu realisieren, gleichzeitig jedoch Herausforderungen hinsichtlich Robustheit und Präzision bestehen.
 
-Die Arbeit ist wie folgt aufgebaut: Zunächst werden zentrale Begriffe definiert und verwandte Arbeiten zu körperbasierter, controllerfreier und multisensorischer Interaktion sowie zu immersiven Interaktionsumgebungen dargestellt. Anschließend folgt die Analyse bestehender MIR-Szenarien und ihrer Interaktionsformen. Darauf aufbauend werden verschiedene Anforderungen an Interaktionen abgeleitet. Auf Basis dieser abgeleiteten Anforderungen werden Interaktionskonzepte entwickelt und bewertet. Nach der Auswahl eines geeigneten Konzepts werden die daraus gewonnenen Erkenntnisse als Grundlage für die Konzeption des Systems genutzt. Anschließend wird die praktische Umsetzung der entwickelten Lösung im MIR beschrieben. Abschließend werden die Ergebnisse zusammengefasst und im Hinblick auf weitere Entwicklungsmöglichkeiten diskutiert.
+Die Arbeit ist wie folgt aufgebaut: Zunächst werden zentrale Begriffe definiert und verwandte Arbeiten zu körperbasierter, controllerfreier und multisensorischer Interaktion sowie zu immersiven Interaktionsumgebungen dargestellt. Anschließend folgt die Analyse bestehender MIR-Szenarien und deren Interaktionsformen. Darauf aufbauend werden verschiedene Anforderungen an Interaktionen abgeleitet. Auf Basis dieser abgeleiteten Anforderungen werden Interaktionskonzepte entwickelt und nach der Sinnhaftigkeit ihrer Einsetzbarkeit bewertet. Nach der Auswahl eines geeigneten Konzepts werden die daraus gewonnenen Erkenntnisse als Grundlage für die Konzeption des Systems genutzt. Anschließend wird die praktische Umsetzung der entwickelten Lösung im MIR beschrieben. Abschließend werden die Ergebnisse zusammengefasst und im Hinblick auf weitere Entwicklungsmöglichkeiten diskutiert.
 
 
 %- (PRÜFEN OB DRIN UND WOHIN?)
@@ -143,31 +144,32 @@ Im Folgenden werden zentrale Begriffe definiert, die in dieser Arbeit verwendet 
 Der Multisensorische Interaktionsraum (MIR) bezeichnet in dieser Arbeit eine projektionsbasierte, immersive und multisensorische Umgebung, in der digitale Inhalte nicht nur visuell, sondern auch über weitere Sinneskanäle wie Audio, Beduftung oder taktile Reize erfahrbar gemacht werden \parencite{orawetz2024mir}. Der MIR wird dabei als gemeinsam nutzbarer Raum verstanden, in dem Interaktion nicht über individuell getragene XR-Systeme, sondern innerhalb der Raumarchitektur selbst stattfindet.
 
 \paragraph{Körperbasierte Interaktion}
-Körperbasierte Interaktion bezeichnet Interaktionsformen, bei denen der menschliche Körper, seine Bewegungen und seine Orientierung im Raum eine zentrale Grundlage der Eingabe bilden. In dieser Arbeit wird der Begriff für Interaktionen verwendet, die an reale Handlungen angelehnt sind und die körperliche Präsenz der Nutzer:innen im Raum als wesentlichen Bestandteil der Interaktion begreifen.
+Körperbasierte Interaktion bezeichnet Interaktionsformen, bei denen der menschliche Körper sowie seine Bewegungen und räumliche Orientierung eine zentrale Grundlage der Eingabe bilden. In dieser Arbeit wird der Begriff für Interaktionen verwendet, die an reale Handlungen angelehnt sind und die körperliche Präsenz der Nutzer:innen im Raum als wesentlichen Bestandteil der Interaktion begreifen, beispielsweise bei Ansätzen wie Walking-in-Place, bei denen durch Gehen auf der Stelle Navigation ermöglicht wird.
+
 
 \paragraph{Controllerfreie Interaktion}
-Controllerfreie Interaktion beschreibt Interaktionsformen, die ohne zusätzliche Eingabegeräte wie Maus, Tastatur, Gamecontroller oder Ähnliches auskommen. Die Eingabe erfolgt stattdessen direkt über Körperbewegungen, Gesten oder Positionen im Raum. Der Begriff wird in dieser Arbeit insbesondere im Zusammenhang mit kamerabasierter Hand- und Körpererfassung verwendet.
+Controllerfreie Interaktion beschreibt Interaktionsformen, die ohne zusätzliche physische Eingabegeräte wie Maus, Tastatur, Gamecontroller oder Ähnliches auskommen. Die Eingabe erfolgt stattdessen direkt über Körperbewegungen, Gesten oder Positionen im Raum. Der Begriff wird in dieser Arbeit insbesondere im Zusammenhang mit kamerabasierter Hand- und Körpererfassung verwendet.
 
 \paragraph{Mid-Air-Interaktion}
-Mid-Air-Interaktion bezeichnet Eingaben, die durch Hand- oder Armbewegungen frei im Raum ausgeführt werden, ohne dass eine physische Berührungsfläche vorhanden ist. Charakteristisch ist, dass Auswahl, Steuerung und Bestätigung in der Luft erfolgen und damit andere Anforderungen an Präzision, Rückmeldung und Ergonomie entstehen als bei Touch- oder Desktop-Interaktion.
+Mid-Air-Interaktion stellt eine Form körperbasierter Interaktion dar und bezeichnet Eingaben, die durch Hand- oder Armbewegungen frei im Raum ausgeführt werden, ohne dass eine physische Berührungsfläche vorhanden ist. Charakteristisch ist, dass Auswahl, Steuerung und Bestätigung in der Luft erfolgen und damit andere Anforderungen an Präzision, Rückmeldung und Ergonomie entstehen als bei Touch- oder Desktop-Interaktion.
 
 \paragraph{Whole-Body-Interaktion}
-Whole-Body-Interaktion erweitert den Fokus von der Hand auf den gesamten Körper. Darunter werden in dieser Arbeit Interaktionen verstanden, bei denen nicht nur Gesten einzelner Gliedmaßen, sondern auch Haltung, Position, Orientierung oder Bewegung des gesamten Körpers als Eingabe genutzt werden.
+Whole-Body-Interaktion stellt dabei eine spezifische Ausprägung körperbasierter Interaktion dar, und erweitert den Fokus von der Hand auf den gesamten Körper. Darunter werden in dieser Arbeit Interaktionen verstanden, bei denen nicht nur Gesten einzelner Gliedmaßen, sondern auch Haltung, Position, Orientierung oder Bewegung des gesamten Körpers als Eingabe genutzt werden.
 
 \paragraph{Räumliche Interaktion}
-Räumliche Interaktion bezeichnet Interaktionsformen, bei denen räumliche Eigenschaften wie Position, Orientierung, Distanz und Bewegung im dreidimensionalen Raum eine zentrale Rolle für Eingabe und Rückmeldung spielen. Der Begriff wird in dieser Arbeit als Oberbegriff für Interaktionen verwendet, die in immersiven, projektionsbasierten oder anderweitig räumlich verankerten Umgebungen stattfinden.
+Räumliche Interaktion bezeichnet Interaktionsformen, bei denen räumliche Eigenschaften wie Position, Orientierung, Distanz und Bewegung im dreidimensionalen Raum eine zentrale Rolle für Eingabe und Rückmeldung spielen. Der Begriff wird in dieser Arbeit als Oberbegriff für Interaktionen verwendet, die in immersiven oder projektionsbasierten Umgebungen stattfinden.
 
 \paragraph{Radiales Menü und Marking-Menu}
-Ein radiales Menü ist eine Menüstruktur, bei der Einträge kreisförmig um einen zentralen Punkt angeordnet sind. Als Marking-Menu wird in dieser Arbeit eine Variante radialer Menüs bezeichnet, bei der die Auswahl über gerichtete Gestenbewegungen ausgehend vom Zentrum erfolgt. Der Begriff wird insbesondere für die im Rahmen dieser Arbeit entwickelte menübasierte Interaktion verwendet.
+Ein radiales Menü ist eine Menüstruktur, bei der Einträge kreisförmig um einen zentralen Punkt angeordnet sind. Als Marking-Menu wird in dieser Arbeit eine Variante radialer Menüs bezeichnet, bei der die Auswahl über gerichtete Gestenbewegungen ausgehend vom Zentrum erfolgt. 
 
 \paragraph{Atmosphärische Interaktion}
 Atmosphärische Interaktion bezeichnet in dieser Arbeit Interaktionsformen, die nicht primär auf die Manipulation einzelner Objekte, sondern auf die Veränderung der Wahrnehmungs- und Erlebnisqualität eines Raums abzielen. Dazu zählen beispielsweise Eingriffe in Licht, Audio, Vibration oder andere sensorische Parameter, die die Atmosphäre einer Szene beeinflussen.
 
 \paragraph{Discoverability und Guessability}
-Discoverability bezeichnet die Erkennbarkeit verfügbarer Interaktionsmöglichkeiten, während Guessability die Fähigkeit beschreibt, Bedeutung und Ausführung einer Interaktion ohne vorherige Einweisung korrekt zu erschließen. Beide Konzepte werden in dieser Arbeit genutzt, um Herausforderungen gestenbasierter Interaktion zu beschreiben.
+Discoverability bezeichnet die Erkennbarkeit verfügbarer Interaktionsmöglichkeiten, während Guessability die Fähigkeit beschreibt, Bedeutung und Ausführung einer Interaktion ohne vorherige Einweisung korrekt zu erschließen. Beide Konzepte werden in dieser Arbeit genutzt, um Herausforderungen gestenbasierter Interaktion zu beschreiben \parencite{wobbrock2005discoverability}.
 
 \paragraph{Quasi-modaler Interaktionszustand}
-Ein quasi-modaler Interaktionszustand bezeichnet einen Zustand, in dem Interaktionen nur dann möglich sind, wenn eine bestimmte Aktivierungshandlung ausgeführt oder aufrechterhalten wird, beispielsweise das Halten einer Aktivierungsgeste, bevor weitere Eingaben registriert werden. In dieser Arbeit wird der Begriff für Mechanismen verwendet, die eine bewusste Trennung zwischen alltäglicher Bewegung und eigentlicher Interaktion schaffen sollen.
+Ein quasi-modaler Interaktionszustand bezeichnet einen Zustand, in dem Interaktionen nur dann möglich sind, wenn eine bestimmte Aktivierungshandlung ausgeführt oder aufrechterhalten wird, beispielsweise das Halten einer Aktivierungsgeste, bevor weitere Eingaben registriert werden \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays}. In dieser Arbeit wird der Begriff für Mechanismen verwendet, die eine bewusste Trennung zwischen alltäglicher Bewegung und eigentlicher Interaktion schaffen sollen.
 
 \clearpage
 \include{related-work}
@@ -198,14 +200,15 @@ Ein quasi-modaler Interaktionszustand bezeichnet einen Zustand, in dem Interakti
 \appendix
 \section*{Anhang}
 
-\begin{landscape}
-\begin{figure}[p]
-    \centering
-    \includegraphics[width=\linewidth]{content/images/anwendungsfallanalyse.png}
-    \caption{Übersicht über analysierte Anwendungsszenarien}
-    \label{fig:anwendungsszenarien}
-\end{figure}
-\end{landscape}
+\include{szenarien-tabelle}
+%\begin{landscape}
+%\begin{figure}[p]
+%    \centering
+%    \includegraphics[width=\linewidth]{content/images/anwendungsfallanalyse.png}
+%    \caption{Übersicht über analysierte Anwendungsszenarien}
+%    \label{fig:anwendungsszenarien}
+%\end{figure}
+%\end{landscape}
 
 %\begin{landscape}
 %\begin{figure}[p]

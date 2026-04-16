@@ -1,4 +1,5 @@
-\begin{longtable}{p{0.03\linewidth} p{0.27\linewidth} p{0.65\linewidth}}
+\begin{longtable}{p{0.03\linewidth} p{0.27\linewidth}
+    >{\raggedright\arraybackslash}p{0.65\linewidth}}
     \caption{Übersicht untersuchter Interaktionsansätze im MIR} \label{tab:interaktionsansatz} \\
 
     \toprule
@@ -18,8 +19,86 @@
     \bottomrule
     \endlastfoot
 
+    % --- NÄCHSTER EINTRAG ---
+    1   & \textbf{Name} & Administrative Steuerung der Lautstärke, Helligkeit, Virbationsintensität \\
+        & \textbf{Beschreibung} & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen)  \\
+        & \textbf{Interaktionsmodus} & Explizit \\
+        & \textbf{Interaktionstechnik} & Selektion \\
+        & \textbf{Inhaltstyp} & Alle \\
+        & \textbf{Technologien} & 270° Visuals, 360° Sound, Bodenvibration \\
+        & \textbf{Zweck/Unterkategorie} & Alle \\
+        & \textbf{Interaktionshardware} & Kamera zur Gestenerkennung \\
+        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
+        & \textbf{Eignung MIR} & Sehr geeignet, da es für alle Szenarien anwendbar ist. Administratoren sind losgelöst von Tastatur und Maus und können im MIR Einfluss der Änderungen wahrnehmen. \\
+        \midrule
+
+    % --- NÄCHSTER EINTRAG ---
+    2   & \textbf{Name} & Präsentationssteuerung \\
+        & \textbf{Beschreibung} & Steuerung von Videomaterial, zum Beispiel pausieren, fortsetzen oder vorspulen, durch Gesten (zum Beispiel Cursor auf Playbutton navigeren) \\
+        & \textbf{Interaktionsmodus} & Explizit \\
+        & \textbf{Interaktionstechnik} & Selektion \\
+        & \textbf{Inhaltstyp} & Vorgerenderter Content \\
+        & \textbf{Technologien} & 360° Sound, 270° Visuals \\
+        & \textbf{Zweck/Unterkategorie} & Alle \\
+        & \textbf{Interaktionshardware} & Kamera zur Gestenerkennung \\
+        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
+        & \textbf{Eignung MIR} & Besonders sinnvoll für narrative, vorgerenerte Inhalte; sonst eingeschränkt, da man aktiv die Immersion stoppt  \\
+        \midrule
+
+    % --- EINTRAG ---
+    3   & \textbf{Name} & Objekte markieren und annotieren \\
+        & \textbf{Beschreibung} & Nahe Inhalte oder projizierte Objekte können direkt markiert, hervorgehoben oder annotiert werden, um bestimmte Aspekte visuell zu betonen. Definierte Gesten ermöglichen ansetzen und absetzen eines imaginären Stifts zur Annotation \\
+        & \textbf{Interaktionsmodus} & Explizit \\
+        & \textbf{Interaktionstechnik} & Manipulation \\
+        & \textbf{Inhaltstyp} & Vorgerenderter Inhalt, live gerenderter Inhalt, KI-generierter Inhalt \\
+        & \textbf{Technologien} & 270° Visuals \\
+        & \textbf{Zweck/Unterkategorie} & Lehrszenario \\
+        & \textbf{Interaktionshardware} & Kamera zur Gestenerkennung , Sensor (UWB)\\
+        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
+        & \textbf{Eignung MIR} & Sehr sinnvoll, insbesondere für lehrbezogene Anwendungen, da visuelle Hervorhebungen didaktische Inhalte unterstützen können. Der Ansatz ist jedoch stark an spezifische Anwendungsfälle gebunden. \\
+        \midrule
+
+        % --- EINTRAG ---
+    4  & \textbf{Name} & Schubbasierte Navigation \\
+        & \textbf{Beschreibung} & Eine Schubbewegung in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
+        & \textbf{Interaktionsmodus} & Explizit \\
+        & \textbf{Interaktionstechnik} & Navigation \\
+        & \textbf{Inhaltstyp} & Live gerenderter Inhalt \\
+        & \textbf{Technologien} & 270° Visuals \\
+        & \textbf{Zweck/Unterkategorie} & Simulation, atmosphärisches Szenario \\
+        & \textbf{Interaktionshardware} & Gestenkamera, Sensor (UWB) \\
+        & \textbf{Interaktionssteuerung} & Bewegung im Raum, Geste \\
+        & \textbf{Eignung MIR} & Eher mäßig geeignet, da die Bewegungslänge schwer dosierbar ist und die Interaktion nur eingeschränkt natürlichen Bewegungsmustern entspricht. \\
+        \midrule
+
+    % --- EINTRAG ---
+    5  & \textbf{Name} & Navigation durch Gehen auf der Stelle \\
+        & \textbf{Beschreibung} & Das Gehen auf der Stelle am Bereich einer Wand in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
+        & \textbf{Interaktionsmodus} & Explizit \\
+        & \textbf{Interaktionstechnik} & Navigation \\
+        & \textbf{Inhaltstyp} & Live gerenderter Inhalt \\
+        & \textbf{Technologien} & 270° Visuals \\
+        & \textbf{Zweck/Unterkategorie} & Simulation, atmosphärisches Szenario \\
+        & \textbf{Interaktionshardware} & Gestenkamera, Sensor (UWB) \\
+        & \textbf{Interaktionssteuerung} & Bewegung im Raum, Geste \\
+        & \textbf{Eignung MIR} & Vergleichsweise gut geeignet, da die Fortbewegung intuitiver wirkt als bei symbolischen Gesten und leichter kontrollierbar ist: Die Bewegung endet, sobald die Nutzer:innen stehen bleiben. \\
+        \midrule
+
+    % --- EINTRAG ---
+    6  & \textbf{Name} & Aktivierung von Interaktion \\
+        & \textbf{Beschreibung} & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (zum Beispiel Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden. \\
+        & \textbf{Interaktionsmodus} & Explizit \\
+        & \textbf{Interaktionstechnik} & Selektion \\
+        & \textbf{Inhaltstyp} & Alle \\
+        & \textbf{Technologien} & Alle \\
+        & \textbf{Zweck/Unterkategorie} & Alle \\
+        & \textbf{Interaktionshardware} & Kamera für Gestenerkennung, Sensor (UWB) \\
+        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
+        & \textbf{Eignung MIR} & Sehr sinnvoll, kann mit nahezu jeder Art der expliziten Interaktion kombiniert werden. \\
+        \midrule
+
 % --- EINTRAG ---
-    1   & \textbf{Name} & Zusatzinformationen anzeigen \\
+    7   & \textbf{Name} & Zusatzinformationen anzeigen \\
         & \textbf{Beschreibung} & Durch Auslösen eines Events (beispielsweise Zeigen auf Objekt oder näheres Herantreten) werden zusätzliche Informationen zu Objekten oder Umgebungen angezeigt. \\
         & \textbf{Interaktionsmodus} & Explizit \\
         & \textbf{Interaktionstechnik} & Selektion \\
@@ -31,34 +110,8 @@
         & \textbf{Eignung MIR} & Nutzbar für Smart Factory, OP; Je nach Szenario sinnvoll, beispielsweise in Lehrszenarien, um selbstständig Zusatzinformationen zu erhalten  \\
     \midrule
 
-% --- NÄCHSTER EINTRAG ---
-    2   & \textbf{Name} & Administrative Steuerung der Lautstärke, Helligkeit, Virbationsintensität \\
-        & \textbf{Beschreibung} & Einstellungsmöglichkeit von globaler Lautstärke, Helligkeit und Vibrationsintensität (denkbar mit Integration von lokaler Aktivierung/Deaktivierung von Licht- oder Soundquellen)  \\
-        & \textbf{Interaktionsmodus} & Explizit \\
-        & \textbf{Interaktionstechnik} & Selektion \\
-        & \textbf{Inhaltstyp} & Alle \\
-        & \textbf{Technologien} & 270° Visuals, 360° Sound, Bodenvibration \\
-        & \textbf{Zweck/Unterkategorie} & Alle \\
-        & \textbf{Interaktionshardware} & Kamera zur Gestenerkennung \\
-        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
-        & \textbf{Eignung MIR} & Sehr geeignet, da es für alle Szenarien anwendbar ist. Administratoren sind losgelöst von Tastatur und Maus und können im MIR Einfluss der Änderungen wahrnehmen. \\
-    \midrule
-
-% --- NÄCHSTER EINTRAG ---
-    3   & \textbf{Name} & Präsentationssteuerung \\
-        & \textbf{Beschreibung} & Steuerung von Videomaterial, zum Beispiel pausieren, fortsetzen oder vorspulen, durch Gesten (zum Beispiel Cursor auf Playbutton navigeren) \\
-        & \textbf{Interaktionsmodus} & Explizit \\
-        & \textbf{Interaktionstechnik} & Selektion \\
-        & \textbf{Inhaltstyp} & Vorgerenderter Content \\
-        & \textbf{Technologien} & 360° Sound, 270° Visuals \\
-        & \textbf{Zweck/Unterkategorie} & Alle \\
-        & \textbf{Interaktionshardware} & Kamera zur Gestenerkennung \\
-        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
-        & \textbf{Eignung MIR} & Besonders sinnvoll für narrative, vorgerenerte Inhalte; sonst eingeschränkt, da man aktiv die Immersion stoppt  \\
-    \midrule
-
 % --- EINTRAG ---
-    4   & \textbf{Name} & Virtuelle Objekte manipulieren \\
+    8   & \textbf{Name} & Virtuelle Objekte manipulieren \\
         & \textbf{Beschreibung} & Nutzer:innen können virtuelle Objekte drehen, skalieren oder verändern (zum Beispiel vergrößern/verkleinern oder visuelle Eigenschaften anpassen), indem sie auf das gewünschte Objekt zeigen und es mit Pinch Gesten über Drehung und Zusammen- bzw. Auseinanderbewegen der Hände das Objekt manipulieren. \\
         & \textbf{Interaktionsmodus} & Explizit \\
         & \textbf{Interaktionstechnik} & Manipulation \\
@@ -71,7 +124,7 @@
     \midrule
 
 % --- EINTRAG ---
-    5   & \textbf{Name} & Anwendungsfallspezifische Ereignisse aktivieren \\
+    9   & \textbf{Name} & Anwendungsfallspezifische Ereignisse aktivieren \\
         & \textbf{Beschreibung} & Durch Herantreten an vorausgewählte Interaktionsobjekte innerhalb der Projektion können szenariospezifische Ereignisse ausgelöst werden, beispielsweise das Hervorlocken von Tieren, das Starten oder Stoppen von Maschinen, das Öffnen von Türen oder das Verändern der Tageszeit. \\
         & \textbf{Interaktionsmodus} & Explizit \\
         & \textbf{Interaktionstechnik} & Selektion \\
@@ -84,7 +137,7 @@
     \midrule
 
 % --- EINTRAG ---
-    6   & \textbf{Name} & Start der Anwendung \\
+    10   & \textbf{Name} & Start der Anwendung \\
         & \textbf{Beschreibung} & Das immersive Szenario startet automatisch, sobald die Interaktionsfläche betreten wird. \\
         & \textbf{Interaktionsmodus} & Implizit \\
         & \textbf{Interaktionstechnik} & Selektion \\
@@ -97,7 +150,7 @@
     \midrule
 
 % --- EINTRAG ---
-    7   & \textbf{Name} & Darstellungsmodi \\
+    11   & \textbf{Name} & Darstellungsmodi \\
         & \textbf{Beschreibung} & Unterschiedliche Darstellungsmodi, beispielsweise eine Röntgenansicht, können zur inhaltlichen Unterstützung zugeschaltet werden, beispielsweise mit Swipe-Gesten zum Wechseln der Ansicht \\
         & \textbf{Interaktionsmodus} & Explizit \\
         & \textbf{Interaktionstechnik} & Selektion \\
@@ -110,7 +163,7 @@
     \midrule
 
 % --- EINTRAG ---
-    8   & \textbf{Name} & Perspektivwechsel \\
+    12   & \textbf{Name} & Perspektivwechsel \\
         & \textbf{Beschreibung} & Nutzende können zwischen verschiedenen festen Blickpunkten oder Kameraperspektiven wechseln, beispielsweise mit Swipe-Geste, die zur nächsten definierten Perspektive wechselt. \\
         & \textbf{Interaktionsmodus} & Explizit \\
         & \textbf{Interaktionstechnik} & Navigation \\
@@ -123,46 +176,7 @@
     \midrule
 
 % --- EINTRAG ---
-    9   & \textbf{Name} & Objekte markieren und annotieren \\
-        & \textbf{Beschreibung} & Nahe Inhalte oder projizierte Objekte können direkt markiert, hervorgehoben oder annotiert werden, um bestimmte Aspekte visuell zu betonen. Definierte Gesten ermöglichen ansetzen und absetzen eines imaginären Stifts zur Annotation \\
-        & \textbf{Interaktionsmodus} & Explizit \\
-        & \textbf{Interaktionstechnik} & Manipulation \\
-        & \textbf{Inhaltstyp} & Vorgerenderter Inhalt, live gerenderter Inhalt, KI-generierter Inhalt \\
-        & \textbf{Technologien} & 270° Visuals \\
-        & \textbf{Zweck/Unterkategorie} & Lehrszenario \\
-        & \textbf{Interaktionshardware} & Kamera zur Gestenerkennung , Sensor (UWB)\\
-        & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
-        & \textbf{Eignung MIR} & Sehr sinnvoll, insbesondere für lehrbezogene Anwendungen, da visuelle Hervorhebungen didaktische Inhalte unterstützen können. Der Ansatz ist jedoch stark an spezifische Anwendungsfälle gebunden. \\
-    \midrule
-
-% --- EINTRAG ---
-    10  & \textbf{Name} & Schubbasierte Navigation \\
-        & \textbf{Beschreibung} & Eine Schubbewegung in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
-        & \textbf{Interaktionsmodus} & Explizit \\
-        & \textbf{Interaktionstechnik} & Navigation \\
-        & \textbf{Inhaltstyp} & Live gerenderter Inhalt \\
-        & \textbf{Technologien} & 270° Visuals \\
-        & \textbf{Zweck/Unterkategorie} & Simulation, atmosphärisches Szenario \\
-        & \textbf{Interaktionshardware} & Gestenkamera, Sensor (UWB) \\
-        & \textbf{Interaktionssteuerung} & Bewegung im Raum, Geste \\
-        & \textbf{Eignung MIR} & Eher mäßig geeignet, da die Bewegungslänge schwer dosierbar ist und die Interaktion nur eingeschränkt natürlichen Bewegungsmustern entspricht. \\
-    \midrule
-
-% --- EINTRAG ---
-    11  & \textbf{Name} & Navigation durch Gehen auf der Stelle \\
-        & \textbf{Beschreibung} & Das Gehen auf der Stelle am Bereich einer Wand in eine bestimmte Richtung bewirkt eine Verschiebung der virtuellen Umgebung. \\
-        & \textbf{Interaktionsmodus} & Explizit \\
-        & \textbf{Interaktionstechnik} & Navigation \\
-        & \textbf{Inhaltstyp} & Live gerenderter Inhalt \\
-        & \textbf{Technologien} & 270° Visuals \\
-        & \textbf{Zweck/Unterkategorie} & Simulation, atmosphärisches Szenario \\
-        & \textbf{Interaktionshardware} & Gestenkamera, Sensor (UWB) \\
-        & \textbf{Interaktionssteuerung} & Bewegung im Raum, Geste \\
-        & \textbf{Eignung MIR} & Vergleichsweise gut geeignet, da die Fortbewegung intuitiver wirkt als bei symbolischen Gesten und leichter kontrollierbar ist: Die Bewegung endet, sobald die Nutzer:innen stehen bleiben. \\
-    \midrule
-
-% --- EINTRAG ---
-    12  & \textbf{Name} & Audiointeraktivität \\
+    13  & \textbf{Name} & Audiointeraktivität \\
         & \textbf{Beschreibung} & Geräusche einzelner Objekte oder Zonen verändern sich in Abhängigkeit von der Position der Nutzer:innen, etwa wenn beim Annähern an eine Maschine ein Warnsignal hörbar wird. \\
         & \textbf{Interaktionsmodus} & Implizit \\
         & \textbf{Interaktionstechnik} & Manipulation \\
@@ -175,7 +189,7 @@
     \midrule
 
 % --- EINTRAG ---
-    13  & \textbf{Name} & Positionsbasierte Vibrationszuteilung \\
+    14  & \textbf{Name} & Positionsbasierte Vibrationszuteilung \\
         & \textbf{Beschreibung} & Bestimmte Raumbereiche oder virtuelle Objekte werden mit vibrotaktilen Rückmeldungen verknüpft, deren Intensität sich abhängig von der Position der Nutzer:innen verändert. (zum Beispiel Wasserfall wird dargestellt und Bereiche, die nah an dieser Visualisierung liegen, erhalten dauerhaft stärkere Vibration) \\
         & \textbf{Interaktionsmodus} & Implizit \\
         & \textbf{Interaktionstechnik} & Manipulation \\
@@ -188,7 +202,7 @@
     \midrule
 
 % --- EINTRAG ---
-    14  & \textbf{Name} & Ereignisbasierte Vibration \\
+    15  & \textbf{Name} & Ereignisbasierte Vibration \\
         & \textbf{Beschreibung} & Bestimmte Aktionen oder Gesten, etwa ein Stampfen, lösen gezielt eine vibrotaktile Rückmeldung aus. \\
         & \textbf{Interaktionsmodus} & Explizit \\
         & \textbf{Interaktionstechnik} & Manipulation \\
@@ -200,17 +214,5 @@
         & \textbf{Eignung MIR} & Eher wenig sinnvoll, da der Mehrwert gegenüber einer rein atmosphärischen Rückmeldung unklar bleibt und die Nutzer:innen hierdurch kaum inhaltlich relevante Kontrolle über das Szenario erhalten. \\
     \midrule
 
-    % --- EINTRAG ---
-    15  & \textbf{Name} & Aktivierung von Interaktion \\
-    & \textbf{Beschreibung} & Nutzer:innen wechseln durch Annäherung oder eine initiale Geste (zum Beispiel Handheben) in einen Interaktionsmodus, um unbeabsichtigte Eingaben zu vermeiden. \\
-    & \textbf{Interaktionsmodus} & Explizit \\
-    & \textbf{Interaktionstechnik} & Selektion \\
-    & \textbf{Inhaltstyp} & Alle \\
-    & \textbf{Technologien} & Alle \\
-    & \textbf{Zweck/Unterkategorie} & Alle \\
-    & \textbf{Interaktionshardware} & Kamera für Gestenerkennung, Sensor (UWB) \\
-    & \textbf{Interaktionssteuerung} & Geste, Bewegung im Raum \\
-    & \textbf{Eignung MIR} & Sehr sinnvoll, kann mit nahezu jeder Art der expliziten Interaktion kombiniert werden. \\
-    \midrule
 
 \end{longtable}
