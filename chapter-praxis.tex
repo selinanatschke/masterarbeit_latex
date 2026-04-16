@@ -41,20 +41,6 @@ Aktionen, die aus der Menüinteraktion entstehen, werden anschließend über ein
 
 Abbildung~\ref{fig:handtracking_pipeline_diagram} zeigt die grundlegende Verarbeitungspipeline des Systems von der Kameradatenerfassung bis zur Übertragung der Interaktionsereignisse an die Zielanwendung.
 
-% @startuml
-% left to right direction
-% component "Kamera" as Camera
-% component "Handtracking\n(MediaPipe)" as Tracking
-% component "Gestenerkennung\n& Cursorberechnung" as Cursor
-% component "UI-Overlay\n(Marking-Menu, Slider)" as UI
-% component "WebSocket\nKommunikation" as WS
-% component "Zielanwendung/Server" as App
-% Camera --> Tracking
-% Tracking --> Cursor
-% Cursor --> UI
-% UI --> WS
-% WS --> App
-% @enduml
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.99\linewidth]{content/diagrams/handtracking_pipeline_diagram.png}
@@ -76,27 +62,6 @@ Neben dieser linearen Verarbeitungskette ist das System in mehrere funktionale K
 
 Abbildung~\ref{fig:component_diagram} zeigt diese Komponenten sowie deren Interaktionen innerhalb des Systems.
 
-%@startuml
-%skinparam componentStyle rectangle
-%package "Frontend (JavaScript / Electron)" {
-%    component "UI-Steuerung und Canvas Rendering \n(Marking Menu und Slider)" as UI
-%    component "Handerkennung mittels Google MediaPipe" as Hand
-%    component "Gestenerkennung und \nCursorberechnung" as Cursor
-%    component "Datenmodell mit Menüstruktur" as Data
-%}
-%package "Externe Systeme" {
-%    component "Zielanwendung /\nServer" as Server
-%}
-%package "Hardware" {
-%    component "Kamera" as Camera
-%}
-%Camera --> Hand
-%Hand --> Cursor
-%Cursor --> UI
-%Data --> UI
-%UI --> Server : Websocket
-%Server --> Data : Websocket
-%@enduml
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{content/diagrams/component_diagram.png}
@@ -138,7 +103,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie i
     \centering
     \includegraphics[width=\linewidth]
     {content/images/open_palm_gesture_image.png}
-    \caption{Open Palm Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite, sowie Spitzen von Daumen und kleinem Finger}
+    \caption{Open-Palm-Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite, sowie Spitzen von Daumen und kleinem Finger}
     \label{fig:openpalm_gesture_image}
 \end{subfigure}
 \hfill
@@ -146,7 +111,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie i
     \centering
     \includegraphics[width=\linewidth]
     {content/images/grab_gesture_image.png}
-    \caption{Grab Geste nutzt den Abstand zwischen allen Fingerspitzen (außer Daumen) und der Handballenunterseite}
+    \caption{Grab-Geste nutzt den Abstand zwischen allen Fingerspitzen (außer Daumen) und der Handballenunterseite}
     \label{fig:grab_gestute_image}
 \end{subfigure}
 \hfill
@@ -154,7 +119,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie i
     \centering
     \includegraphics[width=\linewidth]
     {content/images/pinch_gesture_image.png}
-    \caption{Pinch Geste nutzt den Abstand zwischen der Zeigefingerspitze und Daumenspitze}
+    \caption{Pinch-Geste nutzt den Abstand zwischen der Zeigefingerspitze und Daumenspitze}
     \label{fig:pinch_gesture_image}
 \end{subfigure}
 \caption{Verwendete Gesten und die jeweils zur heuristischen Erkennung herangezogenen Landmarken bzw. Distanzbeziehungen. {\color{red} Sieht das sehr bescheuert aus mit den Punkten? + TODO Pfeile größer oder Bilder Croppen}}
@@ -167,7 +132,7 @@ Der Ablauf der Zustände wurde in Abbildung \ref{fig:state_flow_diagram_alt} vis
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{content/diagrams/state_flow_diagram_alt}
+    \includegraphics[width=0.8\linewidth]{content/diagrams/state_flow_diagram_alt}
     \caption{Visualisierung der Interaktionszustände.}
     \label{fig:state_flow_diagram_alt}
 \end{figure}
@@ -307,13 +272,20 @@ Die Funktion gibt ein Zustandsobjekt mit den relevanten Interaktionsparametern z
 \begin{lstlisting}[language=JavaScript,caption={Beispielhafte Struktur eines Interaktionszustands pro Menüebene},label={lst:levelstates}]
 function createLevelState() {
     return {
-        hover: null,            // Menuelement, das gerade gehovert wird
-        selected: null,         // Menuelement, das gerade ausgewaehlt ist
-        dwellStart: null,       // Zeitpunkt, zu dem Dwell gestartet ist
-        dwellProgress: 0,       // Fortschritt des Dwells in Prozent
-        dwellTriggered: false,  // Gibt an, ob dwell bereits getriggert wurde
-        previousHover: null,    // Menuelement, das im letzten Frame gehovert wurde
-        wasGrabbing: false      // Gibt an, ob Grab-Geste im letzten Frame ausgeloest war
+        // Menuelement, das gerade gehovert wird
+        hover: null,
+        // Menuelement, das gerade ausgewaehlt ist
+        selected: null,
+        // Zeitpunkt, zu dem Dwell gestartet ist
+        dwellStart: null,
+        // Fortschritt des Dwells in Prozent
+        dwellProgress: 0,
+        // Gibt an, ob dwell bereits getriggert wurde
+        dwellTriggered: false,
+        // Menuelement, das im letzten Frame gehovert wurde
+        previousHover: null,
+        // Gibt an, ob Grab-Geste im letzten Frame ausgeloest war
+        wasGrabbing: false
     };
 }
 \end{lstlisting}
@@ -460,8 +432,8 @@ Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in A
 
 % WIP Diagramm:
 %@startuml
-%actor User
-%participant UI
+%actor User as "Nutzer:in"
+%participant UI as "Interaktionssystem/Overlay"
 %participant Zielanwendung as "Zielanwendung/Server"
 %
 %== Verbindungsaufbau==
@@ -510,9 +482,10 @@ Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in A
 %
 %@enduml
 
+
 \begin{figure}
 \centering
-\includegraphics[width=0.8\linewidth]{content/diagrams/communication_flow.png}
+\includegraphics[width=0.95\linewidth]{content/diagrams/communication_flow.png}
 \caption{Ablauf der WebSocket-basierten Eventkommunikation zwischen Overlay und Zielanwendung. Nach der Initialisierung werden Zustandsinformationen wie Menüstruktur oder Parameterwerte an das Overlay übertragen.  Während der Interaktion sendet das Overlay abstrahierte Ereignisse an die Zielanwendung, welche diese verarbeitet und bei Bedarf synchronisierte Werte zur Bestätigung zurückgibt.}
 \label{fig:communication_flow}
 \end{figure}
@@ -527,7 +500,7 @@ Diese Interaktionsform wurde im Kontext der in Kapitel~\ref{sec:analyse} untersu
 Ziel ist es, Nutzer:innen eine intuitive Kontrolle über die Wiedergabe zu ermöglichen, einschließlich Anhalten, Fortsetzen sowie Vor- und Zurückspulen des Materials.
 
 Hierfür wurde ein spezieller Slider für den Zieltyp \texttt{presentation} implementiert, der, anders als die Defaultslider statt einer Prozentanzeige sowohl die Gesamtdauer des Videos als auch die aktuelle Wiedergabeposition abbildet. 
-Während der Wiedergabe empfängt das UI kontinuierlich Zeitstempel von der angebundenen Zielanwendung. 
+Während der Wiedergabe empfängt die Benutzungsoberfläche kontinuierlich Zeitstempel von der angebundenen Zielanwendung.
 Diese werden genutzt, um den Fortschritt des Sliders dynamisch zu aktualisieren.
 
 Ergänzend zum Slider enthält das entsprechende Menüelement eine Button-Interaktion zur Steuerung der Wiedergabe. 

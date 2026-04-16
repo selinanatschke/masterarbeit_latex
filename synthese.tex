@@ -48,16 +48,17 @@ Die betrachteten Ansätze umfassen objekt- und sensorbezogene, kamerabasierte so
 Dazu zählen unter anderem NFC-basierte Interaktionen mit physischen Objekten, kamerabasierte Markersysteme, UI-basierte Eingaben, gestenbasierte Interaktionen sowie positionsbasierte Steuerung durch Bewegung im Raum. Eine umfassende Übersicht der im Explorationsprozess betrachteten Möglichkeiten ist im Anhang in Abbildung~\ref{tab:interaktionsansatz} dargestellt.
 
 
-Zur Strukturierung des Designraums wurden die Interaktionsansätze entlang zweier Dimensionen betrachtet: zum einen hinsichtlich ihres Explizitheitsgrades (implizit vs. explizit), zum anderen entlang grundlegender Interaktionsaufgaben räumlicher Systeme, nämlich Selektion, Manipulation und Navigation, wie sie in Abschnitt~\ref{sec:rw_spatial} eingeführt wurden.
+Zur Strukturierung des Designraums wurden die Interaktionsansätze entlang zweier Dimensionen betrachtet: zum einen hinsichtlich ihres Explizitheitsgrades (implizit vs. explizit), zum anderen entlang der in \ref{sec:rw_spatial} beschriebenen Interaktionsaufgaben: Selektion, Manipuilation sowie Navigation.
 Diese Systematisierung ermöglicht eine vergleichende Einordnung der unterschiedlichen Ansätze und unterstützt die Identifikation geeigneter Interaktionsparadigmen.
 
-Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im Anhang dargestellt (vgl. Tab.~\ref{tab:interaktionsansatz}). Im Folgenden wird eine verdichtete Auswahl jener Ansätze präsentiert, die für die Entwicklung der nachfolgenden Konzepte als besonders relevant erachtet wurden (Tab. \ref{tab:interaktionsmoeglichkeiten}).
+
+Eine vollständige Übersicht aller identifizierten Interaktionsansätze ist im Anhang dargestellt (vgl. Tab.~\ref{tab:interaktionsansatz}). Tabelle~\ref{tab:interaktionsmoeglichkeiten} zeigt eine verdichtete Darstellung ausgewählter Interaktionsmöglichkeiten aus diesem Gesamtraum, die im weiteren Verlauf als Referenz für die Analyse und Konzeptentwicklung herangezogen werden.
 
 \begin{table}[H]
     \centering
     \small
     \caption{Verdichtete Übersicht über identifizierte Interaktionsmöglichkeiten}
-    \begin{tabular}{p{0.03\linewidth} p{0.27\linewidth} >{\raggedright\arraybackslash}p{0.1\linewidth}
+    \begin{tabular}{p{0.03\linewidth} >{\raggedright\arraybackslash}p{0.27\linewidth} >{\raggedright\arraybackslash}p{0.1\linewidth}
     >{\raggedright\arraybackslash}p{0.5\linewidth}}
         \toprule
         \textbf {Nr.} & \textbf{Interaktions\-möglichkeit} & \textbf{Art} & \textbf{Beschreibung} \\
@@ -202,18 +203,19 @@ Im Gegensatz zu klassischen Eingabegeräten wie Maus oder Controller entsteht da
 {\color{red} Ist es störend, dass ich hier von der Menüpositionierung spreche? Aber eigentlich ist es ja wichtig um zu verstehen, wieso die Cursorposition so gewählt wird + als Kontext für den Interaktionsraum}
 Das Menü und der Cursor werden standardmäßig nicht angezeigt, sondern muss durch Nutzer:innen mit einer Aktivierungsgeste (vgl. Abbildung \ref{fig:openpalm_gesture_image_no_marking}) erst aktiviert werden. Dies verhindert die versehentliche Auslösung der Menüinteraktion (vgl. Abschnitt~\ref{sec:rw_midair}), sodass die Immersion der Zielanwendung nicht unbeabsichtigt unterbrochen wird. Nach erfolgreicher Aktivierung wird das Menü an einer festen Position im Raum eingeblendet, standardmäßig in der Mitte des aktiven Bildschirms. Der Cursor wird jedoch initial im Zentrum positioniert, sodass die Interaktion relativ zu diesem Ausgangspunkt erfolgt. Dadurch entsteht ein lokaler Interaktionsraum um die Aktivierungsposition herum (vgl. Abb.~\ref{fig:Interaktionsraum}), der unabhängig von der Körpergröße oder Haltung der Nutzer:innen genutzt werden kann. Diese Gestaltung ermöglicht eine konsistente und ergonomische Interaktion, da Nutzer:innen das Menü aus unterschiedlichen Positionen im Raum heraus aktivieren können, ohne dass die relative Erreichbarkeit der Menüelemente beeinflusst wird. Zugleich adressiert sie die in Abschnitt~\ref{sec:rw_midair}  beschriebenen Ermüdungsprobleme länger gehaltener Mid-Air-Interaktion, da Nutzer:innen selbst bestimmen können, in welcher Haltung die Interaktion am komfortabelsten für sie ist.
 
+% TODO fix
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.27\textwidth}
+    \begin{subfigure}[t]{0.27\textwidth}
         \centering
         \includegraphics[
             width=\linewidth
         ]{content/images/open_palm.jpg}
-        \caption{Aktivierungsgeste}
+        \caption{Aktivierungsgeste: Open-Palm}
         \label{fig:openpalm_gesture_image_no_marking}
     \end{subfigure}
     \hspace{0.5cm}
-    \begin{subfigure}{0.65\textwidth}
+    \begin{subfigure}[t]{0.65\textwidth}
         \centering
         \includegraphics[
             width=\linewidth
@@ -221,7 +223,7 @@ Das Menü und der Cursor werden standardmäßig nicht angezeigt, sondern muss du
         \caption{Schematische Darstellung des Interaktionsraums}
         \label{fig:interaktionsraum}
     \end{subfigure}
-    \caption{Darstellung der Aktivierungsgeste und des lokalen Interaktionsraums}
+    \caption{Die Open-Palm-Geste aktiviert das menübasierte Interaktionssystem und definiert zugleich einen lokalen Interaktionsraum, in dem die nachfolgende Handbewegung relativ zum Aktivierungspunkt interpretiert wird.}
     \label{fig:interaction_start}
 \end{figure}
 
@@ -232,7 +234,7 @@ Die Hand fungiert somit als zentraler Interaktionsanker, über den Auswahl- und 
 
 \subsubsection{Radiales Menü}
 \label{sec:synthese_radiales_menü}
-Als zentrale Interaktionsschnittstelle wurde ein Marking-Menu als gestanbasierte Variante eines radialen Menüs gewählt. Diese Entscheidung knüpft an die in Abschnitt~\ref{sec:rw_menus} dargestellten Vorteile dieser Menüform für Mid-Air-Interaktion an, insbesondere an kurze Zielwege, gleichmäßige Erreichbarkeit und die Unterstützung motorischen Lernens.
+Als zentrale Interaktionsschnittstelle wurde ein Marking-Menu als gestenbasierte Variante eines radialen Menüs gewählt. Diese Entscheidung knüpft an die in Abschnitt~\ref{sec:rw_menus} dargestellten Vorteile dieser Menüform für Mid-Air-Interaktion an, insbesondere an kurze Zielwege, gleichmäßige Erreichbarkeit und die Unterstützung motorischen Lernens.
 
 {\color{red} TODO: Hier könnte auch abschnitt über Menüpositionierung rein - eher hier oder in Handtracking (?) - meine tendenz handtracking}
 
@@ -276,11 +278,11 @@ Durch die Kombination beider Mechanismen kann das System sowohl Einsteiger als a
 
 \subsubsection{Visuelle Gestaltung und Zustandsrückmeldungen}
 
-Da Mid-Air-Interaktion im Unterschied zu physischen Eingabegeräten keine direkte haptische Rückmeldung bietet, kommt der visuellen Kommunikation von Interaktionszuständen eine zentrale Rolle zu. Das Interaktionssystem sieht daher vor, relevante Zustände wie Fokussierung, Auswahl und laufende Aktivierung sichtbar zu machen. Dadurch soll jederzeit nachvollziehbar bleiben, welche Funktion aktuell adressiert wird und in welchem Zustand sich die Interaktion befindet.
+Da reine Mid-Air-Interaktion im Unterschied zu physischen Eingabegeräten keine direkte haptische Rückmeldung bietet, kommt der visuellen Kommunikation von Interaktionszuständen eine zentrale Rolle zu. Das Interaktionssystem sieht daher vor, relevante Zustände wie Fokussierung, Auswahl und laufende Aktivierung sichtbar zu machen. Dadurch soll jederzeit nachvollziehbar bleiben, welche Funktion aktuell adressiert wird und in welchem Zustand sich die Interaktion befindet.
 
 Diese Form der Rückmeldung ist insbesondere vor dem Hintergrund der in Abschnitt~\ref{sec:rw_midair} beschriebenen Herausforderungen hinsichtlich Präzision, Kontrolle und Fehlinterpretation relevant. Visuelle Hinweise dienen hier nicht nur der Bestätigung erfolgreicher Eingaben, sondern auch der Reduktion von Unsicherheit während der Interaktion.
 
-Es es sinnvoll mehrere visuelle Zustände zu planen, um den aktuellen Interaktionsstatus nachvollziehbar darzustellen. Befindet sich der Cursor über einem Menüsegment, wird dieses visuell hervorgehoben (Hover-Zustand, vgl. Abb. \ref{fig:zustandsvisualisierungen_synthese}, c). Diese Hervorhebung dient als unmittelbare Rückmeldung darüber, welches Menüelement aktuell fokussiert ist.
+Es ist sinnvoll mehrere visuelle Zustände zu planen, um den aktuellen Interaktionsstatus nachvollziehbar darzustellen. Befindet sich der Cursor über einem Menüsegment, wird dieses visuell hervorgehoben (Hover-Zustand, vgl. Abb. \ref{fig:zustandsvisualisierungen_synthese}, c). Diese Hervorhebung dient als unmittelbare Rückmeldung darüber, welches Menüelement aktuell fokussiert ist.
 
 Wird ein Menüeintrag aktiv ausgewählt, durch eine Greifgeste oder durch das Auslösen eines Dwell-Timers, wechselt das entsprechende Segment in einen ausgewählten Zustand (Abb. \ref{fig:zustandsvisualisierungen_synthese}, b), der durch eine deutlichere Farbänderung dargestellt wird.
 
@@ -355,7 +357,7 @@ Verlässt der Cursor sowohl den Menüeintrag als auch das zugehörige Untermenü
         \caption{Cursor ist aus Submenü herausnavigiert, woraufhin sich Submenü geschlossen hat.}
         \label{fig:menu_cursor3}
     \end{subfigure}
-    \caption{Zustandsdarstellungen der Submenü-Sichtbarkeitslogik {\color{red} Braucht man die Visualisierung oder checkt man das auch ohne?}}
+    \caption{Zustandsdarstellungen der Submenü-Sichtbarkeitslogik inklusive Cursor (orange hervorgehoben) {\color{red} Braucht man die Visualisierung oder versteht man das auch ohne?}}
     \label{fig:submenu}
 \end{figure}
 
