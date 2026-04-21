@@ -1,7 +1,7 @@
 \section{Praktische Umsetzung}
 
 % Einleitung ins Kapitel
-Auf Grundlage der Analyse bestehender Szenarien sowie der Auseinandersetzung mit verwandten Arbeiten wurde ein gestenbasiertes Marking-Menu als zentrales Interaktionsparadigma ausgewählt und im Synthesekapitel konzeptionell ausgearbeitet. Dieses Kapitel beschreibt die praktische Umsetzung dieses Konzepts. Im Vordergrund steht dabei nicht eine spezifische Zielanwendung, sondern ein generisches System, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Die Implementierung wurde daher so aufgebaut, dass Benutzungsoberfläche und Anwendungsanbindung voneinander getrennt sind. Dadurch kann das System unabhängig entwickelt, getestet und prinzipiell in verschiedene Anwendungskontexte integriert werden.
+Auf Grundlage der Analyse bestehender Szenarien sowie der Auseinandersetzung mit verwandten Arbeiten wurde ein gestenbasiertes Marking-Menu als zentrales Interaktionsparadigma ausgewählt und im Abschnitt \ref{sec:synthese} konzeptionell ausgearbeitet. Dieses Kapitel beschreibt die praktische Umsetzung dieses Konzepts. Im Vordergrund steht dabei nicht eine spezifische Zielanwendung, sondern ein generisches System, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Die Implementierung wurde daher so aufgebaut, dass Benutzungsoberfläche und Anwendungsanbindung voneinander getrennt sind. Dadurch kann das System unabhängig entwickelt, getestet und prinzipiell in verschiedene Anwendungskontexte integriert werden.
 
 Zur Veranschaulichung der prototypischen Umsetzung im realen Nutzungskontext zeigt Abbildung~\ref{fig:photos_mir} exemplarische Interaktionssituationen im Multisensorischen Interaktionsraum.
 
@@ -30,7 +30,7 @@ Zur Veranschaulichung der prototypischen Umsetzung im realen Nutzungskontext zei
         \caption{Nutzerin manipuliert Wiedergabezeitpunkt.}
         \label{fig:photo_mir3}
     \end{subfigure}
-    \caption{Nutzerin modifiziert Einstellung mit hilfe von Marking-Menu im MIR. Das ausgewählte Szenario ist das Fußballstadion.}
+    \caption{Nutzerin modifiziert Einstellung mit Hilfe von Marking-Menu im MIR. Das ausgewählte Szenario ist das Fußballstadion.}
     \label{fig:photos_mir}
 \end{figure}
 
@@ -72,7 +72,7 @@ Abbildung~\ref{fig:component_diagram} zeigt diese Komponenten sowie deren Intera
 Die über WebSocket übermittelten Interaktionsereignisse werden von einer angebundenen Zielanwendung empfangen und verarbeitet. 
 Diese Anwendung ist nicht Bestandteil des eigentlichen Interaktionssystems, sondern stellt die Umgebung dar, in der die Interaktionen Wirkung entfalten.
 
-Im Kontext des multisensorischen Interaktionsraums wird hierfür typischerweise die Unreal Engine verwendet, die für die Darstellung der projizierten Inhalte zuständig ist. 
+Im Kontext des multisensorischen Interaktionsraums wird hierfür typischerweise die ``Unreal Engine'' verwendet, eine Echtzeit-3D-Engine zur Darstellung und Steuerung der projizierten Inhalte
 Da die Kommunikation jedoch über eine standardisierte Schnittstelle erfolgt, kann das Interaktionssystem prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. 
 Dieses Vorgehen unterstützt den Anspruch, das System universell einsetzbar und nicht auf ein einzelnes Anwendungsszenario beschränkt zu gestalten (R2).
 
@@ -103,7 +103,7 @@ Neben der Positionsbestimmung erfolgt auch die Erkennung diskreter Gesten, wie i
     \centering
     \includegraphics[width=\linewidth]
     {content/images/open_palm_gesture_image.png}
-    \caption{Open-Palm-Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite, sowie Spitzen von Daumen und kleinem Finger}
+    \caption{Open-Palm-Geste nutzt den Abstand von allen Fingerspitzen (außer Daumen) und der Handballenunterseite, sowie Spitze von Daumen und kleinem Finger}
     \label{fig:openpalm_gesture_image}
 \end{subfigure}
 \hfill
@@ -165,14 +165,14 @@ Zusätzlich zeigt ein Handicon an, ob eine Hand erkannt wurde und welche Geste a
 \begin{subfigure}[t]{0.25\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/hand_with_dwell.png}
-    \caption{Dwell-Kreis, während Aktivierungsgeste erkannt wird}
+    \caption{Dwell-Kreis, wäh-rend Aktivierungsgeste erkannt wird}
     \label{fig:hand_with_dwell}
 \end{subfigure}
 \hspace{0.5cm}
 \begin{subfigure}[t]{0.25\textwidth}
     \centering
     \includegraphics[width=\linewidth]{content/images/hand_with_grab.png}
-    \caption{Dwell-Kreis, während Grab-Geste erkannt wird}
+    \caption{Dwell-Kreis, wäh-rend Grab-Geste erkannt wird}
     \label{fig:hand_with_grab}
 \end{subfigure}
 \hspace{0.5cm}
@@ -243,7 +243,7 @@ Für die konkrete Interaktion ist darüber hinaus entscheidend, wie die aktuelle
 
 
 \subsubsection{Zustandslogik der Menüinteraktion}
-Die Interaktionslogik des Menüs basiert auf einer zustandsbasierten Struktur, die die aktuelle Interaktion der Nutzer:innen mit den Menüelementen abbildet. 
+Die Interaktionslogik des Menüs fußt auf einer zustandsbasierten Struktur, die die aktuelle Interaktion der Nutzer:innen mit den Menüelementen abbildet.
 Für jede aktive Menüebene (Level) wird ein separater Interaktionszustand verwaltet.
 
 Ein solcher Zustand umfasst Informationen über das aktuell vom Cursor fokussierte Element, das bereits ausgewählte Element sowie den Fortschritt eines Dwell-Timers zur automatischen Auswahl.
@@ -297,7 +297,7 @@ Diese Zustandsstruktur bildet die Grundlage für die Auswertung der Nutzerintera
 Da das im Overlay dargestellte radiale Menü nicht statisch implementiert ist, sondern von der Zielanwendung konfiguriert wird, muss es eine definierte Struktur geben, wie das Menü aufgebaut sein darf. Die Struktur des Menüs wird durch eine JSON-basierte Konfiguration beschrieben, die von der Zielanwendung an das Overlay übermittelt wird. Dadurch kann die Menüstruktur dynamisch angepasst werden, ohne Änderungen an der Benutzungsoberfläche selbst vornehmen zu müssen. Das Overlay ist damit ausschließlich für Darstellung und Interaktionslogik verantwortlich.
 
 Die Konfiguration des Menüs definiert sowohl globale Eigenschaften des Menüs, wie beispielsweise den Radius der Hauptmenüebene oder die Größe von Untermenüs, als auch die einzelnen Menüeinträge.
-Ein Menüeintrag kann dabei entweder als Navigationsknoten fungieren, der ein weiteres Untermenü öffnet, oder direkt eine Interaktion auslösen, etwa die Aktivierung eines Buttons oder die Steuerung eines kontinuierlichen Parameters über einen Slider. Dadurch entsteht eine klare Trennung zwischen Navigationsknoten und Aktionsknoten.
+Ein Menüeintrag kann dabei entweder als Navigationsknoten fungieren, der ein weiteres Untermenü öffnet, oder direkt eine Interaktion auslösen, etwa die Aktivierung eines Buttons oder die Steuerung eines kontinuierlichen Parameters über einen Slider. Dadurch entsteht eine klare Trennung zwischen Navigations- und Aktionsknoten.
 
 Die hierarchische Organisation ermöglicht es, mehrere Interaktionsfunktionen innerhalb einer begrenzten Anzahl sichtbarer Menüsegmente bereitzustellen. 
 Während die oberste Ebene zentrale Funktionskategorien enthält, werden detailliertere Steuerungsoptionen innerhalb der entsprechenden Untermenüs zugänglich gemacht.
@@ -395,7 +395,7 @@ value & übertragener Wert & 0.0–1.0, play, pause \\
 id & ID des Menüeintrags & 1, ... \\
 \bottomrule
 \end{tabular}
-\caption{Übersicht über Felder, die in Nachricht gesendet werden.}
+\caption{Übersicht über die Felder, die in einer Nachricht gesendet werden.}
 \label{tab:websocket_message}
 \end{table}
 
@@ -483,15 +483,15 @@ Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in A
 
 \begin{figure}
 \centering
-\includegraphics[width=0.95\linewidth]{content/diagrams/communication_flow.png}
-\caption{Ablauf der WebSocket-basierten Eventkommunikation zwischen Overlay und Zielanwendung. Nach der Initialisierung werden Zustandsinformationen wie Menüstruktur oder Parameterwerte an das Overlay übertragen.  Während der Interaktion sendet das Overlay abstrahierte Ereignisse an die Zielanwendung, welche diese verarbeitet und bei Bedarf synchronisierte Werte zur Bestätigung zurückgibt.}
+\includegraphics[width=0.9\linewidth]{content/diagrams/communication_flow.png}
+\caption{Ablauf der WebSocket-basierten Eventkommunikation zwischen Overlay und Zielanwendung. Nach der Initialisierung werden Zustandsinformationen wie Menüstruktur oder Parameterwerte an das Overlay übertragen. Während der Interaktion sendet das Overlay abstrahierte Ereignisse an die Zielanwendung, welche diese verarbeitet und bei Bedarf synchronisierte Werte zur Bestätigung zurückgibt.}
 \label{fig:communication_flow}
 \end{figure}
 
 
 \subsubsection{Anwendungsfall Präsentationssteuerung}
 {\color{red} TODO: für Button Aktionen nochmal eigenes Kapitel oder hier ok?}
-Für den Anwendungsfall der Präsentationssteuerung ergeben sich besondere Anforderungen an die Interaktionslogik, da sowohl diskrete als auch kontinuierliche Eingaben unterstützt werden müssen. 
+Für den Anwendungsfall der Präsentationssteuerung, und somit für alle Szenarien, die vorgerenderte Inhalte nutzen, ergeben sich besondere Anforderungen an die Interaktionslogik, da sowohl diskrete als auch kontinuierliche Eingaben unterstützt werden müssen.
 Im Gegensatz zu reinen Menüinteraktionen kommen hierbei sowohl Button- als auch Slider-Elemente innerhalb eines Kontexts zum Einsatz.
 
 Diese Interaktionsform wurde im Kontext der in Kapitel~\ref{sec:analyse} untersuchten atmosphärischen Szenarien mit vorgerendertem, narrativem Inhalt entwickelt, beispielsweise für die Steuerung eines Video-Mitschnitts im Fußballstadion. 
@@ -627,7 +627,7 @@ Neben den genannten Herausforderungen zeigt sich auch auf architektonischer Eben
 
 Darüber hinaus ist der aktuelle Prototyp bewusst als explorative Umsetzung zu verstehen und nicht als vollständig ausgereiftes Produktivsystem. Mehrere Aspekte wurden pragmatisch im Rahmen eines iterativen Entwicklungsprozesses realisiert. Dazu zählen die heuristische Gestenerkennung, die evolutionär gewachsene Nachrichtenstruktur sowie die Kalibrierung von Menü und Kameras. Diese Entscheidungen ermöglichten eine schnelle prototypische Umsetzung und eine frühzeitige Erprobung des Interaktionskonzepts, gehen jedoch zulasten von Standardisierung und technischer Robustheit.
 
-Trotz dieser Einschränkungen zeigt die praktische Umsetzung, dass das entwickelte Interaktionskonzept die im Synthesekapitel formulierten Anforderungen grund\-sätzlich adressieren kann. Das System ermöglicht eine controllerfreie Interaktion, erhält die Bewegungsfreiheit im Raum und bietet über ein strukturiertes Menü einen klaren Zugriff auf systemweite Funktionen. Besonders hervorzuheben ist, dass menübasierte gestenbasierte Interaktion im MIR nicht nur konzeptionell, sondern auch technisch als eigenständige Interaktionsschicht realisierbar ist.
+Trotz dieser Einschränkungen zeigt die praktische Umsetzung, dass das entwickelte Interaktionskonzept die im Abschnitt \ref{sec:synthese} formulierten Anforderungen grund\-sätzlich adressieren kann. Das System ermöglicht eine controllerfreie Interaktion, erhält die Bewegungsfreiheit im Raum und bietet über ein strukturiertes Menü einen klaren Zugriff auf systemweite Funktionen. Besonders hervorzuheben ist, dass menübasierte gestenbasierte Interaktion im MIR nicht nur konzeptionell, sondern auch technisch als eigenständige Interaktionsschicht realisierbar ist.
 
 Für zukünftige Arbeiten ergeben sich daraus mehrere Entwicklungsperspektiven. Dazu zählen insbesondere robustere Verfahren zur Gestenerkennung, etwa durch lernbasierte Ansätze oder durch Algorithmen, die neben der Distanz einzelner Landmarken auch Relationen zur Handgröße sowie perspektivische Verzerrungen berücksichtigen. Ebenso erscheint eine differenziertere Behandlung kontinuierlicher Interaktionen sinnvoll, beispielsweise durch angepasste Synchronisationsstrategien oder spezialisierte Interaktionsmechanismen für unterschiedliche Parametertypen. Darüber hinaus könnte die Integration weiterer Modalitäten, etwa auditiver oder haptischer Rückmeldungen, das Interaktionssystem besser an den multisensorischen Charakter des MIR anpassen. Schließlich wäre eine systematische empirische Evaluation erforderlich, um Usability, Erlernbarkeit, körperliche Belastung und wahrgenommene Immersion im Nutzungskontext des MIR fundiert zu untersuchen.
 
