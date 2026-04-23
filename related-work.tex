@@ -5,22 +5,46 @@ Dieses Kapitel stellt die wissenschaftlichen Grundlagen und den Forschungsstand 
 Ziel ist es, bestehende Ansätze hinsichtlich ihrer Eignung für eine controllerfreie, körper\-basierte Interaktion in immersiven, projektionsbasierten und multisensorischen Umgebungen zu analysieren und daraus eine Forschungslücke abzuleiten, die durch den MIR und die in dieser Arbeit entwickelten Interaktionskonzepte adressiert wird.
 
 
-\subsection{Immersive räumliche Interaktionsumgebungen und Projektionsräume}
+\subsection[Immersive räumliche Interaktionsumgebungen und Projektionsräume]{Immersive räumliche Interaktionsumgebungen und\protect\\\mbox{Projektionsräume}}
 \label{sec:rw_spatial}
 
 Immersive Umgebungen zielen darauf ab, die Grenzen zwischen physischer und digitaler Welt aufzulösen, indem Nutzer:innen digitale Inhalte nicht nur betrachten, sondern den Raum selbst als Ort der Interaktion erleben \parencite{slater1997frameworkForImmersiveVirtualEnvironments}. Laut \textcite{slater1997frameworkForImmersiveVirtualEnvironments} ist ein zentraler Faktor dafür die enge Verknüpfung von Wahrnehmung und körperlicher Bewegung. Interaktion wird dabei nicht mehr als isolierte Eingabehandlung verstanden, sondern implizit von natürlichen Bewegungen der Nutzer:innen abgeleitet. % als Teil eines kontinuierlichen Zusammenspiels von Körper, Raum und Systemreaktion.
 
 Obwohl \textcite{slater1997frameworkForImmersiveVirtualEnvironments} ihre Überlegungen im Kontext virtueller Umgebungen entwickeln, lassen sich die beschriebenen Prinzipien körperlich gebundener Wahrnehmung und räum\-licher Interaktion auch auf andere immersive oder räumliche digitale Umgebungen übertragen. Unter räum\-licher Interaktion werden dabei Interaktionsformen verstanden, bei denen räumliche Eigenschaften wie Position, Orientierung, Distanz und Bewegung im dreidimensionalen Raum eine zentrale Rolle für Eingabe und Rückmeldung spielen.
-Neben Head-Mounted-Display-basierten XR-Systemen zählen hierzu insbesondere projektionsbasierte Installationen, Medienräume oder interaktive Umgebungen, in denen der physische Raum selbst zur Interaktionsmöglichkeit wird. Charakteristisch ist die Abkehr von klassischen Desktop-Metaphern hin zu Interaktionsformen, die Körper, Raum und Kontext als integrale Bestandteile der Eingabe und des Feedbacks nutzen.
 
-Zur Beschreibung räum\-licher Interaktion ist zudem eine Einordnung nach grundlegenden Interaktionsaufgaben hilfreich. In räumlichen Benutzungsoberflächen lassen sich insbesondere die Aufgaben Selektion, Manipulation und Navigation unterscheiden \parencite[Kap.~5]{LaViola20043DUserInterfaces}. Selektion bezeichnet dabei die Auswahl von Objekten oder Funktionen, Manipulation deren Veränderung oder direkte Modifizierung und Navigation die Fortbewegung innerhalb einer virtuellen oder projizierten Umgebung. Diese Unterscheidung bietet eine nützliche Strukturierung, um unterschiedliche Interaktionsansätze in räumlichen Systemen vergleichend einzuordnen.\\
+Neben Head-Mounted-Display-basierten XR-Systemen, also Systemen der Extended Reality (Virtual, Augmented und Mixed Reality), zählen hierzu insbesondere projektionsbasierte Installationen, Medienräume oder interaktive Umgebungen, in denen der physische Raum selbst zur Interaktionsmöglichkeit wird. Charakteristisch ist die Abkehr von klassischen Desktop-Metaphern hin zu Interaktionsformen, die Körper, Raum und Kontext als integrale Bestandteile der Eingabe und des Feedbacks nutzen.
+
+Zur Beschreibung räum\-licher Interaktion ist zudem eine Einordnung nach grundlegenden Interaktionsaufgaben hilfreich. In räumlichen Benutzungsoberflächen lassen sich insbesondere die Aufgaben \textit{Selektion}, \textit{Manipulation} und \textit{Navigation} unterscheiden \parencite[Kap.~5]{LaViola20043DUserInterfaces}. Selektion bezeichnet dabei die Auswahl von Objekten oder Funktionen, Manipulation deren Veränderung oder direkte Modifizierung und Navigation die Fortbewegung innerhalb einer virtuellen oder projizierten Umgebung. Diese Unterscheidung bietet eine nützliche Strukturierung, um unterschiedliche Interaktionsansätze in räumlichen Systemen vergleichend einzuordnen.\\
 
 Während diese Klassifikation die grundlegenden Interaktionsaufgaben strukturiert, bleibt offen, wie diese in räumlichen Kontexten konkret realisiert werden. Das Konzept der ``Proxemic Interaction'' nach \textcite{ballendatmarquardtgreenberg2010proxemicinteraction} setzt hier an, indem es beschreibt, wie räumliche Beziehungen wie Distanz, Orientierung und Bewegung zwischen Nutzer:innen und Systemen gezielt als Interaktionsparameter genutzt werden können.
  %Interaktion entsteht dabei sowohl implizit, etwa durch Annäherung oder Blickrichtung, als auch explizit durch gezielte Handlungen im Raum.
-Diese Idee findet sich auch in projektionsbasierten Umgebungen wieder. So reagieren Systeme wie ``RoomAlive'' \parencite{jones2014roomalive} oder ``LightSpace'' \parencite{wilsonbenko2010lightspace} nicht nur auf explizite Eingaben, sondern auf Position, Annäherung und Bewegung im Raum.
-Diese Arbeiten demonstrieren, wie die gesamte Raumarchitektur durch eine Kombination aus Projektoren und Tiefenkameras zu einer interaktiven Fläche werden kann \parencite{jones2014roomalive}. ``RoomAlive'' transformiert mittels Projektor- und Tiefenkamerasystemen einen gesamten Raum in eine augmentierte Umgebung, in der Nutzer:innen durch Ausweichen, Werfen oder Berühren körperlich mit digitalen Inhalten interagieren. Ähnlich erweitert ``LightSpace'' die Interaktion über mehrere physische Oberflächen hinweg und ermöglicht Eingaben auf, über und zwischen physischen Strukturen.
+Diese Idee findet sich auch in projektionsbasierten Umgebungen wieder. So reagieren Systeme aus der Literatur wie ``RoomAlive'' \parencite{jones2014roomalive} oder ``LightSpace'' \parencite{wilsonbenko2010lightspace} nicht nur auf explizite Eingaben, sondern auf Position, Annäherung und Bewegung im Raum.
+Diese Arbeiten demonstrieren, wie die gesamte Raumarchitektur durch eine Kombination aus Projektoren und Tiefenkameras zu einer interaktiven Fläche werden kann \parencite{jones2014roomalive}. ``RoomAlive'' (siehe Abbildung \ref{fig:roomalive-projection}) transformiert mittels Projektor- und Tiefenkamerasystemen einen gesamten Raum in eine augmentierte Umgebung, in der Nutzer:innen durch Ausweichen, Werfen oder Berühren körperlich mit digitalen Inhalten interagieren. Ähnlich erweitert ``LightSpace'' (siehe Abbildung \ref{fig:lightspace-projection}) die Interaktion über mehrere physische Oberflächen hinweg und ermöglicht Eingaben auf, über und zwischen physischen Strukturen.
 Gleichzeitig zeigen diese Systeme typische Herausforderungen projektionsbasierter Interaktionsräume, darunter Kalibrierungsfehler, Trackingprobleme bei überlappenden Sensorsystemen, Systemlatenzen sowie die Schwierigkeit, Aufmerksamkeit innerhalb komplexer räum\-licher Szenarien gezielt zu lenken \parencite{jones2014roomalive, wilsonbenko2010lightspace}.
 Trotz dieser Herausforderungen verdeutlichen beide Systeme den Übergang von gerätezentrierter Bedienung hin zu Interaktionsformen, in denen körperliche Bewegung und räumliche Position zentral werden. \\
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[
+            width=\linewidth
+        ]{content/images/roomalive-projection}
+        \caption{Screenshot aus dem Video der Anwendung ``RoomAlive'' \parencite{jones2014roomalive}}
+        \label{fig:roomalive-projection}
+    \end{subfigure}
+    \hspace{0.5cm}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[
+            width=\linewidth
+        ]{content/images/lightspace-projection.png}
+        \caption{Visualisierung der Through-Body-Transition der Anwendung ``Lightspace'' \parencite{wilsonbenko2010lightspace}}
+        \label{fig:lightspace-projection}
+    \end{subfigure}
+    \caption{Beispiele projektionsbasierter Umgebungen.}
+    \label{fig:lightspace-roomalive}
+\end{figure}
 
 %{\color{red} Large displays wirklich wichtig oder lieber raus?}
 %Neben solchen immersiven Installationen wurde räumliche Interaktion auch im Kontext großformatiger Displays untersucht. Large High-Resolution Display Environments (LHRDs) erweitern klassische Interaktionsparadigmen, indem sie physische Navigation, Multi-User-Koordination und die Nutzung verschiedener Eingabegeräte erfordern. Durch ihre Größe und Auflösung ermög\-lichen sie es, große Informationsmengen gleichzeitig darzustellen und fördern die Nutzung von Bewegung im Raum als Teil der Interaktion \parencite{belkacem2024LHRDsurvey}. Gleichzeitig entstehen neue Herausforderungen, etwa hinsichtlich der physischen Erreichbarkeit von Inhalten, möglicher Informationsüberlastung sowie der Koordination mehrerer Nutzer:innen. Zudem existieren keine einheitlichen Interaktionsstandards, sodass je nach Distanz und Kontext unterschiedliche Eingabemodalitäten wie Touch, Gesten, mobile Geräte oder Blicksteuerung zum Einsatz kommen \parencite{belkacem2024LHRDsurvey}.
@@ -36,7 +60,7 @@ Diese Erkenntnisse sind insbesondere für projektionsbasierte multisensorische U
 \subsection{körper\-basierte Interaktion (Embodied Interaction)}
 \label{sec:rw_embodied}
 
-körper\-basierte Interaktion (Embodied Interaction) bezeichnet Interaktionsformen, bei denen der menschliche Körper sowie seine Bewegungen und räumliche Orientierung eine zentrale Grundlage der Eingabe bilden. In diesem Verständnis wird die körperliche Präsenz der Nutzer:innen im Raum als wesentlicher Bestandteil der Interaktion aufgefasst, und Interaktionen sind häufig an reale Handlungen angelehnt. Dieses Paradigma baut auf \textcite{jacob2008realitybasedinteraction}s Prinzip der ``Reality-Based Interaction'' (RBI) auf, das die natürliche Interaktion des Menschen mit der realen Welt als Vorbild für die Gestaltung von Benutzungsschnittstellen nutzt \parencite{jacob2008realitybasedinteraction}.
+körper\-basierte Interaktion (Embodied Interaction) bezeichnet Interaktionsformen, bei denen der menschliche Körper sowie seine Bewegungen und räumliche Orientierung eine zentrale Grundlage der Eingabe bilden. In diesem Verständnis wird die körperliche Präsenz der Nutzer:innen im Raum als wesentlicher Bestandteil der Interaktion aufgefasst, und Interaktionen sind häufig an reale Handlungen angelehnt. Dieses Paradigma baut auf dem Prinzip der ``Reality-Based Interaction'' (RBI) von \textcite{jacob2008realitybasedinteraction} auf, das die natürliche Interaktion des Menschen mit der realen Welt als Vorbild für die Gestaltung von Benutzungsschnittstellen nutzt \parencite{jacob2008realitybasedinteraction}.
 
 Ziel der körper\-basierten Interaktion ist es, die kognitive Übersetzung zwischen Intention und Systemreaktion zu reduzieren. \textcite{norman1986CognitiveEngineering} beschreibt diese Distanz als ``Gulf of Execution''. Werden Interaktionen an reale Handlungen angelehnt, kann der mentale Aufwand reduziert werden, der erforderlich ist, um eine gewünschte Wirkung im System zu erzielen \parencite{norman1986CognitiveEngineering}. Im Unterschied dazu erfordern controllerbasierte Eingaben häufig eine zusätzliche mentale Abbildung zwischen physischer Handlung und digitaler Reaktion. Ein Beispiel hierfür zeigt eine Studie von \textcite{vona2025handsvscontrollerscomparing}, in der Nutzer:innen in einer virtuellen Einkaufsumgebung Produkte entweder durch direktes Greifen mit der Hand oder über einen Controller auswählten. Während das natürliche Greifen unmittelbar zur gewünschten Systemreaktion führte, erforderte die controllerbasierte Interaktion eine zusätzliche mentale Übersetzung zwischen Eingabe und Handlung.
 
@@ -161,7 +185,91 @@ Studien deuten darauf hin, dass sowohl Genauigkeit als auch Reaktionszeit stark 
 
 Bestehende Menüsysteme adressieren überwiegend diskrete Auswahlaufgaben. Marking-Menus können jedoch über die rein diskrete Auswahl hinaus erweitert werden \parencite{baillyPometti2024MarkARExploringTheBenefitsOfCombiningMicrogesturesAndMidAirMarksToTriggerCommandsInAR}. Das System ``MarkAR'' zeigt beispielsweise, wie das Prinzip der gerichteten Markierung zur Steuerung kontinuierlicher und diskreter Befehle genutzt werden kann, ohne dass ein visuelles Menü explizit dargestellt werden muss. Mithilfe einer sogenannten Micro-Geste (zum Beispiel Dreifinger-Pinch) wechseln Nutzer:innen  in einen Micro-Gesten-Modus. Anstatt ein visuelles Menü anzuzeigen, interpretiert das System die Richtungsbewegung der Geste (sogenannter ``Mark'') relativ zu ihrem Startpunkt. Diese Bewegung wird auf semantische Achsen abgebildet, die als virtuelle Schieberegler zur Anpassung kontinuierlicher Werte dienen. Jedoch sind die Interaktionen in der Forschung von \textcite{baillyPometti2024MarkARExploringTheBenefitsOfCombiningMicrogesturesAndMidAirMarksToTriggerCommandsInAR} primär auf die Manipulation konkreter, funktionaler Inhalte wie Dokumente, Bilder oder 3D-Modelle und weniger auf die Einstellung beliebiger, kontinuierlicher Parameter ausgerichtet. Eine weitere Limitation ergibt sich aus dem Kompromiss zwischen Genauigkeit und Gestenamplitude. Teilnehmende berichteten, dass es schwierig war, präzise Werte anzusteuern, beispielsweise beim Navigieren zu einer bestimmten Seite in einem PDF. Das System priorisiert somit kleine, ermüdungsarme Gesten, was jedoch zulasten der motorischen Genauigkeit geht.
 
-Insgesamt verdeutlicht die Literatur, dass räumliche Menüs eine zentrale Rolle bei der Gestaltung nutzbarer Mid-Air-Interaktionssysteme spielen. Sie ermög\-lichen die Sichtbarmachung von Funktionen, strukturieren komplexe Interaktionsräume und unterstützen sowohl Einsteiger:innen als auch erfahrene Nutzer:innen. Insbesondere radiale Menüs bieten durch ihre gleichmäßige Anordnung, ihre Eignung für richtungsbasierte Interaktion sowie ihre Unterstützung von motorischem Lernen entscheidende Vorteile für den Einsatz in räumlichen und körper\-basierten Interaktionskontexten. Gleichzeitig zeigt sich, dass die Integration kontinuierlicher Steuerungsformen in solche menübasierten Konzepte bisher nur begrenzt untersucht wurde.
+Insgesamt verdeutlicht die Literatur, dass räumliche Menüs eine zentrale Rolle bei der Gestaltung nutzbarer Mid-Air-Interaktionssysteme spielen. Sie ermög\-lichen die Sichtbarmachung von Funktionen, strukturieren komplexe Interaktionsräume und unterstützen sowohl Einsteiger:innen als auch erfahrene Nutzer:innen. Insbesondere radiale Menüs bieten durch ihre gleichmäßige Anordnung, ihre Eignung für richtungsbasierte Interaktion sowie ihre Unterstützung von motorischem Lernen entscheidende Vorteile für den Einsatz in räumlichen und körper\-basierten Interaktionskontexten. Gleichzeitig zeigt sich, dass die Integration kontinuierlicher Steuerungsformen in solche menübasierten Konzepte bisher nur begrenzt untersucht wurde. \\
+
+Die bisherigen Abschnitte haben gezeigt, dass controllerfreie, körperbasierte Interaktion in immersiven räumlichen Umgebungen mit einem Spannungsfeld zwischen Natürlichkeit, Immersion und intuitiver Bedienung auf der einen sowie Präzision, Robustheit und ergonomischen Anforderungen auf der anderen Seite verbunden ist. Gleichzeitig wurden in der Literatur verschiedene Ansätze vorgeschlagen, um diese Herausforderungen zu adressieren.
+
+Tabelle~\ref{tab:design_space_midair} fasst zentrale Potenziale, wiederkehrende Herausforderungen sowie typische Lösungsansätze aus der Forschung zusammen und stellt diese einander gegenüber.
+
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{2.8cm}
+                  >{\raggedright\arraybackslash}p{4cm}
+                  >{\raggedright\arraybackslash}p{4cm}
+                  >{\raggedright\arraybackslash}p{3.6cm}}
+
+
+    \caption{Potenziale, Herausforderungen und Lösungsansätze controllerfreier körperbasierter Interaktion in immersiven räumlichen Umgebungen}
+    \label{tab:design_space_midair} \\
+
+    \toprule
+    \textbf{Aspekt} & \textbf{Potenziale} & \textbf{Herausforderungen} & \textbf{Typische Lösungsansätze} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Aspekt} & \textbf{Potenziale} & \textbf{Herausforderungen} & \textbf{Typische Lösungsansätze} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{4}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+    \midrule
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+
+    Natürlichkeit und Intuitivität
+    & An reale Handlungen angelehnte Interaktionen reduzieren die kognitive Übersetzung zwischen Intention und Systemreaktion und werden als intuitiv wahrgenommen \parencite{jacob2008realitybasedinteraction, vona2025handsvscontrollerscomparing, norman1986CognitiveEngineering}.
+    & Natürlich wirkende Interaktionen sind nicht zwangsläufig effizient, präzise oder robust \parencite{jacob2008realitybasedinteraction}.
+    & Bewusste Abstraktion realer Handlungen, Kombination aus natürlichen und symbolischen Gesten \\
+    \midrule
+
+    Immersion und Präsenz
+    & Enge Kopplung von Körperbewegung und Systemfeedback kann das Gefühl von Präsenz verstärken \parencite{slater1997frameworkForImmersiveVirtualEnvironments, slatersanchesvivies2016enhancingourliveswithimmersivevirtualreality}.
+    & Unklare Zustände, fehlendes Feedback oder Trackingfehler können das Erleben beeinträchtigen.
+    & Multimodales Feedback (visuell, auditiv, ggf. haptisch), klare Zustandskommunikation \parencite{vieria2024understandingAffordancesinXR} \\
+    \midrule
+
+    Controllerfreie körperbasierte Interaktion
+    & Direkte Einbettung von Händen, Armen und Körper in die Interaktion ermöglicht natürliche, immersive und geräteunabhängige Eingaben im Raum.
+    & Geringere Präzision, fehlende haptische Rückmeldung, physische Ermüdung (``Gorilla Arm''), unbeabsichtigte Eingaben (Midas Touch) sowie soziale Hemmschwellen \parencite{vona2025handsvscontrollerscomparing, spittle2023reviewinteractiontechniquesforimmersiveenvironments, hincapi2014metrictoquantifyarmfatigue, walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays, mueller2010requirementsAndDesignSpaceForInteractivePublicDisplays}.
+    & Explizite Bestätigungsgesten, quasi-modale Aktivierung, körpernahe und kompakte Gesten, klare Rückmeldung sowie ergonomisches Gestendesign \parencite{walterBaillyValkanova2014CuenesicsUsingMidAirGesturesToSelectItemsOnInteractivePublicDisplays, hincapi2014metrictoquantifyarmfatigue, spittle2023reviewinteractiontechniquesforimmersiveenvironments} \\
+
+    Discoverability von Gesten
+    & Potenzial für natürliche, freie Interaktion ohne explizite Hinweise oder Einführung.
+    & Geringe Sichtbarkeit möglicher Interaktionen, hohe Lernanforderungen \parencite{vogiatzidakis2018gestureeliticationstudiesreview, wobbrock2005discoverability}.
+    & Visuelle Hinweise, Tutorials, menübasierte Interaktion \\
+    \midrule
+
+    Auswahl und Bestätigung
+    & Direkte Manipulation und Auswahl durch Greif- oder Zeigegesten wirkt natürlich.
+    & Fehlendes haptisches Feedback führt zu Unsicherheit, Overshoot und Fehlbedienungen \parencite{dube2022pushtabdwellpinchevaluationofselectionmethods}.
+    & Dwell-Selektion, Air-Touch, Greifgesten, klare visuelle Rückmeldung \\
+    \midrule
+
+    Marking-Menus und gerichtete Gesten
+    & Effiziente, richtungsbasierte Interaktion mit Übergang zu motorischer Automatisierung \parencite{kurtenbachPaul1993theDesignAndEvaluationOfMarkingMenus}.
+    & Genauigkeitsprobleme bei kleinen Bewegungen; Trade-off zwischen Ergonomie und Präzision \parencite{li2021depthandbreadthofpiemenusformidairgesdtureinteraction, Mao2024comparisonOfPanelAndPieMenusForMidAirInteractionInPhotoBooth}, Zu viele Einträge oder tiefe Hierarchien erschweren Auswahl und erhöhen Fehleranfälligkeit \parencite{li2021depthandbreadthofpiemenusformidairgesdtureinteractionc, Mao2024comparisonOfPanelAndPieMenusForMidAirInteractionInPhotoBooth}.
+    & Begrenzte Menübreite, flache Hierarchien, Trainingseffekte nutzen, Kombination mit visueller Unterstützung \\
+    \midrule
+
+    Navigation in begrenzten Räumen
+    & Körperbasierte Fortbewegung fördert Orientierung und Präsenz \parencite{martinez2022researchTrendsInVirtualRealityLocomotionTechniques, deBack2024naturalAndRedirectedWalkingInVirtualReality}.
+    & Physische Raumgrenzen, Ermüdung, Sicherheitsaspekte.
+    & Walking-in-Place, Redirected Walking, Teleportation \\
+    \midrule
+
+    Kontinuierliche Interaktion
+    & Steuerung kontinuierlicher Parameter durch räumliche Bewegungen ermöglicht flexible Interaktion \parencite{baillyPometti2024MarkARExploringTheBenefitsOfCombiningMicrogesturesAndMidAirMarksToTriggerCommandsInAR}.
+    & Schwierige präzise Steuerung und fehlende Standardisierung.
+    & Mapping auf räumliche Achsen, Mikrogesten, markierungsbasierte Ansätze \parencite{baillyPometti2024MarkARExploringTheBenefitsOfCombiningMicrogesturesAndMidAirMarksToTriggerCommandsInAR} \\
+
+\end{longtable}
+
+Die Literatur bietet bereits vielfältige Ansätze für controllerfreie, körperbasierte Interaktion in XR-, Mid-Air- und menübasierten Kontexten. Weniger untersucht ist jedoch, wie sich diese Ansätze auf offene, projektionsbasierte und multisensorische Räume übertragen lassen, in denen sowohl funktionale als auch atmosphärische Interaktionen unterstützt werden sollen. Insbesondere fehlt es an Konzepten, die controllerfreie Gesten, menübasierte Auswahl und kontinuierliche Parametersteuerung in einem solchen Umfeld systematisch zusammenführen.
+
+Diese Erkenntnisse wurden überwiegend in XR-, Mid-Air- und menübasierten Kontexten gewonnen und bilden die Grundlage für die folgende Betrachtung multisensorischer und atmosphärischer Interaktionsräume.
 
 
 \subsection{Multisensorische und atmosphärische Interaktion}
@@ -178,8 +286,7 @@ Designmodelle wie das von \textcite{vieria2024understandingAffordancesinXR} vorg
 
 Ein Beispiel für die Integration zielgerichteter Gesteninteraktion im Kontext des MIR stellt AVISAR (Adaptive Visual Assistance System using Spatial Augmented Reality) dar, bei dem Gesten zur Steuerung von Reparaturanleitungen innerhalb einer immersiven Projektionsumgebung eingesetzt werden \parencite{stoll2024avisar, natschke2024display}. Dieses Beispiel zeigt, dass in multisensorischen und immersiven Räumen nicht nur atmosphärische, sondern auch aufgabenbezogene Interaktionen relevant sein können.
 
-
-Insgesamt zeigt der Forschungsstand, dass zwar zahlreiche Ansätze für körper\-basierte, gestenbasierte und räumliche Interaktion in immersiven Umgebungen vorliegen, dass jedoch insbesondere für offene, projektionsbasierte und multisensorische Räume weiterhin Forschungsbedarf besteht. Dies betrifft vor allem Interaktionskonzepte, die controllerfrei, szenariounabhängig, ergonomisch und zugleich mit atmosphärischen wie funktionalen Nutzungskontexten vereinbar sein sollen.
+Insgesamt zeigt der Forschungsstand, dass zwar zahlreiche Ansätze für körperbasierte, gestenbasierte und räumliche Interaktion in immersiven Umgebungen vorliegen, dass jedoch insbesondere für offene, projektionsbasierte und multisensorische Räume weiterhin Forschungsbedarf besteht. Dies betrifft vor allem Interaktionskonzepte, die controllerfrei, szenariounabhängig, ergonomisch und zugleich mit atmosphärischen wie funktionalen Nutzungskontexten vereinbar sein sollen. Für den MIR ergibt sich daraus die Anforderung, Interaktionskonzepte zu entwickeln, die beide Nutzungskontexte berücksichtigen. Das folgende Kapitel leitet aus dieser Forschungslücke die Anforderungen an die Gestaltung der in dieser Arbeit entwickelten Interaktionskonzepte ab.
 
 
 %Bisher existieren wenige Ansätze, die controllerfreie, körper\-basierte Interaktionen in multisensorischen, projektionsbasierten Räumen wie dem MIR mit der kontinuierlichen, atmosphärischen Steuerung von Umgebungsparametern verbinden. Während Marking-Menus in VR- oder AR-Kontexten untersucht wurden, fehlen systematische Konzepte für ihre Anwendung in offenen, gemeinsam genutzten, multisensorischen Räumen, in denen Nutzer:innen nicht nur Funktionen auswählen, sondern die Atmosphäre eines Raumes dynamisch beeinflussen sollen. Insbesondere die Integration von richtungsbasierten Gesten mit kontinuierlichen, multimodalen Rückmeldungen (zum Beispiel Geruch, Temperatur, Taktik) bleibt unerforscht. Diese Arbeit adressiert diese Lücke, indem sie ein gestengesteuertes Marking Menu für den MIR konzipiert und prototypisch umsetzt, das sowohl für atmosphärische als auch funktionale Interaktionen geeignet ist.
