@@ -72,7 +72,7 @@ Abbildung~\ref{fig:component_diagram} zeigt diese Komponenten sowie deren Intera
 Die über WebSocket übermittelten Interaktionsereignisse werden von einer angebundenen Zielanwendung empfangen und verarbeitet. 
 Diese Anwendung ist nicht Bestandteil des eigentlichen Interaktionssystems, sondern stellt die Umgebung dar, in der die Interaktionen verarbeitet werden.
 
-Im Kontext des multisensorischen Interaktionsraums wird hierfür typischerweise die \textit{Unreal Engine} verwendet, eine Echtzeit-3D-Engine zur Darstellung und Steuerung der projizierten Inhalte
+Im Kontext des multisensorischen Interaktionsraums wird hierfür typischerweise die \textit{Unreal Engine} verwendet, eine Echtzeit-3D-Engine zur Darstellung und Steuerung der projizierten Inhalte.
 Da die Kommunikation jedoch über eine standardisierte Schnittstelle erfolgt, kann das Interaktionssystem prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. 
 Dieses Vorgehen unterstützt den Anspruch, das System universell einsetzbar und nicht auf ein einzelnes Anwendungsszenario beschränkt zu gestalten (siehe R2 in Tabelle \ref{tab:requirements}).
 
@@ -162,14 +162,14 @@ gesture-interface/
 │   ├── debugControls.js    # Debugfunktionen
 │   ├── gestures.js         # Gestenerkennung
 │   ├── main.js             # Einstiegspunkt
-│   ├── menu.js             # Menülogik
+│   ├── menu.js             # Menuelogik
 │   ├── slider.js           # Slidersteuerung
 │   ├── timings.js          # Zustands-Timing
 │   └── websocket.js        # Kommunikation
 ├── lib/                    # Externe Bibliotheken (MediaPipe)
 ├── index.html              # UI-Struktur
-├── offlineMenu.json        # Menüdefinition
-├── style.css               # Styling
+├── offlineMenu.json        # Menuedefinition
+└── style.css               # Styling
 \end{lstlisting}
 
 Die Struktur verdeutlicht die Trennung zwischen der Interaktionslogik im Verzeichnis \texttt{js/},
@@ -191,42 +191,10 @@ Durch diese Architektur kann das Interaktionssystem als zusätzliche Steuerungss
 Das Overlay wird als transparentes Fenster über der eigentlichen Anwendung dargestellt. Dabei ist das Fenster standardmäßig nicht fokussierbar, sodass Tastatureingaben weiterhin an die darunterliegende Anwendung weitergeleitet werden können. Dies ist insbesondere wichtig, da die Zielanwendung in vielen Szenarien weiterhin über klassische Eingabegeräte steuerbar bleiben soll.
 Für Entwicklungs- und Konfigurationszwecke kann das Overlay temporär in einen Konfigurationsmodus versetzt werden. In diesem Modus können Tastatur- und Mauseingaben abgefangen und für Kalibrierungsfunktionen verwendet werden. Der Konfigurationsmodus wird in Abschnitt \ref{sec:development} näher erläutert.
 
-Innerhalb des Overlays werden das Marking-Menu mit visuellen Zustandsanzeigen der Menüelemente, der Cursor, sowie kontextabhängige Steuerelemente wie Slider dargestellt. Die Visuali\-sierung erfolgt dynamisch und reagiert fortlaufend auf die aus dem Handtracking abgeleiteten Interaktions\-zustände. Da die Handtracking-Pipeline kontinuierlich pro Frame aktualisierte Positions- und Gestendaten liefert, basiert die Darstellung auf einem framebasierten Renderansatz. Das Menü sowie der Cursor werden innerhalb eines Canvas-Elements gezeichnet und bei jeder Aktualisierung vollständig neu gerendert. Dabei wird der vorherige Darstellungszustand überschrieben, sodass zu jedem Zeitpunkt ausschließlich der aktuelle Interaktionszustand visualisiert wird. Dieses Vorgehen ermöglicht eine konsistente und latenzarme Darstellung dynamischer Zustandsänderungen und vereinfacht gleichzeitig die Synchronisation zwischen Trackingdaten, Interaktionslogik und visueller Ausgabe. \\
+Innerhalb des Overlays werden das Marking-Menu, der Cursor, visuelle Statusanzeigen sowie kontextabhängige Steuerelemente wie Slider dargestellt. Die Darstellung folgt den in Abschnitt~\ref{sec:synthese_visual_feedback} beschriebenen Gestaltungsentscheidungen und setzt diese technisch innerhalb eines Canvas-Elements um. Da die Handtracking-Pipeline kontinuierlich pro Frame aktualisierte Positions- und Gestendaten liefert, basiert die Darstellung auf einem framebasierten Renderansatz. Das Menü sowie der Cursor werden bei jeder Aktualisierung vollständig neu gezeichnet. Dabei wird der vorherige Darstellungszustand überschrieben, sodass zu jedem Zeitpunkt ausschließlich der aktuelle Interaktionszustand sichtbar ist. Dieses Vorgehen ermöglicht eine konsistente und latenzarme Darstellung dynamischer Zustandsänderungen und vereinfacht gleichzeitig die Synchronisation zwischen Trackingdaten, Interaktionslogik und visueller Ausgabe.
 
 
-Unabhängig von der technischen Umsetzung der Darstellung stellt sich zudem die Frage nach der räumlichen Platzierung der Interaktionselemente im Overlay. Die Positionierung des Menüs erfolgt standardmäßig mittig auf der Projektionsfläche, wie in Abschnitt~\ref{sec:synthese_handtracking} bereits erläutert. Dies stellt neben den bereits erwähnten Vorteilen des individuellen Interaktionsraums sicher, dass sich die Interaktion im zentralen Sichtbereich befindet und Nutzer:innen sich zur Bildschirmmitte ausrichten. Gleichzeitig wird angenommen, dass die Kamera für die Gestenerkennung ebenfalls zentral positioniert ist, wodurch eine möglichst robuste und konsistente Erfassung der Handinteraktionen unterstützt wird. \\
-
-
-Neben der räumlichen Anordnung der Interaktionselemente ist auch die Gestaltung geeigneter visueller Rückmeldungen entscheidend für eine verständliche und kontrollierbare Interaktion. Das Overlay stellt mehrere visuelle Rückmeldungen als Interaktionsfeedback bereit. Während des Dwell-Vorgangs wird eine kreisförmige Fortschrittsanzeige subtil in der oberen rechten Bildschirmecke dargestellt, die den Aktivierungsfortschritt visualisiert (siehe Abbildung \ref{fig:hand_with_dwell}). Diese animierte Visuali\-sierung zeigt an, wie weit die Aktivierung bereits fortgeschritten ist und verhindert dadurch Unsicherheit über den aktuellen Systemzustand.
-Zusätzlich zeigt ein Handicon an, ob eine Hand erkannt wurde und welche Geste aktuell interpretiert wird (siehe Abbildung \ref{fig:hand_with_grab}). Dadurch erhalten Nutzer:innen unmittelbar Rückmeldung darüber, ob ihre Hand korrekt erkannt wird und welche Interaktion gerade aktiv ist. Auch im deaktivierten Zustand bleibt das Icon sichtbar, jedoch in abgeschwächter Darstellung (siehe Abbildung \ref{fig:no_hand_detected}). Dies dient als visuelle Anleitung zur Aktivierung des Menüs und unterstützt zudem die Discoverability der Interaktion.
-
-\begin{figure}[H]
-\centering
-\begin{subfigure}[t]{0.25\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{content/images/hand_with_dwell.png}
-    \caption{Dwell-Kreis, wäh-rend Aktivierungsgeste erkannt wird}
-    \label{fig:hand_with_dwell}
-\end{subfigure}
-\hspace{0.5cm}
-\begin{subfigure}[t]{0.25\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{content/images/hand_with_grab.png}
-    \caption{Dwell-Kreis, wäh-rend Grab-Geste erkannt wird}
-    \label{fig:hand_with_grab}
-\end{subfigure}
-\hspace{0.5cm}
-\begin{subfigure}[t]{0.25\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{content/images/no_hand_detected.png}
-    \caption{Dwell-Kreis, wenn keine Hand erkannt wird}
-    \label{fig:no_hand_detected}
-\end{subfigure}
-\caption{Verschiedene Zustände der Fortschrittsanzeige (Dwell-Kreis)}
-\label{fig:gesture_icons}
-\end{figure}
-
-Das Marking-Menu selbst ist datengetrieben aufgebaut. Die Menüstruktur wird nicht fest in der Oberfläche hinterlegt, sondern aus einer externen Konfiguration geladen, welche von der Zielanwendung bereitgestellt wird. Dadurch kann die Anzahl der Einträge, ihre Hierarchie sowie die Zuordnung zu Aktionen flexibel angepasst werden. Wie in Abschnitt \ref{sec:synthese_radiales_menü} diskutiert, wird auf eine starre Begrenzung der Segmentanzahl verzichtet, um eine flexible Anpassung an anwendungsspezifische Anforderungen zu ermög\-lichen. Stattdessen wird bei zunehmender Menü\-tiefe ein Hinweis ausgegeben, der auf potenzielle Usability-Probleme aufmerksam macht. Dadurch werden Gestaltungsrichtlinien berücksichtigt, ohne die Konfigurierbarkeit des Systems einzuschränken. \\
+Das Marking-Menu ist datengetrieben implementiert. Die Menüstruktur wird nicht fest in der Oberfläche hinterlegt, sondern zur Laufzeit aus einer externen JSON-Konfiguration geladen, die von der Zielanwendung bereitgestellt wird. Dadurch können Anzahl der Einträge, Hierarchie und zugehörige Aktionen dynamisch angepasst werden, ohne Änderungen an der Benutzeroberfläche vornehmen zu müssen.
 
 Der inhaltliche Aufbau, die Optionen der Menüeinträge und die visuelle Darstellung der Interaktions\-zustände wurden bereits in Abschnitt~\ref{sec:synthese_konzeption_des_interaktionssystems} diskutiert.
 
@@ -294,11 +262,22 @@ Ein Menüeintrag kann dabei entweder als Navigationsknoten fungieren, der ein we
 Die hierarchische Organisation ermöglicht es, mehrere Interaktionsfunktionen innerhalb einer begrenzten Anzahl sichtbarer Menüsegmente bereitzustellen. 
 Während die oberste Ebene zentrale Funktionskategorien enthält, werden detailliertere Steuerungsoptionen innerhalb der entsprechenden Untermenüs zugänglich gemacht.
 
-Jeder Menüeintrag besitzt eine eindeutige Identifikationsnummer sowie Metadaten wie Bezeichnung, Icon und Typ des UI-Elements. Abhängig vom Typ des Eintrags können zusätzliche Parameter definiert werden, beispielsweise ein Zielparameter der Zielanwendung, der durch Slider- oder Buttonaktionen verändert wird. Diese Zielparameter werden bei der Interaktion als Teil der WebSocket-Nachrichten an die Zielanwendung übermittelt.
+Jeder Menüeintrag besitzt eine eindeutige Identifikationsnummer (\texttt{``id''}) sowie Metadaten wie eine Bezeichnung (\texttt{``label''}), ein Icon (\texttt{``icon''}) und den Typ des UI-Elements (\texttt{``type''}). Der Typ bestimmt, wie ein Eintrag im Interaktionssystem interpretiert wird, beispielsweise als Untermenü (\texttt{``menu''}), als kontinuierliches Steuerelement (\texttt{``slider''}) oder als diskrete Aktion (\texttt{``button''}).
 
-Durch diese generische Beschreibung der Menüstruktur bleibt das Interaktionssystem unabhängig von konkreten Anwendungsszenarien. Neue Funktionen oder zusätzliche Menüebenen können ergänzt werden, ohne die Implementierung des Overlays selbst zu verändern. Auf diese Weise kann für jedes Anwendungsszenario eine spezifische Menüstruktur definiert werden.
+Abhängig vom Typ des Eintrags können zusätzliche Parameter definiert werden. Eine zentrale Rolle spielt dabei der Schlüssel \texttt{``target''}, der angibt, welcher Parameter in der Zielanwendung durch die Interaktion beeinflusst wird. Im Fall eines Sliders wird beispielsweise ein kontinuierlicher Wert für den angegebenen Zielparameter übertragen, während bei einem Button diskrete Zustandsänderungen ausgelöst werden. Diese Informationen werden bei der Interaktion als Teil der WebSocket-Nachrichten an die Zielanwendung übermittelt (siehe Abschnitt~\ref{sec:websocket_message}).
 
-\begin{lstlisting}[language=json,caption={Beispiel einer Menükonfiguration}]
+Listing~\ref{lst:menu_config} zeigt beispielhaft eine solche Menükonfiguration. Die oberste Ebene enthält zwei Haupteinträge: \texttt{``Umgebungseinstellungen''} und \texttt{``Presentation''}. Beide Einträge sind vom Typ \texttt{``menu''} und enthalten jeweils weitere Untereinträge im Feld \texttt{``children''}.
+
+Der Eintrag \texttt{``Umgebungseinstellungen''} definiert ein Untermenü mit drei Slidern zur Steuerung von \texttt{``volume''}, \texttt{``brightness''} und \texttt{``vibration''}. Diese entsprechen den globalen Systemparametern.
+
+Der Eintrag \texttt{``Presentation''} enthält sowohl einen Slider (\texttt{``Timeline''}) zur Steuerung der Wiedergabeposition als auch einen Button (\texttt{``Play/Pause''}) zur Steuerung des Abspielzustands. Beide greifen auf denselben Zielparameter \texttt{``presentation''} zu, unterscheiden sich jedoch im Interaktionstyp.
+
+Durch diese strukturierte Beschreibung entsteht zur Laufzeit ein hierarchisches radiales Menü, bei dem die oberste Ebene die beiden Kategorien darstellt und weitere Funktionen über Submenüs zugänglich gemacht werden. Die konkrete visuelle Ausprägung dieses Menüs entspricht den zuvor beschriebenen Menüstrukturen (siehe Abschnitt~\ref{sec:synthese_radiales_menü}).
+
+Diese generische Beschreibung der Menüstruktur ermöglicht es dem Interaktionssystem, unabhängig von konkreten Anwendungsszenarien zu bleiben. Neue Funktionen oder zusätzliche Menüebenen können ergänzt werden, ohne die Implementierung des Overlays selbst zu verändern. Auf diese Weise kann für jedes Anwendungsszenario eine spezifische Menüstruktur definiert werden.
+
+\begin{lstlisting}[language=json,caption={Beispiel einer Menükonfiguration},
+label={lst:menu_config}]
 {
   "radius": 200,
   "subRadius": 100,
@@ -369,8 +348,8 @@ Damit entsteht eine kontinuierliche Kommunikationsschnittstelle zwischen Interak
 \subsubsection{Nachrichtenstruktur}
 Die übertragenen Nachrichten folgen einer einheitlichen JSON-Struktur (Tabelle \ref{tab:websocket_message}).
 Dieses Schema ermöglicht die Beschreibung unterschiedlicher Interaktionsereignisse (zum Beispiel diskrete Buttonaktionen
-oder kontinuierliche Slideränderungen) innerhalb eines einheitlichen Kommunikationsprotokolls. Das Interaktionsereignis wird über das Feld \texttt{action} beschrieben.
-Nachrichten mit der Aktion \texttt{update} werden bei Änderungen kontinuierlicher Werte verwendet, während \texttt{pressed} diskrete Button-Aktionen beschreibt. Nachrichten mit der \texttt{action initial} werden für die Initialisierung genutzt und können initiale Sliderwerte oder die Menüstruktur selbst senden. Der \texttt{type} einer Nachricht gibt an, welches Element die Nachricht ausgelöst hat. \texttt{slider} Nachrichten gehören immer zur \texttt{action update}, während \texttt{pressed} immer zum \texttt{type button} gehört und \texttt{type menu} immer zur \texttt{action initial}. Das \texttt{target} gibt immer das Ziel oder den Kontext der aktuellen Interaktion an, wie \texttt{volume} oder \texttt{presentation}. \texttt{value} gibt an, welchen Wert die Aktion aktualisiert hat. Im Falle von Slidern sind das meist Angaben zwischen 0 und 1, für Buttons können es spezifische Klick-Events sein. Die \texttt{id} gibt an, zu welchem Menüelement die Aktion gehört, was nützlich ist, falls es beispielsweise mehrere Slider mit dem \texttt{target volume} gibt.
+oder kontinuierliche Slideränderungen) innerhalb eines einheitlichen Kommunikationsprotokolls. Das Interaktionsereignis wird über das Feld \texttt{``action''} beschrieben.
+Nachrichten mit der Aktion \texttt{``update''} werden bei Änderungen kontinuierlicher Werte verwendet, während \texttt{``pressed''} diskrete Button-Aktionen beschreibt. Nachrichten mit der \texttt{``action" "initial''} werden für die Initialisierung genutzt und können initiale Sliderwerte oder die Menüstruktur selbst senden. Der \texttt{``type''} einer Nachricht gibt an, welches Element die Nachricht ausgelöst hat. \texttt{``slider''} Nachrichten gehören immer zur \texttt{``action" "update''}, während \texttt{``pressed''} immer zum \texttt{``type" "button''} gehört und \texttt{``type" "menu''} immer zur \texttt{``action" "initial''}. Das \texttt{``target''} gibt immer das Ziel oder den Kontext der aktuellen Interaktion an, wie \texttt{``volume''} oder \texttt{``presentation''}. \texttt{value} gibt an, welchen Wert die Aktion aktualisiert hat. Im Falle von Slidern sind das meist Angaben zwischen 0 und 1, für Buttons können es spezifische Klick-Events sein. Die \texttt{``id''} gibt an, zu welchem Menüelement die Aktion gehört, was nützlich ist, falls es beispielsweise mehrere Slider mit dem \texttt{``target" "volume''} gibt.
 
 Eine beispielhafte Nachricht ist in Listing \ref{lst:slider_update} dargestellt.
 
@@ -404,15 +383,9 @@ label={lst:slider_update}]
 }
 \end{lstlisting}
 
-Neben der funktionalen Beschreibung der Nachrichtenstruktur ist auch deren Entstehung und Bewertung relevant. Die Nachrichtenstruktur entstand im Rahmen eines iterativen Entwicklungsprozesses, bei dem zunächst einfache Interaktionsereignisse übertragen wurden und das Schema schrittweise erweitert wurde, um zusätzliche Anforderungen wie Initialisierung, Zustandssynchronisation und unterschiedliche UI-Elemente abzudecken.
-
-Diese evolutionäre Entwicklung führte zu einer funktionalen, jedoch nicht vollständig konsistenten Struktur. Beispielsweise besteht eine teilweise Redundanz zwischen den Feldern \texttt{action} und \texttt{type}, da bestimmte Kombinationen implizit festgelegt sind (zum Beispiel \texttt{pressed} nur für \texttt{button}). Ebenso ist das Feld \texttt{value} nicht strikt typisiert, da es sowohl kontinuierliche Werte als auch diskrete Zustände (zum Beispiel \texttt{play}/\texttt{pause}) oder Zeitangaben enthalten kann.
-
-Eine mögliche Weiterentwicklung des Protokolls könnte eine stärkere Trennung von Ereignistyp und Datenstruktur sowie eine strengere Typisierung der übertragenen Werte beinhalten. Beispielsweise könnten unterschiedliche Nachrichtentypen oder spezialisierte Payload-Strukturen definiert werden, um die Semantik klarer abzubilden und die Erweiterbarkeit zu verbessern.
 
 % Motivation für Wahl
-
-Trotz dieser strukturellen Schwächen erfüllt das gewählte Nachrichtenformat die Anforderungen des Systems in der gegebenen Anwendungssituation. Durch die Verwendung eines generischen Nachrichtenformats bleibt die Kopplung zwischen Interaktionssystem und Zielanwendung gering. Das Overlay übermittelt keine anwendungsspezifischen Methodenaufrufe, sondern abstrahierte Interaktionsereignisse. Dadurch kann das System prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. Zusätzlich können neue Interaktionstypen oder Zielparameter ergänzt werden, ohne die grundlegende Kommunikationslogik verändern zu müssen.
+Durch die Verwendung eines generischen Nachrichtenformats bleibt die Kopplung zwischen Interaktionssystem und Zielanwendung gering. Das Overlay übermittelt keine anwendungsspezifischen Methodenaufrufe, sondern abstrahierte Interaktionsereignisse. Dadurch kann das System prinzipiell mit unterschiedlichen Anwendungen kombiniert werden. Zusätzlich können neue Interaktionstypen oder Zielparameter ergänzt werden, ohne die grundlegende Kommunikationslogik verändern zu müssen.
 
 
 \subsubsection{Kommunikationsfluss}
@@ -482,7 +455,6 @@ Der grundlegende Kommunikationsfluss zwischen Overlay und Zielanwendung ist in A
 
 
 \subsubsection{Anwendungsfall Präsentationssteuerung}
-{\color{red} TODO: für Button Aktionen nochmal eigenes Kapitel oder hier ok?}
 Für den Anwendungsfall der Präsentationssteuerung, und somit für alle Szenarien, die vorgerenderte Inhalte nutzen, ergeben sich besondere Anforderungen an die Interaktionslogik, da sowohl diskrete als auch kontinuierliche Eingaben unterstützt werden müssen.
 Im Gegensatz zu reinen Menüinteraktionen kommen hierbei sowohl Button- als auch Slider-Elemente innerhalb eines Kontexts zum Einsatz.
 
@@ -580,10 +552,23 @@ Eine zentrale Rolle spielte dabei ein Mock-Server, der das Verhalten einer Ziela
 
 Zusätzlich wurde ein Offline-Modus vorgesehen, in dem das System mit lokalen Testdaten arbeitet. Dadurch kann die Benutzungsoberfläche auch ohne aktive WebSocket-Verbindung betrieben werden, was isolierte Tests einzelner Komponenten ermöglicht. Dafür wurde das System zusätzlich als browserbasierte Variante bereitgestellt, wodurch eine einfache Demonstration und ein schneller Zugriff auf das Interaktionssystem ohne lokale Installation möglich wurde.
 
-Ein Großteil der Entwicklung erfolgte auf einem Laptop-System, während Tests des vollständigen Interaktionssystems im Multisensorischen Interaktionsraum durchgeführt wurden. Da die Größe und Position des Marking-Menus auf den großflächigen Projektionen deutlich anders wahrgenommen werden als auf einem Laptopdisplay, wurden zusätzliche Kalibrierungsfunktionen implementiert.
+Ergänzend zu Mock-Server und Offline-Modus wurde das Interaktionssystem bereits exemplarisch an eine konkrete Testanwendung durch einen Entwickler des MIR angebunden. Dabei wurden vorgerenderte Videoinhalte über die entwickelte WebSocket-Schnittstelle gesteuert. Als Testfall diente unter anderem ein kurzes Video einer Berglandschaft, das sich aufgrund seiner geringen Länge besonders für wiederholte Tests der Wiedergabe- und Timeline-Steuerung eignete. Über das Marking-Menu konnten dabei sowohl die Lautstärke als auch der Wiedergabezustand sowie das Vor- und Zurückspulen des Videos gesteuert werden. Da dieses Testszenario nicht Bestandteil der in Abschnitt~\ref{sec:analyse} untersuchten Szenarien war, diente es primär der technischen Überprüfung der Anbindung.
+Abbildung~\ref{fig:berg_testanwendung} zeigt beispielhaft die angebundene Testanwendung im MIR.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{content/images/vieo-still.png}
+    \caption{Ausschnitt aus einem Interaktionsvideo des Berglandschaftsszenarios mit vorgerendertem Videoinhalt. Die Umgebung wird durch eine Nutzerin über das Marking-Menu gesteuert.}
+    \label{fig:berg_testanwendung}
+\end{figure}
+
+Neben diesen angebundenen Tests erfolgte ein Großteil der Entwicklung auf einem Laptop-System, während Tests des vollständigen Interaktionssystems im Multisensorischen Interaktionsraum durchgeführt wurden. Da die Größe und Position des Marking-Menus auf den großflächigen Projektionen deutlich anders wahrgenommen werden als auf einem Laptopdisplay, wurden zusätzliche Kalibrierungsfunktionen implementiert.
 Über Tastaturkürzel konnten während der Entwicklungsphase Parameter wie die Position, Skalierung und Darstellung des Menüs angepasst werden. Ebenso konnten Schwellwerte der Gestenerkennung sowie Dwell-Zeiten zur Interaktionsauslösung dynamisch verändert werden. Diese Funktionen erleichterten die Feinabstimmung des Interaktionssystems in unterschiedlichen Testumgebungen.
 
-Diese Werkzeuge unterstützten insbesondere die iterative Entwicklung und ermöglichten eine schrittweise Überprüfung der einzelnen Systemkomponenten.
+Diese Werkzeuge unterstützten insbesondere die iterative Entwicklung und ermöglichten eine schrittweise Überprüfung der einzelnen Systemkomponenten. Die Tests wurden dabei nicht ausschließlich isoliert durchgeführt, sondern erfolgten auch im Multisensorischen Interaktionsraum in Zusammenarbeit mit einem Entwickler des Systems sowie dem Betreuer der Arbeit. Dadurch konnten praktische Aspekte der Integration und Nutzung frühzeitig berücksichtigt werden.
+
+
+Diese Werkzeuge unterstützten insbesondere die iterative Entwicklung und ermöglichten eine schrittweise Überprüfung der einzelnen Systemkomponenten. Die Tests wurden dabei nicht ausschließlich isoliert durchgeführt, sondern erfolgten auch im Multisensorischen Interaktionsraum in Zusammenarbeit mit einem Entwickler des Systems sowie dem Betreuer der Arbeit. Dadurch konnten praktische Aspekte der Integration und Nutzung frühzeitig berücksichtigt werden.
 
 
 \subsection{Integration der Systemkomponenten}

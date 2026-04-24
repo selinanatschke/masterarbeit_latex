@@ -203,7 +203,9 @@ Die Position der Hand im Raum wird als primärer Interaktionspunkt genutzt und d
 
 Im Gegensatz zu klassischen Eingabegeräten wie Maus oder Controller basiert die Interaktion hier nicht auf der Vermittlung über ein separates Gerät, sondern auf der unmittelbaren Interpretation der Handposition im Raum. Dadurch entsteht eine stärkere räumlich-körperliche Kopplung zwischen Nutzerbewegung und Systemreaktion. Gleichzeitig können Nutzer:innen ihre Hände frei im Raum bewegen, wodurch die Interaktion mit der natürlichen Bewegungsfreiheit im MIR vereinbar bleibt (R3). \\
 
-Das Menü und der Cursor werden standardmäßig nicht angezeigt, sondern müssen durch Nutzer:innen mit einer Aktivierungsgeste (siehe Abbildung \ref{fig:openpalm_gesture_image_no_marking}) erst aktiviert werden. Dies verhindert die versehentliche Auslösung der Menüinteraktion (siehe Abschnitt~\ref{sec:rw_midair}), sodass die Immersion der Zielanwendung nicht unbeabsichtigt unterbrochen wird. Die Aktivierungsgeste wurde dabei bewusst so gewählt, dass sie alltagsnah, sozial unauffällig und mit geringer Bewegungsamplitude ausgeführt werden kann. Nach erfolgreicher Aktivierung wird das Menü an einer festen Position im Raum eingeblendet, standardmäßig in der Mitte des aktiven Bildschirms. Der Cursor wird jedoch initial im Zentrum positioniert, sodass die Interaktion relativ zu diesem Ausgangspunkt erfolgt. Dadurch entsteht ein lokaler Interaktionsraum um die Aktivierungsposition herum (siehe Abbildung~\ref{fig:interaktionsraum}), der unabhängig von der Körpergröße oder Haltung der Nutzer:innen genutzt werden kann. Diese Gestaltung ermöglicht eine konsistente und ergonomische Interaktion, da Nutzer:innen das Menü aus unterschiedlichen Positionen im Raum heraus aktivieren können, ohne dass die relative Erreichbarkeit der Menüelemente beeinflusst wird. Zugleich adressiert sie die in Abschnitt~\ref{sec:rw_midair} beschriebenen Ermüdungsprobleme länger gehaltener Mid-Air-Interaktion, da Nutzer:innen selbst bestimmen können, in welcher Haltung die Interaktion am komfortabelsten für sie ist.
+Das Menü und der Cursor werden standardmäßig nicht angezeigt, sondern müssen durch Nutzer:innen mit einer Aktivierungsgeste (siehe Abbildung \ref{fig:openpalm_gesture_image_no_marking}) erst aktiviert werden. Dies verhindert die versehentliche Auslösung der Menüinteraktion (siehe Abschnitt~\ref{sec:rw_midair}), sodass die Immersion der Zielanwendung nicht unbeabsichtigt unterbrochen wird. Die Aktivierungsgeste wurde dabei bewusst so gewählt, dass sie alltagsnah, sozial unauffällig und mit geringer Bewegungsamplitude ausgeführt werden kann. Nach erfolgreicher Aktivierung wird das Menü an einer festen Position im Raum eingeblendet, standardmäßig in der Mitte des aktiven Bildschirms.
+Die zentrale Platzierung des Menüs stellt sicher, dass sich die Interaktion im primären Sichtbereich der Nutzer:innen befindet. Zugleich unterstützt sie eine konsistente räumliche Orientierung, da Nutzer:innen sich zur jeweiligen Projektionsfläche ausrichten. Da die Kameraerfassung im MIR ebenfalls je Projektion erfolgt, begünstigt diese Platzierung eine möglichst robuste und konsistente Erkennung der Handinteraktion sowie eine nachvollziehbare Kopplung zwischen Körperausrichtung, Interaktionsfläche und visueller Rückmeldung.
+Der Cursor wird jedoch initial im Zentrum positioniert, sodass die Interaktion relativ zu diesem Ausgangspunkt erfolgt. Dadurch entsteht ein lokaler Interaktionsraum um die Aktivierungsposition herum (siehe Abbildung~\ref{fig:interaktionsraum}), der unabhängig von der Körpergröße oder Haltung der Nutzer:innen genutzt werden kann. Diese Gestaltung ermöglicht eine konsistente und ergonomische Interaktion, da Nutzer:innen das Menü aus unterschiedlichen Positionen im Raum heraus aktivieren können, ohne dass die relative Erreichbarkeit der Menüelemente beeinflusst wird. Zugleich adressiert sie die in Abschnitt~\ref{sec:rw_midair} beschriebenen Ermüdungsprobleme länger gehaltener Mid-Air-Interaktion, da Nutzer:innen selbst bestimmen können, in welcher Haltung die Interaktion am komfortabelsten für sie ist.
 
 \begin{figure}[H]
     \centering
@@ -297,12 +299,47 @@ Diese zeigt den zeitlichen Fortschritt der Aktivierung und ermöglicht es Nutzer
 
 Die konkrete visuelle Ausgestaltung wurde im Entwicklungsverlauf iterativ verfeinert. Die hier verwendeten Grafiken zeigen die endgültige visuelle Gestaltung.
 
+Neben den Zuständen der Menüelemente sieht das Konzept eine übergeordnete Statusanzeige vor, die unabhängig vom aktuell fokussierten Menüeintrag Auskunft über den Systemzustand gibt. Während des Dwell-Vorgangs wird eine kreisförmige Fortschrittsanzeige subtil in der oberen rechten Bildschirmecke dargestellt, die den Aktivierungsfortschritt visualisiert (siehe Abbildung \ref{fig:hand_with_dwell}). Diese animierte Visuali\-sierung verhindert dadurch Unsicherheit über den aktuellen Systemzustand. Dadurch können Nutzer:innen einschätzen, ob eine Interaktion bereits erkannt wurde und wie weit der Aktivierungsprozess fortgeschritten ist.
+
+Zusätzlich zeigt ein Hand-Icon an, ob eine Hand erkannt wurde und welche Geste aktuell interpretiert wird (siehe Abbildung \ref{fig:hand_with_grab}). Dadurch erhalten Nutzer:innen unmittelbar Rückmeldung darüber, ob ihre Hand korrekt erkannt wird und welche Interaktion gerade aktiv ist. Auch im deaktivierten Zustand bleibt das Icon sichtbar, jedoch in abgeschwächter Darstellung (siehe Abbildung \ref{fig:no_hand_detected}). Dies dient als visuelle Anleitung zur Aktivierung des Menüs und unterstützt zudem die Discoverability der Interaktion (siehe Abschnitt \ref{sec:rw_gestures}).
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{content/images/hand_with_dwell.png}
+        \caption{Dwell-Kreis, wäh-rend Aktivierungsgeste erkannt wird}
+        \label{fig:hand_with_dwell}
+    \end{subfigure}
+    \hspace{0.5cm}
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{content/images/hand_with_grab.png}
+        \caption{Dwell-Kreis, wäh-rend Grab-Geste erkannt wird}
+        \label{fig:hand_with_grab}
+    \end{subfigure}
+    \hspace{0.5cm}
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{content/images/no_hand_detected.png}
+        \caption{Dwell-Kreis, wenn keine Hand erkannt wird}
+        \label{fig:no_hand_detected}
+    \end{subfigure}
+    \caption{Verschiedene Zustände der Fortschrittsanzeige (Dwell-Kreis)}
+    \label{fig:gesture_icons}
+\end{figure}
 
 \subsubsection{Submenus}
-Um eine größere Anzahl von Funktionen innerhalb des Interaktionssystems zugänglich zu machen, wurde das radiale Menü um Submenüs erweitert. Einzelne Segmente des Hauptmenüs können weitere Menüebenen enthalten, die bei Auswahl eines Elements geöffnet werden.
-Diese hierarchische Struktur ermöglicht es, thematisch zusammengehörige Funktionen zu gruppieren und gleichzeitig die visuelle Komplexität des Hauptmenüs zu reduzieren.
-Menüeinträge erfüllen dabei zwei unterschiedliche Rollen: Es handelt scih entweder um Kategorien, die ein weiteres Untermenü öffnen (siehe Abbildung \ref{fig:menu_with_submenu_syn}) oder dienen zur direkten Auslösung von Interaktionen. Solche Interaktionen können beispielsweise diskrete Aktionen (zum Beispiel Button-Funktionen, siehe Abbildung \ref{fig:menu_with_button_syn}) oder kontinuierliche Parametersteuerungen wie Slider umfassen (siehe Abbildung \ref{fig:menu_with_slider_presentation_syn}).
-Durch diese mehrstufige Organisation bleibt die Anzahl der gleichzeitig sichtbaren Menüelemente begrenzt, wodurch die Orientierung im Menü erleichtert wird und die Interaktion auch im Mid-Air-Kontext übersichtlich bleibt. Gleichzeitig erlaubt die hierarchische Struktur eine flexible Erweiterung des Systems um zusätzliche Funktionen.
+
+Um eine größere Anzahl von Funktionen innerhalb des Interaktionssystems zugänglich zu machen, ohne die visuelle Komplexität des Menüs zu erhöhen, wurde das radiale Menü um Submenüs erweitert. Diese ermöglichen es, Funktionen hierarchisch zu strukturieren und thematisch zu gruppieren, sodass die Anzahl gleichzeitig sichtbarer Menüelemente begrenzt bleibt.
+
+Die Menüstruktur wird dabei konzeptionell datengetrieben verstanden. Anstatt eine feste Menüstruktur vorzugeben, wird das Interaktionssystem so gestaltet, dass Anzahl, Hierarchie und Funktion der Menüeinträge flexibel an unterschiedliche Anwendungsszenarien angepasst werden können.
+
+
+Diese Flexibilität ermöglicht eine Anpassung der Menüstruktur an unterschiedliche Anwendungsszenarien, ohne die grundlegende Interaktionslogik zu verändern. Gleichzeitig wurde bewusst auf eine starre Begrenzung der Anzahl von Menüsegmenten verzichtet. Stattdessen wird bei zunehmender Menükomplexität auf potenzielle Usability-Probleme hingewiesen, beispielsweise bei großer Menütiefe oder sehr kleinen Segmenten. Dadurch können Gestaltungsrichtlinien berücksichtigt werden, ohne die Anpassbarkeit des Systems einzuschränken.
+
+Einzelne Segmente des Hauptmenüs können weitere Menüebenen enthalten, die bei Auswahl geöffnet werden. Menüeinträge erfüllen dabei zwei unterschiedliche Rollen: Es handelt sich entweder um Kategorien, die ein weiteres Untermenü öffnen (siehe Abbildung \ref{fig:menu_with_submenu_syn}) oder dienen zur direkten Auslösung von Interaktionen. Solche Interaktionen können beispielsweise diskrete Aktionen (zum Beispiel Button-Funktionen, siehe Abbildung \ref{fig:menu_with_button_syn}) oder kontinuierliche Parametersteuerungen wie Slider umfassen (siehe Abbildung \ref{fig:menu_with_slider_presentation_syn}).
+Durch diese mehrstufige Organisation bleibt die Anzahl der gleichzeitig sichtbaren Menüelemente begrenzt, wodurch die Orientierung im Menü erleichtert wird und die Interaktion auch im Mid-Air-Kontext übersichtlich bleibt.
 
 \begin{figure}[H]
     \centering
@@ -383,7 +420,7 @@ Im Kontext des Marking-Menus erfolgt dies durch die Auswahl eines Menüeintrags,
     \label{fig:slider_states}
 \end{figure}
 
-Die Steuerung erfolgt über eine gezielte Handbewegung entlang einer definierten Interaktionsachse. Diese wird durch eine Pinch-Geste (siehe Abbildung \ref{fig:pinch_gesture}) aktiviert, bei der Nutzer:innen den Parameter durch Verschieben der Hand entlang der jeweiligen Achse verändern (siehe Abbilung \ref{pinch_ausrichtung}). Die Kombination aus Aktivierungsgeste und anschließender gerichteter Bewegung greift Elemente von Micro-Gesten-basierten Interaktionen auf (siehe Abschnitt~\ref{sec:rw_gestures} und Abschnitt~\ref{sec:rw_menus}).
+Die Steuerung erfolgt über eine gezielte Handbewegung entlang einer definierten Interaktionsachse. Diese wird durch eine Pinch-Geste (siehe Abbildung \ref{fig:pinch_gesture}) aktiviert, bei der Nutzer:innen den Parameter durch Verschieben der Hand entlang der jeweiligen Achse verändern (siehe Abbildung \ref{pinch_ausrichtung}). Die Kombination aus Aktivierungsgeste und anschließender gerichteter Bewegung greift Elemente von Micro-Gesten-basierten Interaktionen auf (siehe Abschnitt~\ref{sec:rw_gestures} und Abschnitt~\ref{sec:rw_menus}).
 
 \begin{figure}[H]
     \centering
@@ -434,7 +471,6 @@ Durch die Integration solcher Slider lassen sich kontinuierliche Parameter inner
 
 \subsubsection{Einsatzbeispiele der  Interaktionen}
 \label{sec:synthese_einsatzbeispiele}
-{\color{red} TODO: überlegen ob button doch in extra abschnitt muss, aber denke eigentlich nicht, weil es gibt ja nur den einen => dann eher generalisierbarkeit als todo in den ausblick }
 
 Die Marking-Menu Interaktionen umfassen sowohl kontinuierliche Parametersteuerungen als auch diskrete Steuerungsfunktionen (siehe Tabelle \ref{tab:interaktionsmoeglichkeiten}).
 Ein zentraler Anwendungsfall für kontinuierliche Interaktion sind Slider zur Anpassung von Parametern wie Helligkeit, Vibration und Lautstärke. Diese werden in Form prozentualer Werte dargestellt und ermög\-lichen eine direkte, kontinuierliche Kontrolle der jeweiligen Systemparameter.

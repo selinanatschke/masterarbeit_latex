@@ -108,6 +108,15 @@
 % macht, dass statt "Contents" "Inhaltsverzeichnis da steht"
 \renewcommand{\contentsname}{Inhaltsverzeichnis}
 
+% Baum Listing
+\lstset{
+    literate=
+        {├}{{|}}1
+        {└}{{`}}1
+        {│}{{|}}1
+        {─}{{-}}1
+}
+
 \begin{document}
 
 \pagenumbering{gobble} % bis hier keine Seitenzahl
