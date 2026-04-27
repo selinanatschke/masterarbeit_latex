@@ -18,6 +18,14 @@
  bottom=3cm
 }
 
+% damit auf seite wo zwei bilder sein, beide ganz oben sind und nicht vertikal zentriert
+\makeatletter
+\setlength{\@fptop}{0pt}      % kein Abstand oben
+\setlength{\@fpsep}{10pt}     % Abstand zwischen Floats
+\setlength{\@fpbot}{0pt plus 1fil} % Rest nach unten drücken
+\makeatother
+
+
 % Tabellen
 \usepackage{tabularx}
 
@@ -33,6 +41,9 @@
 
 % Tabellen haben oben und unten Striche
 \usepackage{booktabs}
+
+\usepackage{tocloft}
+
 
 % für Code Beispiele
 \usepackage{listings}
@@ -105,6 +116,19 @@
 \usepackage[backend=biber,style=authoryear]{biblatex}
 \addbibresource{refs.bib}
 
+% Captions Linksbündig aber zentriert
+\usepackage{caption}
+% Haupt-Captions (Figure) → zentriert
+\captionsetup[figure]{
+    justification=centering
+}
+% Subcaptions → linksbündig
+\captionsetup[sub]{
+    justification=raggedright,
+    singlelinecheck=false
+}
+
+
 % macht, dass statt "Contents" "Inhaltsverzeichnis da steht"
 \renewcommand{\contentsname}{Inhaltsverzeichnis}
 
@@ -117,10 +141,19 @@
         {─}{{-}}1
 }
 
+% Verwaiste Zeilen vermeiden
+%\clubpenalty=10000
+%\widowpenalty=10000
+%\displaywidowpenalty=10000
+
+% Umbruch in URL bei Literaturcerzeichnis
+\usepackage{xurl}
+
 \begin{document}
 
 \pagenumbering{gobble} % bis hier keine Seitenzahl
 \input{deckblatt}
+\clearpage
 
 \pagenumbering{roman} % bis hier römische Seitenzahl
 \clearpage
@@ -136,7 +169,7 @@ Um dem entgegenzuwirken, wurde der mehrsinnliche Interaktionsraum (MIR) \parenci
 Allerdings bleibt die Interaktion bislang passiv: Die Atmosphäre wird präsentiert, aber nicht aktiv durch die Nutzer:innen beeinflusst. Um dieses Potenzial zu entfalten, ist eine Weiterentwicklung hin zu einem dynamischen, körper\-basierten Interaktionsraum notwendig.
 
 % Ziel
-Ziel dieser Arbeit ist es daher, den MIR um natürliche, körper\-basierte Interaktionsformen zu erweitern und ein Konzept für deren prototypische Umsetzung zu entwickeln. Im Zentrum steht die Frage, wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierte Steuerung so gestaltet und technisch integriert werden können, dass Nutzer:innen die Atmosphäre des Raumes intuitiv und unmittelbar beeinflussen können. Dabei werden Interaktionskonzepte entwickelt, die Nutzern erlauben, Objekte zu manipulieren, Systemfunktionen auszuwählen und sich im Raum zu navigieren. Diese Konzepte wurden anschließend auf ihre Eignung für den multisensorischen, atmosphärischen Kontext des MIR geprüft. Auf Basis dessen wird ein geeignetes Konzept ausgewählt und prototypisch umgesetzt.
+Ziel dieser Arbeit ist es daher, den MIR um natürliche, körper\-basierte Interaktionsformen zu erweitern und ein Konzept für deren prototypische Umsetzung zu entwickeln. Im Zentrum steht die Frage, wie Gesteninteraktion, Whole-Body-Interaktion und positionsbasierte Steuerung so gestaltet und technisch integriert werden können, dass Nutzer:innen die Atmosphäre des Raumes intuitiv und unmittelbar beeinflussen können. Dabei werden Interaktionskonzepte entwickelt, die Nutzer:innen erlauben, Objekte zu manipulieren, Systemfunktionen auszuwählen und sich im Raum zu navigieren. Diese Konzepte wurden anschließend auf ihre Eignung für den multisensorischen, atmosphärischen Kontext des MIR geprüft. Auf Basis dessen wird ein geeignetes Konzept ausgewählt und prototypisch umgesetzt.
 Damit soll der MIR von einem überwiegend passiven Präsentationsraum zu einem aktiven, dynamischen Erfahrungsraum weiterentwickelt werden.
 
 Als Ergebnis entsteht ein gestenbasiertes Interaktionssystem, das als zusätzliche Interaktionsschicht über bestehende Anwendungen gelegt werden kann. Das System kombiniert ein radiales Menü mit diskreten und kontinuierlichen Interaktionsmechanismen und ermöglicht eine natürliche, körper\-basierte Steuerung multisensorischer Parameter. Die prototypische Umsetzung zeigt, dass eine solche Interaktionsform grund\-sätzlich geeignet ist, um atmosphärische und funktionale Eingriffe im MIR zu realisieren, gleichzeitig jedoch Herausforderungen hinsichtlich Robustheit und Präzision bestehen.
@@ -176,30 +209,45 @@ Die Arbeit ist wie folgt aufgebaut: Zunächst werden zentrale Begriffe definiert
 \clearpage
 \include{discussion}
 
-
 \clearpage
 \appendix
 
 \section*{Anhang}
+\addcontentsline{toc}{section}{Anhang}
 \input{szenarien-tabelle}
 \input{interaktionsmoeglichkeiten-tabelle}
 
-\appendix
-%\section{Glossar}
-
 \clearpage
 \section{Literaturverzeichnis}
-\printbibliography[heading=none]
+
+\begin{sloppypar}
+    \printbibliography[heading=none]
+\end{sloppypar}
+
 
 % TODO: hier nochmal gucken, wie Seite nummeriert sein muss
 \clearpage
-\section{Abbildungsverzeichnis}
+\renewcommand{\listfigurename}{B\quad Abbildungsverzeichnis}
 \listoffigures
+\addcontentsline{toc}{section}{B\hspace{0.3em} Abbildungsverzeichnis}
+
+\clearpage
+\renewcommand{\lstlistlistingname}{C\quad Listingsverzeichnis}
+\lstlistoflistings
+\addcontentsline{toc}{section}{C\hspace{0.3em} Listingsverzeichnis}
+
+\clearpage
+\renewcommand{\listtablename}{D\quad Tabellenverzeichnis}
+\listoftables
+\addcontentsline{toc}{section}{D\hspace{0.3em} Tabellenverzeichnis}
+
 
 \clearpage
 \include{selbststaendigkeitserklaerung}
+\addcontentsline{toc}{section}{Eigenständigkeitserklärung}
 
-\pagenumbering{roman} % bis hier römische Nummerierung
+
+%\pagenumbering{roman} % bis hier römische Nummerierung
 
 \end{document}
 
